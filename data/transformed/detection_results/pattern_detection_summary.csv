@@ -1,0 +1,4 @@
+Filename,Parent_Code,Parent_Start,Parent_End,6_1_1_Code,6_1_1_Start,6_1_1_End,Has_Matching_6_2,Matching_6_2_Count
+2-P-3.xlsx,5.4.5 Organisierte Aktivität,"0:00:00,0","0:01:16,9",6.1.1 Pflegesituation,"0:00:30,6","0:00:46,0",True,1
+17-P-2 - Teil 1.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:02:00,5",6.1.1 Pflegesituation,"0:00:26,3","0:00:40,3",True,1
+2-P-1.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:01:06,4",6.1.1 Pflegesituation,"0:00:30,2","0:00:39,9",True,1

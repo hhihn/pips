@@ -1,0 +1,29 @@
+start_group,sequence_labels,count
+Andere,Andere -> Andere -> FK von der Seite -> KK Halten,8
+Andere,Andere -> Aufforderung Vorb. -> FK führt Hdlg. aus -> KK Objektbezug,3
+Andere,Andere -> Andere -> FK von der Seite -> Andere,1
+Andere,Andere -> Andere -> FK von hinten -> KK Halten,1
+Andere,Andere -> Andere -> FK von hinten -> KK Objektbezug,1
+Andere,Andere -> Andere -> FK von vorn -> KK Objektbezug,1
+Andere,Andere -> Verbale Begleitung -> Andere -> KK Halten,1
+Andere,Andere -> Verbale Begleitung -> K führt Hdlg aus -> Andere,1
+FK benennt Ziel,FK benennt Ziel -> Andere -> FK von der Seite -> KK Objektbezug,2
+FK benennt Ziel,FK benennt Ziel -> Andere -> FK von hinten -> KK Halten,2
+FK benennt Ziel,FK benennt Ziel -> Andere -> FK von vorn -> KK Objektbezug,2
+FK benennt Ziel,FK benennt Ziel -> Aufforderung Vorb. -> K führt Hdlg aus -> Andere,2
+FK benennt Ziel,FK benennt Ziel -> Verbale Begleitung -> FK von der Seite -> KK Objektbezug,2
+FK benennt Ziel,FK benennt Ziel -> Verbale Begleitung -> K führt Hdlg aus -> Andere,2
+FK benennt Ziel,FK benennt Ziel -> Andere -> Andere -> KK Halten,1
+FK benennt Ziel,FK benennt Ziel -> Andere -> FK führt Hdlg. aus -> KK Halten,1
+FK benennt Ziel,FK benennt Ziel -> Andere -> FK führt Hdlg. aus -> KK Objektbezug,1
+FK benennt Ziel,FK benennt Ziel -> Andere -> FK von der Seite -> KK Halten,1
+FK benennt Ziel,FK benennt Ziel -> Andere -> FK von vorn -> KK Halten,1
+FK benennt Ziel,FK benennt Ziel -> Andere -> K führt Hdlg aus -> KK Objektbezug,1
+FK benennt Ziel,FK benennt Ziel -> Aufforderung Vorb. -> Andere -> KK Halten,1
+FK benennt Ziel,FK benennt Ziel -> Aufforderung Vorb. -> FK von vorn -> KK Objektbezug,1
+FK benennt Ziel,FK benennt Ziel -> Verbale Begleitung -> FK führt Hdlg. aus -> Andere,1
+Kindliches Signal,Kindliches Signal -> Andere -> FK von der Seite -> KK Objektbezug,1
+Kindliches Signal,Kindliches Signal -> Andere -> FK von hinten -> KK Halten,1
+Kindliches Signal,Kindliches Signal -> Andere -> FK von vorn -> KK Halten,1
+Kindliches Signal,Kindliches Signal -> Aufforderung Vorb. -> FK führt Hdlg. aus -> KK Objektbezug,1
+Kindliches Signal,Kindliches Signal -> Verbale Begleitung -> FK führt Hdlg. aus -> Andere,1

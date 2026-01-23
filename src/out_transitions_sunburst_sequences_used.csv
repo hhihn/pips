@@ -1,0 +1,44 @@
+sequence
+FK benennt Ziel -> FK von hinten -> FK führt Hdlg. aus + Objektbezug -> KK Halten
+Aufforderung Vorb. -> FK von hinten -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug -> KK Halten
+FK benennt Ziel -> Aufforderung Vorb. -> Verbale Begleitung -> K führt Hdlg aus
+FK benennt Ziel -> Verbale Begleitung -> K führt Hdlg aus
+FK benennt Ziel -> FK von der Seite -> FK führt Hdlg. aus -> KK Halten + Objektbezug
+FK benennt Ziel -> FK von der Seite -> FK führt Hdlg. aus -> KK Objektbezug
+FK benennt Ziel -> FK von hinten -> FK führt Hdlg. aus + Objektbezug -> KK Halten
+FK benennt Ziel -> Aufforderung Vorb. -> FK von vorn -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug -> KK Halten
+FK benennt Ziel -> Aufforderung Vorb. -> Verbale Begleitung -> FK von der Seite -> FK führt Hdlg. von der Seite aus -> KK Halten + Objektbezug
+Kindliches Signal -> FK von hinten -> FK führt Hdlg. von Hinten aus -> KK Halten + Objektbezug
+FK benennt Ziel -> FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug -> KK Halten
+FK benennt Ziel -> FK von vorn -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug -> KK Halten
+Aufforderung Vorb. -> Verbale Begleitung -> FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug -> KK Halten
+FK benennt Ziel -> Aufforderung Vorb. -> FK von vorn -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug -> KK Halten
+FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug -> KK Halten
+FK benennt Ziel -> Aufforderung Vorb. -> Verbale Begleitung -> FK von der Seite -> FK führt Hdlg. von der Seite aus -> KK Halten + Objektbezug
+FK benennt Ziel -> Aufforderung Vorb. -> FK von vorn -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug -> KK Halten
+FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug -> KK Halten
+FK von der Seite -> FK führt Hdlg. von der Seite aus
+Kindliches Signal -> Aufforderung Vorb. -> Verbale Begleitung -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug
+FK von vorn -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug
+FK benennt Ziel -> FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug -> KK Halten
+FK benennt Ziel -> FK von vorn -> FK führt Hdlg. aus -> KK Objektbezug
+FK benennt Ziel -> KK Halten + Objektbezug
+Kindliches Signal -> Aufforderung Vorb. -> Verbale Begleitung -> FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug
+Kindliches Signal -> FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug -> KK Halten
+FK von hinten -> FK führt Hdlg. aus + Objektbezug
+FK von der Seite -> FK führt Hdlg. aus -> KK Halten + Objektbezug
+FK benennt Ziel -> FK von vorn -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug
+FK benennt Ziel -> FK von hinten -> FK führt Hdlg. aus + Objektbezug -> KK Halten
+FK benennt Ziel -> Aufforderung Vorb. -> Verbale Begleitung -> K führt Hdlg aus
+Verbale Begleitung -> K führt Hdlg aus
+Aufforderung Vorb. -> Verbale Begleitung -> FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> KK Halten + Objektbezug
+Kindliches Signal -> Verbale Begleitung -> FK von vorn -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug -> KK Halten
+FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug -> KK Halten
+FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug -> KK Halten
+FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug -> KK Halten
+FK von hinten -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug -> KK Halten
+FK benennt Ziel -> FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug -> KK Halten
+FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> KK Objektbezug -> KK Halten
+Aufforderung Vorb. -> Verbale Begleitung -> FK von vorn -> FK führt Hdlg. von vorn aus -> KK Halten + Objektbezug
+FK von der Seite -> FK führt Hdlg. von der Seite aus -> KK Halten
+FK benennt Ziel -> Aufforderung Vorb. -> Verbale Begleitung -> FK von der Seite -> FK führt Hdlg. aus -> KK Halten + Objektbezug

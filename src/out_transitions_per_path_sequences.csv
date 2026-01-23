@@ -1,0 +1,44 @@
+Filename,path_index,sequence
+11-P-4_transformed.xlsx,0,FK benennt Ziel -> FK von hinten -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von Hinten aus -> KK Halten
+11-P-5_transformed.xlsx,0,Aufforderung Vorb. -> FK von hinten -> Aufforderung Vorb. -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. aus -> KK Objektbezug -> KK Halten
+12-P-3_K1_transformed.xlsx,0,FK benennt Ziel -> Aufforderung Vorb. -> Verbale Begleitung -> Verbale Begleitung -> K führt Hdlg aus -> Aufforderung Vorb. -> Verbale Begleitung
+12-P-3_K2_transformed.xlsx,0,FK benennt Ziel -> K führt Hdlg aus -> Verbale Begleitung
+17-P-3_K1_transformed.xlsx,0,FK benennt Ziel -> FK führt Hdlg. aus -> KK Objektbezug -> KK Objektbezug -> FK benennt Ziel -> KK Objektbezug -> FK benennt Ziel -> KK Objektbezug -> K führt Hdlg aus -> FK von der Seite -> KK Objektbezug -> KK Halten + Objektbezug
+17-P-3_K2_transformed.xlsx,0,FK führt Hdlg. aus -> FK benennt Ziel -> FK benennt Ziel -> K führt Hdlg aus -> KK Objektbezug -> FK benennt Ziel -> FK von der Seite -> KK Objektbezug -> FK führt Hdlg. aus -> KK Objektbezug
+18-P-1_transformed.xlsx,0,FK benennt Ziel -> FK von hinten -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von Hinten aus -> KK Halten
+18-P-3_K1_transformed.xlsx,0,FK benennt Ziel -> Aufforderung Vorb. -> FK benennt Ziel -> Aufforderung Vorb. -> FK benennt Ziel -> Aufforderung Vorb. -> KK Halten -> FK benennt Ziel -> Aufforderung Vorb. -> FK benennt Ziel -> Aufforderung Vorb. -> FK benennt Ziel -> Aufforderung Vorb. -> KK Objektbezug -> FK von vorn -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von vorn aus -> FK führt Hdlg. aus -> KK Objektbezug
+18-P-4_transformed.xlsx,0,Verbale Begleitung -> FK benennt Ziel -> FK von der Seite -> FK führt Hdlg. von der Seite aus -> FK führt Hdlg. aus -> KK Objektbezug -> KK Halten + Objektbezug -> Aufforderung Vorb.
+2-P-1_transformed.xlsx,0,Kindliches Signal -> FK von hinten -> FK führt Hdlg. von Hinten aus -> KK Objektbezug -> KK Halten + Objektbezug
+2-P-3_transformed.xlsx,0,FK benennt Ziel -> FK benennt Ziel -> FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von der Seite aus -> FK führt Hdlg. aus -> KK Objektbezug -> KK Halten
+21-P-3_transformed.xlsx,0,FK benennt Ziel -> FK von vorn -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von vorn aus -> FK führt Hdlg. aus -> KK Objektbezug -> KK Halten
+23-P-2_transformed.xlsx,0,Aufforderung Vorb. -> Verbale Begleitung -> FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. aus -> KK Objektbezug -> KK Halten -> FK von hinten
+24-P-1_transformed.xlsx,0,FK benennt Ziel -> Aufforderung Vorb. -> Aufforderung Vorb. -> Aufforderung Vorb. -> K führt Hdlg aus -> FK von vorn -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von vorn aus -> FK führt Hdlg. aus -> KK Objektbezug -> KK Halten
+26-P-2_transformed.xlsx,0,FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von der Seite aus -> FK führt Hdlg. aus -> KK Objektbezug -> KK Halten
+29-P-1_transformed.xlsx,0,FK benennt Ziel -> Aufforderung Vorb. -> Verbale Begleitung -> FK von der Seite -> FK führt Hdlg. von der Seite aus -> FK führt Hdlg. aus -> KK Objektbezug -> KK Halten + Objektbezug -> Aufforderung Vorb. -> Verbale Begleitung
+29-P-4_transformed.xlsx,0,FK benennt Ziel -> Aufforderung Vorb. -> FK von vorn -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von vorn aus -> FK führt Hdlg. aus -> KK Objektbezug -> KK Halten -> Aufforderung Vorb.
+29-PS-1_transformed.xlsx,0,FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von der Seite aus -> FK führt Hdlg. aus -> KK Objektbezug -> KK Halten
+3-P-3_transformed.xlsx,0,FK von der Seite -> FK führt Hdlg. von der Seite aus -> FK führt Hdlg. aus
+30-P-2_transformed.xlsx,0,Kindliches Signal -> Aufforderung Vorb. -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. aus -> KK Objektbezug -> Aufforderung Vorb. -> Verbale Begleitung -> K führt Hdlg aus -> Verbale Begleitung -> KK Objektbezug
+30-P-4_transformed.xlsx,0,FK von vorn -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von vorn aus -> FK führt Hdlg. aus -> KK Objektbezug
+32-P-2_transformed.xlsx,0,FK benennt Ziel -> FK benennt Ziel -> FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von der Seite aus -> FK führt Hdlg. aus -> KK Objektbezug -> KK Halten
+32-P-7_transformed.xlsx,0,FK benennt Ziel -> FK führt Hdlg. aus -> FK benennt Ziel -> FK von vorn -> KK Objektbezug
+32-P-7_transformed.xlsx,1,FK benennt Ziel -> KK Objektbezug -> KK Halten + Objektbezug
+32-P-7_transformed.xlsx,2,Kindliches Signal -> Aufforderung Vorb. -> Verbale Begleitung -> FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von der Seite aus -> FK führt Hdlg. aus -> KK Objektbezug
+33-P-2_transformed.xlsx,0,Kindliches Signal -> FK benennt Ziel -> FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von der Seite aus -> FK führt Hdlg. aus -> KK Objektbezug -> KK Halten
+37-P-1_transformed.xlsx,0,FK von hinten -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von Hinten aus
+38-P-1_transformed.xlsx,0,FK führt Hdlg. aus -> FK von der Seite -> KK Objektbezug -> KK Halten + Objektbezug
+38-P-3_transformed.xlsx,0,FK benennt Ziel -> FK von vorn -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von vorn aus -> FK führt Hdlg. aus -> KK Objektbezug
+40-P-1_transformed.xlsx,0,FK benennt Ziel -> FK von hinten -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von Hinten aus -> KK Halten -> FK benennt Ziel
+43-P-1_K1_transformed.xlsx,0,FK benennt Ziel -> K führt Hdlg aus -> Aufforderung Vorb. -> Verbale Begleitung
+43-P-1_K2_transformed.xlsx,0,K führt Hdlg aus -> Verbale Begleitung
+44-P-1_K1_transformed.xlsx,0,Aufforderung Vorb. -> Aufforderung Vorb. -> Verbale Begleitung -> KK Objektbezug -> KK Halten + Objektbezug -> FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von der Seite aus -> FK führt Hdlg. aus -> KK Objektbezug -> KK Halten
+44-P-1_K2_transformed.xlsx,0,Kindliches Signal -> FK von vorn -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von vorn aus -> FK führt Hdlg. aus -> KK Objektbezug -> KK Halten -> Verbale Begleitung
+44-PS-1_transformed.xlsx,0,FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von der Seite aus -> FK führt Hdlg. aus -> KK Objektbezug -> KK Halten
+44-PS-1_transformed.xlsx,1,FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von der Seite aus -> FK führt Hdlg. aus -> KK Objektbezug -> KK Halten
+44-PS-2_transformed.xlsx,0,FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von der Seite aus -> FK führt Hdlg. aus -> KK Objektbezug -> KK Halten
+44-PS-2_transformed.xlsx,1,FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. aus -> KK Objektbezug -> KK Halten -> FK von hinten
+49-P-2_transformed.xlsx,0,FK benennt Ziel -> FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von der Seite aus -> FK führt Hdlg. aus -> KK Objektbezug -> KK Halten
+49-P-3_transformed.xlsx,0,FK von der Seite -> FK führt Hdlg. aus + Objektbezug -> FK führt Hdlg. von der Seite aus -> FK führt Hdlg. aus -> KK Objektbezug -> KK Halten
+50-P-1_transformed.xlsx,0,Verbale Begleitung -> Aufforderung Vorb. -> Aufforderung Vorb. -> KK Objektbezug -> FK von vorn -> FK führt Hdlg. von vorn aus -> FK führt Hdlg. aus -> KK Objektbezug -> KK Halten + Objektbezug -> Verbale Begleitung
+50-P-2_transformed.xlsx,0,FK von der Seite -> FK führt Hdlg. von der Seite aus -> FK führt Hdlg. aus -> KK Halten
+9-P-2_transformed.xlsx,0,Aufforderung Vorb. -> FK benennt Ziel -> Verbale Begleitung -> FK von der Seite -> KK Objektbezug -> KK Halten + Objektbezug -> FK führt Hdlg. aus -> Aufforderung Vorb. -> Verbale Begleitung

@@ -1,0 +1,72 @@
+from,to,count,p_to_given_from
+Aufforderung Vorb.,Verbale Begleitung,10,0.37037037037037035
+Aufforderung Vorb.,FK benennt Ziel,5,0.18518518518518517
+Aufforderung Vorb.,Aufforderung Vorb.,4,0.14814814814814814
+Aufforderung Vorb.,FK führt Hdlg. aus + Objektbezug,2,0.07407407407407407
+Aufforderung Vorb.,KK Objektbezug,2,0.07407407407407407
+Aufforderung Vorb.,FK von hinten,1,0.037037037037037035
+Aufforderung Vorb.,KK Halten,1,0.037037037037037035
+Aufforderung Vorb.,K führt Hdlg aus,1,0.037037037037037035
+Aufforderung Vorb.,FK von vorn,1,0.037037037037037035
+FK benennt Ziel,Aufforderung Vorb.,10,0.29411764705882354
+FK benennt Ziel,FK von der Seite,6,0.17647058823529413
+FK benennt Ziel,FK von hinten,3,0.08823529411764706
+FK benennt Ziel,K führt Hdlg aus,3,0.08823529411764706
+FK benennt Ziel,KK Objektbezug,3,0.08823529411764706
+FK benennt Ziel,FK benennt Ziel,3,0.08823529411764706
+FK benennt Ziel,FK von vorn,3,0.08823529411764706
+FK benennt Ziel,FK führt Hdlg. aus,2,0.058823529411764705
+FK benennt Ziel,Verbale Begleitung,1,0.029411764705882353
+FK führt Hdlg. aus,KK Objektbezug,28,0.8484848484848485
+FK führt Hdlg. aus,FK benennt Ziel,2,0.06060606060606061
+FK führt Hdlg. aus,FK von der Seite,1,0.030303030303030304
+FK führt Hdlg. aus,KK Halten,1,0.030303030303030304
+FK führt Hdlg. aus,Aufforderung Vorb.,1,0.030303030303030304
+FK führt Hdlg. aus + Objektbezug,FK führt Hdlg. von der Seite aus,12,0.4444444444444444
+FK führt Hdlg. aus + Objektbezug,FK führt Hdlg. von vorn aus,7,0.25925925925925924
+FK führt Hdlg. aus + Objektbezug,FK führt Hdlg. von Hinten aus,4,0.14814814814814814
+FK führt Hdlg. aus + Objektbezug,FK führt Hdlg. aus,4,0.14814814814814814
+FK führt Hdlg. von Hinten aus,KK Halten,3,0.75
+FK führt Hdlg. von Hinten aus,KK Objektbezug,1,0.25
+FK führt Hdlg. von der Seite aus,FK führt Hdlg. aus,16,1.0
+FK führt Hdlg. von vorn aus,FK führt Hdlg. aus,8,1.0
+FK von der Seite,FK führt Hdlg. aus + Objektbezug,13,0.6190476190476191
+FK von der Seite,KK Objektbezug,4,0.19047619047619047
+FK von der Seite,FK führt Hdlg. von der Seite aus,4,0.19047619047619047
+FK von hinten,FK führt Hdlg. aus + Objektbezug,4,0.6666666666666666
+FK von hinten,Aufforderung Vorb.,1,0.16666666666666666
+FK von hinten,FK führt Hdlg. von Hinten aus,1,0.16666666666666666
+FK von vorn,FK führt Hdlg. aus + Objektbezug,7,0.7777777777777778
+FK von vorn,KK Objektbezug,1,0.1111111111111111
+FK von vorn,FK führt Hdlg. von vorn aus,1,0.1111111111111111
+K führt Hdlg aus,Verbale Begleitung,3,0.375
+K führt Hdlg aus,Aufforderung Vorb.,2,0.25
+K führt Hdlg aus,FK von der Seite,1,0.125
+K führt Hdlg aus,KK Objektbezug,1,0.125
+K führt Hdlg aus,FK von vorn,1,0.125
+KK Halten,FK benennt Ziel,2,0.3333333333333333
+KK Halten,FK von hinten,2,0.3333333333333333
+KK Halten,Aufforderung Vorb.,1,0.16666666666666666
+KK Halten,Verbale Begleitung,1,0.16666666666666666
+KK Halten + Objektbezug,Aufforderung Vorb.,2,0.4
+KK Halten + Objektbezug,FK von der Seite,1,0.2
+KK Halten + Objektbezug,Verbale Begleitung,1,0.2
+KK Halten + Objektbezug,FK führt Hdlg. aus,1,0.2
+KK Objektbezug,KK Halten,18,0.5
+KK Objektbezug,KK Halten + Objektbezug,9,0.25
+KK Objektbezug,FK benennt Ziel,3,0.08333333333333333
+KK Objektbezug,FK von vorn,2,0.05555555555555555
+KK Objektbezug,KK Objektbezug,1,0.027777777777777776
+KK Objektbezug,K führt Hdlg aus,1,0.027777777777777776
+KK Objektbezug,FK führt Hdlg. aus,1,0.027777777777777776
+KK Objektbezug,Aufforderung Vorb.,1,0.027777777777777776
+Kindliches Signal,Aufforderung Vorb.,2,0.4
+Kindliches Signal,FK von hinten,1,0.2
+Kindliches Signal,FK benennt Ziel,1,0.2
+Kindliches Signal,FK von vorn,1,0.2
+Verbale Begleitung,FK von der Seite,4,0.36363636363636365
+Verbale Begleitung,K führt Hdlg aus,2,0.18181818181818182
+Verbale Begleitung,KK Objektbezug,2,0.18181818181818182
+Verbale Begleitung,Verbale Begleitung,1,0.09090909090909091
+Verbale Begleitung,FK benennt Ziel,1,0.09090909090909091
+Verbale Begleitung,Aufforderung Vorb.,1,0.09090909090909091
