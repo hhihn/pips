@@ -121,13 +121,18 @@ Filename,Parent_Code,Parent_Start,Parent_End,Child_Code,Child_Start,Child_End,Ch
 48-P-1_transformed.xlsx,Body Orientation,,,Body,"0:00:05,0","0:01:56,1",111100,False,False,False,False
 48-P-1_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:05,0","0:01:56,1",111100,False,False,False,False
 48-P-1_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:05,0","0:01:56,1",111100,False,False,False,False
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:23,2","0:00:39,5",16300,False,0,True,8
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,False,0,True,12
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:23,2","0:00:39,5",16300,True,1,True,8
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,True,1,True,12
 12-P-3_K2_transformed.xlsx,Talking,,,Talking,"0:00:20,0","0:01:11,6",51600,False,False,False,False
 12-P-3_K2_transformed.xlsx,Body Orientation,,,Body,"0:00:00,0","0:01:41,9",101900,False,False,False,False
 12-P-3_K2_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:00,0","0:01:41,9",101900,False,False,False,False
 12-P-3_K2_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:00,0","0:01:41,9",101900,False,False,False,False
 12-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:01:41,9",6.1.1 Pflegesituation,"0:00:32,8","0:01:13,3",40500,True,1,True,12
+63-P-4_transformed.xlsx,Talking,,,Talking,"0:00:59,2","0:01:23,2",24000,False,False,False,False
+63-P-4_transformed.xlsx,Body Orientation,,,Body,"0:00:37,1","0:01:53,3",76200,False,False,False,False
+63-P-4_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:37,1","0:01:53,3",76200,False,False,False,False
+63-P-4_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:37,1","0:01:53,3",76200,False,False,False,False
+63-P-4_transformed.xlsx,5.4.2 Essenssituation,"0:00:37,1","0:01:53,3",6.1.1 Pflegesituation,"0:00:59,2","0:01:23,2",24000,True,1,True,7
 11-P-5_transformed.xlsx,Talking,,,Talking,"0:00:29,2","0:01:03,3",34100,False,False,False,False
 11-P-5_transformed.xlsx,Body Orientation,,,Body,"0:00:29,2","0:01:42,0",72800,False,False,False,False
 11-P-5_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:01:00,0","0:01:42,0",42000,False,False,False,False
@@ -164,7 +169,7 @@ Filename,Parent_Code,Parent_Start,Parent_End,Child_Code,Child_Start,Child_End,Ch
 61-P-5_transformed.xlsx,Body Orientation,,,Body,"0:00:24,0","0:02:04,1",100100,False,False,False,False
 61-P-5_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:24,0","0:02:04,1",100100,False,False,False,False
 61-P-5_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:24,0","0:02:04,1",100100,False,False,False,False
-61-P-5_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:54,7","0:01:11,1",16400,True,1,True,3
+61-P-5_transformed.xlsx,5.4.1 Freispielsituation,"0:00:24,0","0:02:04,1",6.1.1 Pflegesituation,"0:00:54,7","0:01:11,1",16400,True,1,True,3
 37-P-1_transformed.xlsx,Talking,,,Talking,"0:00:33,6","0:00:37,1",3500,False,False,False,False
 37-P-1_transformed.xlsx,Body Orientation,,,Body,"0:00:00,0","0:00:37,1",37100,False,False,False,False
 37-P-1_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:00,0","0:01:05,1",65100,False,False,False,False
@@ -199,7 +204,7 @@ Filename,Parent_Code,Parent_Start,Parent_End,Child_Code,Child_Start,Child_End,Ch
 48-P-2_transformed.xlsx,Body Orientation,,,Body,"0:00:00,0","0:00:36,1",36100,False,False,False,False
 48-P-2_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:00,0","0:01:00,0",60000,False,False,False,False
 48-P-2_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:00,0","0:01:00,0",60000,False,False,False,False
-48-P-2_transformed.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:01:05,6",6.1.1 Pflegesituation,"0:00:30,4","0:00:36,1",5700,True,2,True,5
+48-P-2_transformed.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:01:05,6",6.1.1 Pflegesituation,"0:00:28,1","0:00:36,1",8000,True,2,True,5
 43-P-1_K2_transformed.xlsx,Talking,,,Talking,"0:00:58,3","0:01:37,0",38700,False,False,False,False
 43-P-1_K2_transformed.xlsx,Body Orientation,,,Body,"0:00:00,0","0:01:41,1",101100,False,False,False,False
 43-P-1_K2_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:00,0","0:02:00,0",120000,False,False,False,False
@@ -209,8 +214,8 @@ Filename,Parent_Code,Parent_Start,Parent_End,Child_Code,Child_Start,Child_End,Ch
 33-P-1_transformed.xlsx,Body Orientation,,,Body,"0:00:03,9","0:02:56,1",172200,False,False,False,False
 33-P-1_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:03,9","0:02:56,1",172200,False,False,False,False
 33-P-1_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:03,9","0:02:56,1",172200,False,False,False,False
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,1,True,13
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,2,True,8
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,1,True,13
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,2,True,8
 40-P-1_transformed.xlsx,Talking,,,Talking,"0:00:30,0","0:00:57,9",27900,False,False,False,False
 40-P-1_transformed.xlsx,Body Orientation,,,Body,"0:00:00,0","0:01:31,2",91200,False,False,False,False
 40-P-1_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:00,0","0:01:31,2",91200,False,False,False,False
@@ -225,7 +230,7 @@ Filename,Parent_Code,Parent_Start,Parent_End,Child_Code,Child_Start,Child_End,Ch
 61-P-4_transformed.xlsx,Body Orientation,,,Body,"0:00:30,0","0:02:17,2",107200,False,False,False,False
 61-P-4_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:30,0","0:02:17,2",107200,False,False,False,False
 61-P-4_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:30,0","0:02:17,2",107200,False,False,False,False
-61-P-4_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:59,9","0:01:20,6",20700,True,1,True,8
+61-P-4_transformed.xlsx,5.4.1 Freispielsituation,"0:00:30,0","0:02:17,2",6.1.1 Pflegesituation,"0:00:59,9","0:01:20,6",20700,True,1,True,8
 29-PS-1_transformed.xlsx,Talking,,,Talking,"0:00:30,0","0:00:55,3",25300,False,False,False,False
 29-PS-1_transformed.xlsx,Body Orientation,,,Body,"0:00:00,0","0:00:55,3",55300,False,False,False,False
 29-PS-1_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:00,0","0:01:01,8",61800,False,False,False,False
@@ -261,7 +266,7 @@ Filename,Parent_Code,Parent_Start,Parent_End,Child_Code,Child_Start,Child_End,Ch
 18-P-3_K2_transformed.xlsx,Body Orientation,,,Body,"0:00:00,0","0:02:30,3",150300,False,False,False,False
 18-P-3_K2_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:00,0","0:02:30,3",150300,False,False,False,False
 18-P-3_K2_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:00,0","0:02:30,3",150300,False,False,False,False
-18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,False,0,True,10
+18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,True,1,True,10
 24-P-1_transformed.xlsx,Talking,,,Talking,"0:00:30,6","0:01:02,0",31400,False,False,False,False
 24-P-1_transformed.xlsx,Body Orientation,,,Body,"0:00:00,0","0:01:30,0",90000,False,False,False,False
 24-P-1_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:00,0","0:01:30,0",90000,False,False,False,False

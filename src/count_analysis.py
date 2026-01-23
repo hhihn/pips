@@ -169,7 +169,7 @@ def stacked_occurrence_plot(
 
     ax.set_xlabel("")
     ax.set_title("")
-    ax.set_yticks([10, 20, 30, 40, 50, 60, 70, 80, 90])
+    ax.set_yticks([10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120])
     plt.xticks(rotation=0)
     plt.tight_layout()
     plt.show()

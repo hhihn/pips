@@ -523,28 +523,28 @@ Filename,Parent_Code,Parent_Start,Parent_End,Child_Code,Child_Start,Child_End,Ch
 48-P-1_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:05,0","0:01:56,1",111100,False,False,5.5.*,,,,,No matching 5.5.* found
 48-P-1_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:05,0","0:01:56,1",111100,False,False,5.5.*,,,,,No matching 5.5.* found
 48-P-1_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:05,0","0:01:56,1",111100,False,False,5.5.*,,,,,No matching 5.5.* found
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:23,2","0:00:39,5",16300,False,True,6.2.*,,,,,No matching 6.2.* found
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:23,2","0:00:39,5",16300,False,True,5.5.*,5.5.1 K1,"0:00:23,2","0:00:39,5",,Exact timeframe match with 6.1.1
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:23,2","0:00:39,5",16300,False,True,5.5.*,5.5.1 K1,"0:00:24,2","0:00:25,0",,Exact timeframe match with 6.1.1
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:23,2","0:00:39,5",16300,False,True,5.5.*,5.5.1 K1,"0:00:25,2","0:00:26,3",,Exact timeframe match with 6.1.1
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:23,2","0:00:39,5",16300,False,True,5.5.*,5.5.1 K1,"0:00:28,1","0:00:28,7",,Exact timeframe match with 6.1.1
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:23,2","0:00:39,5",16300,False,True,5.5.*,5.5.1 K1,"0:00:29,5","0:00:31,6",,Exact timeframe match with 6.1.1
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:23,2","0:00:39,5",16300,False,True,5.5.*,5.5.1 K1,"0:00:32,7","0:00:33,6",,Exact timeframe match with 6.1.1
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:23,2","0:00:39,5",16300,False,True,5.5.*,5.5.1 K1,"0:00:33,5","0:00:36,6",,Exact timeframe match with 6.1.1
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:23,2","0:00:39,5",16300,False,True,5.5.*,5.5.1 K1,"0:00:36,0","0:00:36,6",,Exact timeframe match with 6.1.1
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,False,True,6.2.*,,,,,No matching 6.2.* found
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,False,True,5.5.*,5.5.2 K2,"0:00:39,9","0:00:58,4",,Exact timeframe match with 6.1.1
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,False,True,5.5.*,5.5.2 K2,"0:00:41,0","0:00:42,6",,Exact timeframe match with 6.1.1
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,False,True,5.5.*,5.5.1 K1,"0:00:45,0","0:00:45,5",,Exact timeframe match with 6.1.1
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,False,True,5.5.*,5.5.2 K2,"0:00:45,0","0:00:45,5",,Exact timeframe match with 6.1.1
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,False,True,5.5.*,5.5.1 K1,"0:00:46,7","0:00:47,3",,Exact timeframe match with 6.1.1
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,False,True,5.5.*,5.5.2 K2,"0:00:46,7","0:00:47,3",,Exact timeframe match with 6.1.1
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,False,True,5.5.*,5.5.2 K2,"0:00:50,2","0:00:52,4",,Exact timeframe match with 6.1.1
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,False,True,5.5.*,5.5.2 K2,"0:00:53,0","0:00:53,6",,Exact timeframe match with 6.1.1
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,False,True,5.5.*,5.5.2 K2,"0:00:53,5","0:00:55,7",,Exact timeframe match with 6.1.1
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,False,True,5.5.*,5.5.2 K2,"0:00:53,7","0:00:54,3",,Exact timeframe match with 6.1.1
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,False,True,5.5.*,5.5.2 K2,"0:00:57,0","0:00:57,6",,Exact timeframe match with 6.1.1
-48-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,False,True,5.5.*,5.5.1 K1,"0:00:57,0","0:00:57,6",,Exact timeframe match with 6.1.1
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:23,2","0:00:39,5",16300,True,True,6.2.*,6.2.1 Nase putzen,"0:00:23,2","0:00:39,5",16300.0,Sequence Events: 50
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:23,2","0:00:39,5",16300,True,True,5.5.*,5.5.1 K1,"0:00:23,2","0:00:39,5",,Exact timeframe match with 6.1.1
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:23,2","0:00:39,5",16300,True,True,5.5.*,5.5.1 K1,"0:00:24,2","0:00:25,0",,Exact timeframe match with 6.1.1
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:23,2","0:00:39,5",16300,True,True,5.5.*,5.5.1 K1,"0:00:25,2","0:00:26,3",,Exact timeframe match with 6.1.1
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:23,2","0:00:39,5",16300,True,True,5.5.*,5.5.1 K1,"0:00:28,1","0:00:28,7",,Exact timeframe match with 6.1.1
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:23,2","0:00:39,5",16300,True,True,5.5.*,5.5.1 K1,"0:00:29,5","0:00:31,6",,Exact timeframe match with 6.1.1
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:23,2","0:00:39,5",16300,True,True,5.5.*,5.5.1 K1,"0:00:32,7","0:00:33,6",,Exact timeframe match with 6.1.1
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:23,2","0:00:39,5",16300,True,True,5.5.*,5.5.1 K1,"0:00:33,5","0:00:36,6",,Exact timeframe match with 6.1.1
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:23,2","0:00:39,5",16300,True,True,5.5.*,5.5.1 K1,"0:00:36,0","0:00:36,6",,Exact timeframe match with 6.1.1
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,True,True,6.2.*,6.2.1 Nase putzen,"0:00:39,9","0:00:58,4",18500.0,Sequence Events: 55
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,True,True,5.5.*,5.5.2 K2,"0:00:39,9","0:00:58,4",,Exact timeframe match with 6.1.1
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,True,True,5.5.*,5.5.2 K2,"0:00:41,0","0:00:42,6",,Exact timeframe match with 6.1.1
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,True,True,5.5.*,5.5.2 K2,"0:00:45,0","0:00:45,5",,Exact timeframe match with 6.1.1
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,True,True,5.5.*,5.5.1 K1,"0:00:45,0","0:00:45,5",,Exact timeframe match with 6.1.1
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,True,True,5.5.*,5.5.2 K2,"0:00:46,7","0:00:47,3",,Exact timeframe match with 6.1.1
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,True,True,5.5.*,5.5.1 K1,"0:00:46,7","0:00:47,3",,Exact timeframe match with 6.1.1
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,True,True,5.5.*,5.5.2 K2,"0:00:50,2","0:00:52,4",,Exact timeframe match with 6.1.1
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,True,True,5.5.*,5.5.2 K2,"0:00:53,0","0:00:53,6",,Exact timeframe match with 6.1.1
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,True,True,5.5.*,5.5.2 K2,"0:00:53,5","0:00:55,7",,Exact timeframe match with 6.1.1
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,True,True,5.5.*,5.5.2 K2,"0:00:53,7","0:00:54,3",,Exact timeframe match with 6.1.1
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,True,True,5.5.*,5.5.2 K2,"0:00:57,0","0:00:57,6",,Exact timeframe match with 6.1.1
+48-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:05,0","0:01:56,1",6.1.1 Pflegesituation,"0:00:39,9","0:00:58,4",18500,True,True,5.5.*,5.5.1 K1,"0:00:57,0","0:00:57,6",,Exact timeframe match with 6.1.1
 12-P-3_K2_transformed.xlsx,Talking,,,Talking,"0:00:20,0","0:01:11,6",51600,False,False,5.5.*,,,,,No matching 5.5.* found
 12-P-3_K2_transformed.xlsx,Talking,,,Talking,"0:00:20,0","0:01:11,6",51600,False,False,5.5.*,,,,,No matching 5.5.* found
 12-P-3_K2_transformed.xlsx,Body Orientation,,,Body,"0:00:00,0","0:01:41,9",101900,False,False,5.5.*,,,,,No matching 5.5.* found
@@ -566,6 +566,22 @@ Filename,Parent_Code,Parent_Start,Parent_End,Child_Code,Child_Start,Child_End,Ch
 12-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:01:41,9",6.1.1 Pflegesituation,"0:00:32,8","0:01:13,3",40500,True,True,5.5.*,5.5.2 K2,"0:01:06,9","0:01:08,2",,Exact timeframe match with 6.1.1
 12-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:01:41,9",6.1.1 Pflegesituation,"0:00:32,8","0:01:13,3",40500,True,True,5.5.*,5.5.2 K2,"0:01:10,3","0:01:10,9",,Exact timeframe match with 6.1.1
 12-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:01:41,9",6.1.1 Pflegesituation,"0:00:32,8","0:01:13,3",40500,True,True,5.5.*,5.5.2 K2,"0:01:11,1","0:01:11,6",,Exact timeframe match with 6.1.1
+63-P-4_transformed.xlsx,Talking,,,Talking,"0:00:59,2","0:01:23,2",24000,False,False,5.5.*,,,,,No matching 5.5.* found
+63-P-4_transformed.xlsx,Talking,,,Talking,"0:00:59,2","0:01:23,2",24000,False,False,5.5.*,,,,,No matching 5.5.* found
+63-P-4_transformed.xlsx,Body Orientation,,,Body,"0:00:37,1","0:01:53,3",76200,False,False,5.5.*,,,,,No matching 5.5.* found
+63-P-4_transformed.xlsx,Body Orientation,,,Body,"0:00:37,1","0:01:53,3",76200,False,False,5.5.*,,,,,No matching 5.5.* found
+63-P-4_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:37,1","0:01:53,3",76200,False,False,5.5.*,,,,,No matching 5.5.* found
+63-P-4_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:37,1","0:01:53,3",76200,False,False,5.5.*,,,,,No matching 5.5.* found
+63-P-4_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:37,1","0:01:53,3",76200,False,False,5.5.*,,,,,No matching 5.5.* found
+63-P-4_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:37,1","0:01:53,3",76200,False,False,5.5.*,,,,,No matching 5.5.* found
+63-P-4_transformed.xlsx,5.4.2 Essenssituation,"0:00:37,1","0:01:53,3",6.1.1 Pflegesituation,"0:00:59,2","0:01:23,2",24000,True,True,6.2.*,6.2.1 Nase putzen,"0:00:59,2","0:01:23,2",24000.0,Sequence Events: 52
+63-P-4_transformed.xlsx,5.4.2 Essenssituation,"0:00:37,1","0:01:53,3",6.1.1 Pflegesituation,"0:00:59,2","0:01:23,2",24000,True,True,5.5.*,5.5.1 K1,"0:00:59,2","0:01:23,2",,Exact timeframe match with 6.1.1
+63-P-4_transformed.xlsx,5.4.2 Essenssituation,"0:00:37,1","0:01:53,3",6.1.1 Pflegesituation,"0:00:59,2","0:01:23,2",24000,True,True,5.5.*,5.5.1 K1,"0:00:59,2","0:01:03,0",,Exact timeframe match with 6.1.1
+63-P-4_transformed.xlsx,5.4.2 Essenssituation,"0:00:37,1","0:01:53,3",6.1.1 Pflegesituation,"0:00:59,2","0:01:23,2",24000,True,True,5.5.*,5.5.2 K2,"0:01:04,6","0:01:05,4",,Exact timeframe match with 6.1.1
+63-P-4_transformed.xlsx,5.4.2 Essenssituation,"0:00:37,1","0:01:53,3",6.1.1 Pflegesituation,"0:00:59,2","0:01:23,2",24000,True,True,5.5.*,5.5.2 K2,"0:01:06,8","0:01:09,8",,Exact timeframe match with 6.1.1
+63-P-4_transformed.xlsx,5.4.2 Essenssituation,"0:00:37,1","0:01:53,3",6.1.1 Pflegesituation,"0:00:59,2","0:01:23,2",24000,True,True,5.5.*,5.5.1 K1,"0:01:13,8","0:01:16,1",,Exact timeframe match with 6.1.1
+63-P-4_transformed.xlsx,5.4.2 Essenssituation,"0:00:37,1","0:01:53,3",6.1.1 Pflegesituation,"0:00:59,2","0:01:23,2",24000,True,True,5.5.*,5.5.1 K1,"0:01:18,7","0:01:19,3",,Exact timeframe match with 6.1.1
+63-P-4_transformed.xlsx,5.4.2 Essenssituation,"0:00:37,1","0:01:53,3",6.1.1 Pflegesituation,"0:00:59,2","0:01:23,2",24000,True,True,5.5.*,5.5.2 K2,"0:01:20,2","0:01:23,2",,Exact timeframe match with 6.1.1
 11-P-5_transformed.xlsx,Talking,,,Talking,"0:00:29,2","0:01:03,3",34100,False,False,5.5.*,,,,,No matching 5.5.* found
 11-P-5_transformed.xlsx,Talking,,,Talking,"0:00:29,2","0:01:03,3",34100,False,False,5.5.*,,,,,No matching 5.5.* found
 11-P-5_transformed.xlsx,Body Orientation,,,Body,"0:00:29,2","0:01:42,0",72800,False,False,5.5.*,,,,,No matching 5.5.* found
@@ -677,10 +693,10 @@ Filename,Parent_Code,Parent_Start,Parent_End,Child_Code,Child_Start,Child_End,Ch
 61-P-5_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:24,0","0:02:04,1",100100,False,False,5.5.*,,,,,No matching 5.5.* found
 61-P-5_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:24,0","0:02:04,1",100100,False,False,5.5.*,,,,,No matching 5.5.* found
 61-P-5_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:24,0","0:02:04,1",100100,False,False,5.5.*,,,,,No matching 5.5.* found
-61-P-5_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:54,7","0:01:11,1",16400,True,True,6.2.*,6.2.1 Nase putzen,"0:00:54,7","0:01:11,1",16400.0,Sequence Events: 35
-61-P-5_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:54,7","0:01:11,1",16400,True,True,5.5.*,5.5.1 K1,"0:00:54,7","0:01:11,1",,Exact timeframe match with 6.1.1
-61-P-5_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:54,7","0:01:11,1",16400,True,True,5.5.*,5.5.1 K1,"0:01:06,3","0:01:08,8",,Exact timeframe match with 6.1.1
-61-P-5_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:54,7","0:01:11,1",16400,True,True,5.5.*,5.5.1 K1,"0:01:08,8","0:01:09,9",,Exact timeframe match with 6.1.1
+61-P-5_transformed.xlsx,5.4.1 Freispielsituation,"0:00:24,0","0:02:04,1",6.1.1 Pflegesituation,"0:00:54,7","0:01:11,1",16400,True,True,6.2.*,6.2.1 Nase putzen,"0:00:54,7","0:01:11,1",16400.0,Sequence Events: 35
+61-P-5_transformed.xlsx,5.4.1 Freispielsituation,"0:00:24,0","0:02:04,1",6.1.1 Pflegesituation,"0:00:54,7","0:01:11,1",16400,True,True,5.5.*,5.5.1 K1,"0:00:54,7","0:01:11,1",,Exact timeframe match with 6.1.1
+61-P-5_transformed.xlsx,5.4.1 Freispielsituation,"0:00:24,0","0:02:04,1",6.1.1 Pflegesituation,"0:00:54,7","0:01:11,1",16400,True,True,5.5.*,5.5.1 K1,"0:01:06,3","0:01:08,8",,Exact timeframe match with 6.1.1
+61-P-5_transformed.xlsx,5.4.1 Freispielsituation,"0:00:24,0","0:02:04,1",6.1.1 Pflegesituation,"0:00:54,7","0:01:11,1",16400,True,True,5.5.*,5.5.1 K1,"0:01:08,8","0:01:09,9",,Exact timeframe match with 6.1.1
 37-P-1_transformed.xlsx,Talking,,,Talking,"0:00:33,6","0:00:37,1",3500,False,False,5.5.*,,,,,No matching 5.5.* found
 37-P-1_transformed.xlsx,Talking,,,Talking,"0:00:33,6","0:00:37,1",3500,False,False,5.5.*,,,,,No matching 5.5.* found
 37-P-1_transformed.xlsx,Body Orientation,,,Body,"0:00:00,0","0:00:37,1",37100,False,False,5.5.*,,,,,No matching 5.5.* found
@@ -779,13 +795,13 @@ Filename,Parent_Code,Parent_Start,Parent_End,Child_Code,Child_Start,Child_End,Ch
 48-P-2_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:00,0","0:01:00,0",60000,False,False,5.5.*,,,,,No matching 5.5.* found
 48-P-2_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:00,0","0:01:00,0",60000,False,False,5.5.*,,,,,No matching 5.5.* found
 48-P-2_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:00,0","0:01:00,0",60000,False,False,5.5.*,,,,,No matching 5.5.* found
-48-P-2_transformed.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:01:05,6",6.1.1 Pflegesituation,"0:00:30,4","0:00:36,1",5700,True,True,6.2.*,6.2.3 Hände/Arme abwischen,"0:00:30,4","0:00:32,7",2300.0,Sequence Events: 12
-48-P-2_transformed.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:01:05,6",6.1.1 Pflegesituation,"0:00:30,4","0:00:36,1",5700,True,True,6.2.*,6.2.2 Gesicht abwischen,"0:00:32,7","0:00:36,1",3400.0,Sequence Events: 15
-48-P-2_transformed.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:01:05,6",6.1.1 Pflegesituation,"0:00:30,4","0:00:36,1",5700,True,True,5.5.*,5.5.1 K1,"0:00:30,4","0:00:36,1",,Exact timeframe match with 6.1.1
-48-P-2_transformed.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:01:05,6",6.1.1 Pflegesituation,"0:00:30,4","0:00:36,1",5700,True,True,5.5.*,5.5.1 K1,"0:00:30,4","0:00:31,2",,Exact timeframe match with 6.1.1
-48-P-2_transformed.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:01:05,6",6.1.1 Pflegesituation,"0:00:30,4","0:00:36,1",5700,True,True,5.5.*,5.5.1 K1,"0:00:30,6","0:00:32,7",,Exact timeframe match with 6.1.1
-48-P-2_transformed.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:01:05,6",6.1.1 Pflegesituation,"0:00:30,4","0:00:36,1",5700,True,True,5.5.*,5.5.1 K1,"0:00:32,7","0:00:35,8",,Exact timeframe match with 6.1.1
-48-P-2_transformed.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:01:05,6",6.1.1 Pflegesituation,"0:00:30,4","0:00:36,1",5700,True,True,5.5.*,5.5.1 K1,"0:00:35,0","0:00:36,0",,Exact timeframe match with 6.1.1
+48-P-2_transformed.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:01:05,6",6.1.1 Pflegesituation,"0:00:28,1","0:00:36,1",8000,True,True,6.2.*,6.2.3 Hände/Arme abwischen,"0:00:28,1","0:00:36,1",8000.0,Sequence Events: 35
+48-P-2_transformed.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:01:05,6",6.1.1 Pflegesituation,"0:00:28,1","0:00:36,1",8000,True,True,6.2.*,6.2.2 Gesicht abwischen,"0:00:28,1","0:00:36,1",8000.0,Sequence Events: 35
+48-P-2_transformed.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:01:05,6",6.1.1 Pflegesituation,"0:00:28,1","0:00:36,1",8000,True,True,5.5.*,5.5.1 K1,"0:00:28,1","0:00:36,1",,Exact timeframe match with 6.1.1
+48-P-2_transformed.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:01:05,6",6.1.1 Pflegesituation,"0:00:28,1","0:00:36,1",8000,True,True,5.5.*,5.5.1 K1,"0:00:30,4","0:00:31,2",,Exact timeframe match with 6.1.1
+48-P-2_transformed.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:01:05,6",6.1.1 Pflegesituation,"0:00:28,1","0:00:36,1",8000,True,True,5.5.*,5.5.1 K1,"0:00:30,6","0:00:32,7",,Exact timeframe match with 6.1.1
+48-P-2_transformed.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:01:05,6",6.1.1 Pflegesituation,"0:00:28,1","0:00:36,1",8000,True,True,5.5.*,5.5.1 K1,"0:00:32,7","0:00:35,8",,Exact timeframe match with 6.1.1
+48-P-2_transformed.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:01:05,6",6.1.1 Pflegesituation,"0:00:28,1","0:00:36,1",8000,True,True,5.5.*,5.5.1 K1,"0:00:35,0","0:00:36,0",,Exact timeframe match with 6.1.1
 43-P-1_K2_transformed.xlsx,Talking,,,Talking,"0:00:58,3","0:01:37,0",38700,False,False,5.5.*,,,,,No matching 5.5.* found
 43-P-1_K2_transformed.xlsx,Talking,,,Talking,"0:00:58,3","0:01:37,0",38700,False,False,5.5.*,,,,,No matching 5.5.* found
 43-P-1_K2_transformed.xlsx,Body Orientation,,,Body,"0:00:00,0","0:01:41,1",101100,False,False,5.5.*,,,,,No matching 5.5.* found
@@ -814,30 +830,30 @@ Filename,Parent_Code,Parent_Start,Parent_End,Child_Code,Child_Start,Child_End,Ch
 33-P-1_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:03,9","0:02:56,1",172200,False,False,5.5.*,,,,,No matching 5.5.* found
 33-P-1_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:03,9","0:02:56,1",172200,False,False,5.5.*,,,,,No matching 5.5.* found
 33-P-1_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:03,9","0:02:56,1",172200,False,False,5.5.*,,,,,No matching 5.5.* found
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,6.2.*,6.2.1 Nase putzen,"0:00:34,0","0:01:28,5",54500.0,Sequence Events: 87
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.1 K1,"0:00:34,0","0:01:28,5",,Exact timeframe match with 6.1.1
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.2 K2,"0:00:38,8","0:00:40,1",,Exact timeframe match with 6.1.1
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.2 K2,"0:00:42,0","0:00:43,1",,Exact timeframe match with 6.1.1
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.1 K1,"0:00:45,7","0:00:48,0",,Exact timeframe match with 6.1.1
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.1 K1,"0:00:45,8","0:00:56,4",,Exact timeframe match with 6.1.1
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.1 K1,"0:00:50,3","0:00:50,9",,Exact timeframe match with 6.1.1
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.1 K1,"0:00:52,5","0:00:52,9",,Exact timeframe match with 6.1.1
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.1 K1,"0:00:53,1","0:00:53,7",,Exact timeframe match with 6.1.1
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.1 K1,"0:00:55,3","0:00:58,0",,Exact timeframe match with 6.1.1
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.2 K2,"0:01:03,8","0:01:06,0",,Exact timeframe match with 6.1.1
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.2 K2,"0:01:08,1","0:01:12,3",,Exact timeframe match with 6.1.1
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.2 K2,"0:01:12,9","0:01:17,4",,Exact timeframe match with 6.1.1
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.2 K2,"0:01:22,1","0:01:24,8",,Exact timeframe match with 6.1.1
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,True,6.2.*,6.2.2 Gesicht abwischen,"0:02:01,2","0:02:27,0",25800.0,Sequence Events: 64
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,True,6.2.*,6.2.1 Nase putzen,"0:02:01,2","0:02:27,0",25800.0,Sequence Events: 64
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,True,5.5.*,5.5.1 K1,"0:02:01,2","0:02:27,0",,Exact timeframe match with 6.1.1
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,True,5.5.*,5.5.1 K1,"0:02:13,2","0:02:16,4",,Exact timeframe match with 6.1.1
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,True,5.5.*,5.5.1 K1,"0:02:17,6","0:02:20,0",,Exact timeframe match with 6.1.1
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,True,5.5.*,5.5.1 K1,"0:02:19,5","0:02:25,5",,Exact timeframe match with 6.1.1
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,True,5.5.*,5.5.1 K1,"0:02:20,3","0:02:22,0",,Exact timeframe match with 6.1.1
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,True,5.5.*,5.5.1 K1,"0:02:23,0","0:02:23,7",,Exact timeframe match with 6.1.1
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,True,5.5.*,5.5.1 K1,"0:02:23,9","0:02:25,3",,Exact timeframe match with 6.1.1
-33-P-1_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,True,5.5.*,5.5.1 K1,"0:02:25,5","0:02:26,3",,Exact timeframe match with 6.1.1
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,6.2.*,6.2.1 Nase putzen,"0:00:34,0","0:01:28,5",54500.0,Sequence Events: 87
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.1 K1,"0:00:34,0","0:01:28,5",,Exact timeframe match with 6.1.1
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.2 K2,"0:00:38,8","0:00:40,1",,Exact timeframe match with 6.1.1
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.2 K2,"0:00:42,0","0:00:43,1",,Exact timeframe match with 6.1.1
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.1 K1,"0:00:45,7","0:00:48,0",,Exact timeframe match with 6.1.1
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.1 K1,"0:00:45,8","0:00:56,4",,Exact timeframe match with 6.1.1
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.1 K1,"0:00:50,3","0:00:50,9",,Exact timeframe match with 6.1.1
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.1 K1,"0:00:52,5","0:00:52,9",,Exact timeframe match with 6.1.1
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.1 K1,"0:00:53,1","0:00:53,7",,Exact timeframe match with 6.1.1
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.1 K1,"0:00:55,3","0:00:58,0",,Exact timeframe match with 6.1.1
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.2 K2,"0:01:03,8","0:01:06,0",,Exact timeframe match with 6.1.1
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.2 K2,"0:01:08,1","0:01:12,3",,Exact timeframe match with 6.1.1
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.2 K2,"0:01:12,9","0:01:17,4",,Exact timeframe match with 6.1.1
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:00:34,0","0:01:28,5",54500,True,True,5.5.*,5.5.2 K2,"0:01:22,1","0:01:24,8",,Exact timeframe match with 6.1.1
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,True,6.2.*,6.2.1 Nase putzen,"0:02:01,2","0:02:27,0",25800.0,Sequence Events: 64
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,True,6.2.*,6.2.2 Gesicht abwischen,"0:02:01,2","0:02:27,0",25800.0,Sequence Events: 64
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,True,5.5.*,5.5.1 K1,"0:02:01,2","0:02:27,0",,Exact timeframe match with 6.1.1
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,True,5.5.*,5.5.1 K1,"0:02:13,2","0:02:16,4",,Exact timeframe match with 6.1.1
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,True,5.5.*,5.5.1 K1,"0:02:17,6","0:02:20,0",,Exact timeframe match with 6.1.1
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,True,5.5.*,5.5.1 K1,"0:02:19,5","0:02:25,5",,Exact timeframe match with 6.1.1
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,True,5.5.*,5.5.1 K1,"0:02:20,3","0:02:22,0",,Exact timeframe match with 6.1.1
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,True,5.5.*,5.5.1 K1,"0:02:23,0","0:02:23,7",,Exact timeframe match with 6.1.1
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,True,5.5.*,5.5.1 K1,"0:02:23,9","0:02:25,3",,Exact timeframe match with 6.1.1
+33-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:03,9","0:02:56,1",6.1.1 Pflegesituation,"0:02:01,2","0:02:27,0",25800,True,True,5.5.*,5.5.1 K1,"0:02:25,5","0:02:26,3",,Exact timeframe match with 6.1.1
 40-P-1_transformed.xlsx,Talking,,,Talking,"0:00:30,0","0:00:57,9",27900,False,False,5.5.*,,,,,No matching 5.5.* found
 40-P-1_transformed.xlsx,Talking,,,Talking,"0:00:30,0","0:00:57,9",27900,False,False,5.5.*,,,,,No matching 5.5.* found
 40-P-1_transformed.xlsx,Body Orientation,,,Body,"0:00:00,0","0:01:31,2",91200,False,False,5.5.*,,,,,No matching 5.5.* found
@@ -892,15 +908,15 @@ Filename,Parent_Code,Parent_Start,Parent_End,Child_Code,Child_Start,Child_End,Ch
 61-P-4_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:30,0","0:02:17,2",107200,False,False,5.5.*,,,,,No matching 5.5.* found
 61-P-4_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:30,0","0:02:17,2",107200,False,False,5.5.*,,,,,No matching 5.5.* found
 61-P-4_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:30,0","0:02:17,2",107200,False,False,5.5.*,,,,,No matching 5.5.* found
-61-P-4_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:59,9","0:01:20,6",20700,True,True,6.2.*,6.2.1 Nase putzen,"0:00:59,9","0:01:20,6",20700.0,Sequence Events: 64
-61-P-4_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:59,9","0:01:20,6",20700,True,True,5.5.*,5.5.1 K1,"0:00:59,9","0:01:20,6",,Exact timeframe match with 6.1.1
-61-P-4_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:59,9","0:01:20,6",20700,True,True,5.5.*,5.5.1 K1,"0:01:00,0","0:01:01,5",,Exact timeframe match with 6.1.1
-61-P-4_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:59,9","0:01:20,6",20700,True,True,5.5.*,5.5.1 K1,"0:01:01,7","0:01:02,6",,Exact timeframe match with 6.1.1
-61-P-4_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:59,9","0:01:20,6",20700,True,True,5.5.*,5.5.1 K1,"0:01:04,2","0:01:06,3",,Exact timeframe match with 6.1.1
-61-P-4_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:59,9","0:01:20,6",20700,True,True,5.5.*,5.5.1 K1,"0:01:12,2","0:01:16,7",,Exact timeframe match with 6.1.1
-61-P-4_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:59,9","0:01:20,6",20700,True,True,5.5.*,5.5.1 K1,"0:01:12,6","0:01:13,1",,Exact timeframe match with 6.1.1
-61-P-4_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:59,9","0:01:20,6",20700,True,True,5.5.*,5.5.1 K1,"0:01:13,7","0:01:14,0",,Exact timeframe match with 6.1.1
-61-P-4_transformed.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:59,9","0:01:20,6",20700,True,True,5.5.*,5.5.1 K1,"0:01:14,1","0:01:14,7",,Exact timeframe match with 6.1.1
+61-P-4_transformed.xlsx,5.4.1 Freispielsituation,"0:00:30,0","0:02:17,2",6.1.1 Pflegesituation,"0:00:59,9","0:01:20,6",20700,True,True,6.2.*,6.2.1 Nase putzen,"0:00:59,9","0:01:20,6",20700.0,Sequence Events: 64
+61-P-4_transformed.xlsx,5.4.1 Freispielsituation,"0:00:30,0","0:02:17,2",6.1.1 Pflegesituation,"0:00:59,9","0:01:20,6",20700,True,True,5.5.*,5.5.1 K1,"0:00:59,9","0:01:20,6",,Exact timeframe match with 6.1.1
+61-P-4_transformed.xlsx,5.4.1 Freispielsituation,"0:00:30,0","0:02:17,2",6.1.1 Pflegesituation,"0:00:59,9","0:01:20,6",20700,True,True,5.5.*,5.5.1 K1,"0:01:00,0","0:01:01,5",,Exact timeframe match with 6.1.1
+61-P-4_transformed.xlsx,5.4.1 Freispielsituation,"0:00:30,0","0:02:17,2",6.1.1 Pflegesituation,"0:00:59,9","0:01:20,6",20700,True,True,5.5.*,5.5.1 K1,"0:01:01,7","0:01:02,6",,Exact timeframe match with 6.1.1
+61-P-4_transformed.xlsx,5.4.1 Freispielsituation,"0:00:30,0","0:02:17,2",6.1.1 Pflegesituation,"0:00:59,9","0:01:20,6",20700,True,True,5.5.*,5.5.1 K1,"0:01:04,2","0:01:06,3",,Exact timeframe match with 6.1.1
+61-P-4_transformed.xlsx,5.4.1 Freispielsituation,"0:00:30,0","0:02:17,2",6.1.1 Pflegesituation,"0:00:59,9","0:01:20,6",20700,True,True,5.5.*,5.5.1 K1,"0:01:12,2","0:01:16,7",,Exact timeframe match with 6.1.1
+61-P-4_transformed.xlsx,5.4.1 Freispielsituation,"0:00:30,0","0:02:17,2",6.1.1 Pflegesituation,"0:00:59,9","0:01:20,6",20700,True,True,5.5.*,5.5.1 K1,"0:01:12,6","0:01:13,1",,Exact timeframe match with 6.1.1
+61-P-4_transformed.xlsx,5.4.1 Freispielsituation,"0:00:30,0","0:02:17,2",6.1.1 Pflegesituation,"0:00:59,9","0:01:20,6",20700,True,True,5.5.*,5.5.1 K1,"0:01:13,7","0:01:14,0",,Exact timeframe match with 6.1.1
+61-P-4_transformed.xlsx,5.4.1 Freispielsituation,"0:00:30,0","0:02:17,2",6.1.1 Pflegesituation,"0:00:59,9","0:01:20,6",20700,True,True,5.5.*,5.5.1 K1,"0:01:14,1","0:01:14,7",,Exact timeframe match with 6.1.1
 29-PS-1_transformed.xlsx,Talking,,,Talking,"0:00:30,0","0:00:55,3",25300,False,False,5.5.*,,,,,No matching 5.5.* found
 29-PS-1_transformed.xlsx,Talking,,,Talking,"0:00:30,0","0:00:55,3",25300,False,False,5.5.*,,,,,No matching 5.5.* found
 29-PS-1_transformed.xlsx,Body Orientation,,,Body,"0:00:00,0","0:00:55,3",55300,False,False,5.5.*,,,,,No matching 5.5.* found
@@ -1024,17 +1040,17 @@ Filename,Parent_Code,Parent_Start,Parent_End,Child_Code,Child_Start,Child_End,Ch
 18-P-3_K2_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:00,0","0:02:30,3",150300,False,False,5.5.*,,,,,No matching 5.5.* found
 18-P-3_K2_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:00,0","0:02:30,3",150300,False,False,5.5.*,,,,,No matching 5.5.* found
 18-P-3_K2_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:00,0","0:02:30,3",150300,False,False,5.5.*,,,,,No matching 5.5.* found
-18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,False,True,6.2.*,,,,,No matching 6.2.* found
-18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,False,True,5.5.*,5.5.2 K2,"0:01:18,3","0:01:45,3",,Exact timeframe match with 6.1.1
-18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,False,True,5.5.*,5.5.2 K2,"0:01:18,4","0:01:19,1",,Exact timeframe match with 6.1.1
-18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,False,True,5.5.*,5.5.2 K2,"0:01:19,9","0:01:20,8",,Exact timeframe match with 6.1.1
-18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,False,True,5.5.*,5.5.2 K2,"0:01:21,6","0:01:23,3",,Exact timeframe match with 6.1.1
-18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,False,True,5.5.*,5.5.2 K2,"0:01:31,6","0:01:31,9",,Exact timeframe match with 6.1.1
-18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,False,True,5.5.*,5.5.2 K2,"0:01:38,4","0:01:39,0",,Exact timeframe match with 6.1.1
-18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,False,True,5.5.*,5.5.2 K2,"0:01:38,8","0:01:40,8",,Exact timeframe match with 6.1.1
-18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,False,True,5.5.*,5.5.2 K2,"0:01:40,3","0:01:41,3",,Exact timeframe match with 6.1.1
-18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,False,True,5.5.*,5.5.2 K2,"0:01:41,4","0:01:42,5",,Exact timeframe match with 6.1.1
-18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,False,True,5.5.*,5.5.2 K2,"0:01:43,2","0:01:44,2",,Exact timeframe match with 6.1.1
+18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,True,True,6.2.*,6.2.1 Nase putzen,"0:01:18,3","0:01:45,3",27000.0,Sequence Events: 62
+18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,True,True,5.5.*,5.5.2 K2,"0:01:18,3","0:01:45,3",,Exact timeframe match with 6.1.1
+18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,True,True,5.5.*,5.5.2 K2,"0:01:18,4","0:01:19,1",,Exact timeframe match with 6.1.1
+18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,True,True,5.5.*,5.5.2 K2,"0:01:19,9","0:01:20,8",,Exact timeframe match with 6.1.1
+18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,True,True,5.5.*,5.5.2 K2,"0:01:21,6","0:01:23,3",,Exact timeframe match with 6.1.1
+18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,True,True,5.5.*,5.5.2 K2,"0:01:31,6","0:01:31,9",,Exact timeframe match with 6.1.1
+18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,True,True,5.5.*,5.5.2 K2,"0:01:38,4","0:01:39,0",,Exact timeframe match with 6.1.1
+18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,True,True,5.5.*,5.5.2 K2,"0:01:38,8","0:01:40,8",,Exact timeframe match with 6.1.1
+18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,True,True,5.5.*,5.5.2 K2,"0:01:40,3","0:01:41,3",,Exact timeframe match with 6.1.1
+18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,True,True,5.5.*,5.5.2 K2,"0:01:41,4","0:01:42,5",,Exact timeframe match with 6.1.1
+18-P-3_K2_transformed.xlsx,5.4.1 Freispielsituation,"0:00:00,0","0:02:30,3",6.1.1 Pflegesituation,"0:01:18,3","0:01:45,3",27000,True,True,5.5.*,5.5.2 K2,"0:01:43,2","0:01:44,2",,Exact timeframe match with 6.1.1
 24-P-1_transformed.xlsx,Talking,,,Talking,"0:00:30,6","0:01:02,0",31400,False,False,5.5.*,,,,,No matching 5.5.* found
 24-P-1_transformed.xlsx,Talking,,,Talking,"0:00:30,6","0:01:02,0",31400,False,False,5.5.*,,,,,No matching 5.5.* found
 24-P-1_transformed.xlsx,Body Orientation,,,Body,"0:00:00,0","0:01:30,0",90000,False,False,5.5.*,,,,,No matching 5.5.* found
