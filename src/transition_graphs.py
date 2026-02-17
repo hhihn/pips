@@ -2,8 +2,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import networkx as nx
 from collections import defaultdict, Counter
-import re
-import os
 
 
 def create_transition_graph_banded_edges(
@@ -134,13 +132,36 @@ def create_transition_graph_banded_edges(
     starts = [n for n in G.nodes if G.nodes[n].get("is_start")]
     ends = [n for n in G.nodes if G.nodes[n].get("is_end")]
 
-    nx.draw_networkx_nodes(G, pos, nodelist=regular, node_color="lightblue", node_size=700, alpha=0.85, label="Regular")
-    nx.draw_networkx_nodes(G, pos, nodelist=starts, node_color="orange", node_size=850, label="Start Nodes")
-    nx.draw_networkx_nodes(G, pos, nodelist=ends, node_color="red", node_size=850, label="End Nodes")
-    nx.draw_networkx_nodes(G, pos, nodelist=["START"], node_color="lightgreen", node_size=1000, label="START")
-    nx.draw_networkx_nodes(G, pos, nodelist=["END"], node_color="purple", node_size=1000, label="END")
+    nx.draw_networkx_nodes(
+        G,
+        pos,
+        nodelist=regular,
+        node_color="lightblue",
+        node_size=700,
+        alpha=0.85,
+        label="Regular",
+    )
+    nx.draw_networkx_nodes(
+        G, pos, nodelist=starts, node_color="orange", node_size=850, label="Start Nodes"
+    )
+    nx.draw_networkx_nodes(
+        G, pos, nodelist=ends, node_color="red", node_size=850, label="End Nodes"
+    )
+    nx.draw_networkx_nodes(
+        G,
+        pos,
+        nodelist=["START"],
+        node_color="lightgreen",
+        node_size=1000,
+        label="START",
+    )
+    nx.draw_networkx_nodes(
+        G, pos, nodelist=["END"], node_color="purple", node_size=1000, label="END"
+    )
 
-    nx.draw_networkx_edges(G, pos, width=2.5, edge_color="gray", alpha=0.7, arrows=True, arrowsize=18)
+    nx.draw_networkx_edges(
+        G, pos, width=2.5, edge_color="gray", alpha=0.7, arrows=True, arrowsize=18
+    )
     nx.draw_networkx_labels(G, pos, font_size=14, font_weight="bold")
     edge_labels = nx.get_edge_attributes(G, "label")
     nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=12)

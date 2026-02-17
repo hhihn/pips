@@ -33,6 +33,7 @@ from scipy.spatial.distance import pdist
 # HILFSFUNKTIONEN
 # =============================================================================
 
+
 def time_to_seconds(time_str: str) -> float:
     if not isinstance(time_str, str) or not time_str.strip():
         return 0.0
@@ -76,6 +77,7 @@ def load_and_prepare_data(csv_path: str) -> pd.DataFrame:
 # FK-PROFILE BAUEN
 # =============================================================================
 
+
 def build_fk_code_matrix(
     df: pd.DataFrame,
     exclude_prefixes: Tuple[str, ...] = ("6.1",),
@@ -116,6 +118,7 @@ def build_fk_code_matrix(
 # DISTANZ + LINKAGE
 # =============================================================================
 
+
 def compute_distance_matrix(X: pd.DataFrame, metric: str) -> np.ndarray:
     arr = X.values.astype(float)
     if metric == "jaccard":
@@ -137,6 +140,7 @@ def suggest_cut_distance_by_largest_jump(Z: np.ndarray) -> float:
 # VISUALISIERUNG: HEATMAP (ohne seaborn)
 # =============================================================================
 
+
 def save_heatmap_fk_topcodes(
     X: pd.DataFrame,
     ordered_fks: List[str],
@@ -148,14 +152,17 @@ def save_heatmap_fk_topcodes(
 
     # z-score pro Code
     Xz = X_plot.apply(
-        lambda col: (col - col.mean()) / (col.std() if col.std() > 0 else 1.0),
-        axis=0
+        lambda col: (col - col.mean()) / (col.std() if col.std() > 0 else 1.0), axis=0
     )
 
-    plt.figure(figsize=(max(12, len(top_codes) * 0.35), max(6, len(ordered_fks) * 0.25)))
+    plt.figure(
+        figsize=(max(12, len(top_codes) * 0.35), max(6, len(ordered_fks) * 0.25))
+    )
     plt.imshow(Xz.values, aspect="auto", interpolation="nearest")
     plt.yticks(ticks=np.arange(len(ordered_fks)), labels=ordered_fks, fontsize=7)
-    plt.xticks(ticks=np.arange(len(top_codes)), labels=top_codes, rotation=90, fontsize=7)
+    plt.xticks(
+        ticks=np.arange(len(top_codes)), labels=top_codes, rotation=90, fontsize=7
+    )
     plt.colorbar(label="z-score (pro Code)")
     plt.title(title)
     plt.tight_layout()
@@ -166,6 +173,7 @@ def save_heatmap_fk_topcodes(
 # =============================================================================
 # PROFILE (Delta + z)
 # =============================================================================
+
 
 def compute_cluster_profiles(
     X: pd.DataFrame,
@@ -180,21 +188,31 @@ def compute_cluster_profiles(
 
     rows = []
     for cid in sorted(np.unique(clusters)):
-        members = X_with_cluster[X_with_cluster["cluster"] == cid].drop(columns=["cluster"])
+        members = X_with_cluster[X_with_cluster["cluster"] == cid].drop(
+            columns=["cluster"]
+        )
         mean_vec = members.mean(axis=0)
 
         delta = mean_vec - overall_mean
         z = (delta / overall_std).replace([np.inf, -np.inf], np.nan).fillna(0.0)
 
-        top_delta = delta.sort_values(ascending=False).head(top_codes_for_interpretation)
+        top_delta = delta.sort_values(ascending=False).head(
+            top_codes_for_interpretation
+        )
         top_z = z.sort_values(ascending=False).head(top_codes_for_interpretation)
 
-        rows.append({
-            "cluster": int(cid),
-            "n_fachkraefte": int(len(members)),
-            "top_codes_by_delta": ", ".join([f"{c}({top_delta[c]:.2f})" for c in top_delta.index]),
-            "top_codes_by_z": ", ".join([f"{c}({top_z[c]:.2f})" for c in top_z.index]),
-        })
+        rows.append(
+            {
+                "cluster": int(cid),
+                "n_fachkraefte": int(len(members)),
+                "top_codes_by_delta": ", ".join(
+                    [f"{c}({top_delta[c]:.2f})" for c in top_delta.index]
+                ),
+                "top_codes_by_z": ", ".join(
+                    [f"{c}({top_z[c]:.2f})" for c in top_z.index]
+                ),
+            }
+        )
 
     return pd.DataFrame(rows).sort_values("cluster").reset_index(drop=True)
 
@@ -202,6 +220,7 @@ def compute_cluster_profiles(
 # =============================================================================
 # EIN LEVEL CLUSTERING (Baustein)
 # =============================================================================
+
 
 def cluster_one_level(
     X: pd.DataFrame,
@@ -232,7 +251,9 @@ def cluster_one_level(
         color_threshold = float(cut_distance)
 
     fk_ids = X.index.tolist()
-    cluster_df = pd.DataFrame({"fachkraft": fk_ids, "cluster": clusters}).sort_values(["cluster", "fachkraft"])
+    cluster_df = pd.DataFrame({"fachkraft": fk_ids, "cluster": clusters}).sort_values(
+        ["cluster", "fachkraft"]
+    )
     cluster_df.to_csv(os.path.join(out_dir, f"{prefix}_clusters.csv"), index=False)
 
     # Dendrogramm
@@ -255,7 +276,9 @@ def cluster_one_level(
     plt.close()
 
     # Profiles
-    profiles_df = compute_cluster_profiles(X, clusters, top_codes_for_interpretation=top_codes_for_interpretation)
+    profiles_df = compute_cluster_profiles(
+        X, clusters, top_codes_for_interpretation=top_codes_for_interpretation
+    )
     profiles_df.to_csv(os.path.join(out_dir, f"{prefix}_profiles.csv"), index=False)
 
     # Heatmap (TopCodes nach Varianz)
@@ -286,6 +309,7 @@ def cluster_one_level(
 # =============================================================================
 # EXTRA OUTPUTS: TREE + HIERARCHY HEATMAP
 # =============================================================================
+
 
 def write_tree_overview(hier_df: pd.DataFrame, out_path: str):
     """
@@ -349,6 +373,7 @@ def save_hierarchical_heatmap(
 # =============================================================================
 # TWO-LEVEL CLUSTERING
 # =============================================================================
+
 
 def two_level_cluster_fachkraefte(
     X: pd.DataFrame,
@@ -431,13 +456,19 @@ def two_level_cluster_fachkraefte(
             dendrogram_title=f"Dendrogramm (SUB): Main-Cluster {mc}",
         )
 
-        sub_df = sub_res["clusters_df"].rename(columns={"cluster": "sub_cluster"}).copy()
+        sub_df = (
+            sub_res["clusters_df"].rename(columns={"cluster": "sub_cluster"}).copy()
+        )
         sub_df["sub_cluster"] = sub_df["sub_cluster"].astype(int)
 
         # Merge zurück
-        main_df = main_df.merge(sub_df, on="fachkraft", how="left", suffixes=("", "_new"))
+        main_df = main_df.merge(
+            sub_df, on="fachkraft", how="left", suffixes=("", "_new")
+        )
         mask = main_df["sub_cluster_new"].notna()
-        main_df.loc[mask, "sub_cluster"] = main_df.loc[mask, "sub_cluster_new"].astype(int)
+        main_df.loc[mask, "sub_cluster"] = main_df.loc[mask, "sub_cluster_new"].astype(
+            int
+        )
         main_df = main_df.drop(columns=["sub_cluster_new"])
 
         # Hierarchischer Label
@@ -445,7 +476,7 @@ def two_level_cluster_fachkraefte(
             lambda r: f"{int(r['main_cluster'])}.{int(r['sub_cluster'])}"
             if pd.notna(r["sub_cluster"])
             else f"{int(r['main_cluster'])}",
-            axis=1
+            axis=1,
         )
 
         sub_results[mc] = {"sub_dir": sub_dir, **sub_res}
@@ -453,7 +484,9 @@ def two_level_cluster_fachkraefte(
     # -----------------------------
     # Export hierarchische Zuordnung
     # -----------------------------
-    main_df = main_df.sort_values(["main_cluster", "sub_cluster", "fachkraft"], na_position="last")
+    main_df = main_df.sort_values(
+        ["main_cluster", "sub_cluster", "fachkraft"], na_position="last"
+    )
     main_df.to_csv(os.path.join(out_dir, "fk_clusters_hierarchical.csv"), index=False)
 
     # -----------------------------
@@ -473,7 +506,10 @@ def two_level_cluster_fachkraefte(
 # PIPELINE: Zwei Subsets (6.2.1 vs 6.2.2)
 # =============================================================================
 
-def filter_df_by_files_containing_code(df: pd.DataFrame, target_code: str) -> pd.DataFrame:
+
+def filter_df_by_files_containing_code(
+    df: pd.DataFrame, target_code: str
+) -> pd.DataFrame:
     files = df.loc[df["base_code"] == target_code, "Filename"].unique()
     return df[df["Filename"].isin(files)].copy()
 
@@ -502,7 +538,9 @@ def run_fk_typing_pipeline_two_level(
         out_dir = os.path.join(output_root, f"files_with_{code}")
 
         print(f"\n=== TWO-LEVEL FK-Typing für Dateien mit {code} ===")
-        print(f"Rows: {len(df_sub)} | Filenames: {df_sub['Filename'].nunique()} | FKs: {df_sub['fachkraft'].nunique()}")
+        print(
+            f"Rows: {len(df_sub)} | Filenames: {df_sub['Filename'].nunique()} | FKs: {df_sub['fachkraft'].nunique()}"
+        )
 
         X = build_fk_code_matrix(df_sub, exclude_prefixes=("6.1",), mode=fk_matrix_mode)
 
@@ -527,7 +565,9 @@ def run_fk_typing_pipeline_two_level(
 
         print(f"Saved outputs to: {out_dir}")
         print(f"MAIN cut used: {res['main']['cut']}")
-        print("Wrote: fk_clusters_hierarchical.csv, tree_hierarchy.txt, heatmap_fk_topcodes_hierarchical.png")
+        print(
+            "Wrote: fk_clusters_hierarchical.csv, tree_hierarchy.txt, heatmap_fk_topcodes_hierarchical.png"
+        )
 
 
 # =============================================================================
@@ -541,10 +581,10 @@ if __name__ == "__main__":
         fk_matrix_mode="binary",
         distance_metric="jaccard",
         linkage_method="average",
-        main_cut_k=2,                 # 2 Hauptcluster erzwingen
+        main_cut_k=2,  # 2 Hauptcluster erzwingen
         main_cut_distance=None,
-        sub_cut_k=3,                  # Untercluster im großen Cluster
-        sub_cut_distance=None,        # auto (largest jump) pro Sub-Cluster
-        min_size_for_subclustering=8, # nur "große" main clusters werden gesplittet
+        sub_cut_k=3,  # Untercluster im großen Cluster
+        sub_cut_distance=None,  # auto (largest jump) pro Sub-Cluster
+        min_size_for_subclustering=8,  # nur "große" main clusters werden gesplittet
         max_subclusters_cap=6,
     )

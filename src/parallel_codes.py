@@ -45,8 +45,12 @@ def canon_pair(a: str, b: str) -> Tuple[str, str]:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--csv_path", default="extracted_sequences.csv", help="Pfad zur CSV")
-    ap.add_argument("--min_size", type=int, default=2, help="Min. Gruppengröße für Ausgabe")
+    ap.add_argument(
+        "--csv_path", default="extracted_sequences.csv", help="Pfad zur CSV"
+    )
+    ap.add_argument(
+        "--min_size", type=int, default=2, help="Min. Gruppengröße für Ausgabe"
+    )
     ap.add_argument(
         "--ignore_codes",
         default="6.1.1, 2.1.2.3, 2.2.3.14",
@@ -96,7 +100,7 @@ def main() -> None:
     total_group_pairs_printed = 0
 
     # Ausgabe pro Gruppe + Sammeln der globalen Paare
-    for (filename, start, end) in sorted(groups.keys()):
+    for filename, start, end in sorted(groups.keys()):
         codes = groups[(filename, start, end)]
         uniq = sorted(set(codes))  # doppelte Codes innerhalb Gruppe entfernen
 

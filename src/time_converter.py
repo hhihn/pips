@@ -30,12 +30,16 @@ class TimeConverter:
 
             # Handle milliseconds (pad or truncate to 3 digits)
             if len(seconds_parts) > 1:
-                millis_str = seconds_parts[1].ljust(3, '0')[:3]  # Ensure exactly 3 digits
+                millis_str = seconds_parts[1].ljust(3, "0")[
+                    :3
+                ]  # Ensure exactly 3 digits
                 milliseconds = int(millis_str)
             else:
                 milliseconds = 0
 
-            return (hours * 3600000) + (minutes * 60000) + (seconds * 1000) + milliseconds
+            return (
+                (hours * 3600000) + (minutes * 60000) + (seconds * 1000) + milliseconds
+            )
 
         except (ValueError, IndexError):
             return None

@@ -1,4 +1,3 @@
-import json
 
 import pandas as pd
 
@@ -93,7 +92,9 @@ def is_6_1_1_code(code):
     return False
 
 
-def find_matching_5_5_x_code(rows, current_row, child_per_file, filename, situation_number):
+def find_matching_5_5_x_code(
+    rows, current_row, child_per_file, filename, situation_number
+):
     """
     Find the 5.5.x code that overlaps with the current row's time range.
     """
@@ -128,8 +129,19 @@ def extract_and_save_sequences(input_csv_path, output_csv_path):
     # }
     target_codes = {
         "6.1.1",
-        "6.4.2", "6.4.3", "6.4.4", "6.4.5", "6.5.1", "2.1.2.3", "2.1.3.1", "6.5.3",
-        "2.2.3.14", "2.2.3.4", "6.5.4", "6.2.1", "6.2.2"
+        "6.4.2",
+        "6.4.3",
+        "6.4.4",
+        "6.4.5",
+        "6.5.1",
+        "2.1.2.3",
+        "2.1.3.1",
+        "6.5.3",
+        "2.2.3.14",
+        "2.2.3.4",
+        "6.5.4",
+        "6.2.1",
+        "6.2.2",
     }
     try:
         df = pd.read_csv(input_csv_path)
@@ -166,9 +178,13 @@ def extract_and_save_sequences(input_csv_path, output_csv_path):
                             continue
 
                         try:
-                            child_situation = child_per_file[filename]["matching_children"][situation_number]
+                            child_situation = child_per_file[filename][
+                                "matching_children"
+                            ][situation_number]
                         except (KeyError, IndexError):
-                            print(f"No matching children for situation {situation_number} in {filename}")
+                            print(
+                                f"No matching children for situation {situation_number} in {filename}"
+                            )
                             continue
 
                         # NEUE LOGIK: Suche überlappenden 5.5.x Code
@@ -177,17 +193,21 @@ def extract_and_save_sequences(input_csv_path, output_csv_path):
                         )
 
                         if found_5_5_x:
-                            child_code = " PK" if found_5_5_x == child_situation else " AK"
+                            child_code = (
+                                " PK" if found_5_5_x == child_situation else " AK"
+                            )
                         else:
                             child_code = " NA"
 
-                        results_data.append({
-                            "Filename": filename,
-                            "Sequence_Code": numeric_part + child_code,
-                            "Sequence_Start": row["Sequence_Start"],
-                            "Sequence_End": row["Sequence_End"],
-                            "id": f"{file_i}_{situation_number}",
-                        })
+                        results_data.append(
+                            {
+                                "Filename": filename,
+                                "Sequence_Code": numeric_part + child_code,
+                                "Sequence_Start": row["Sequence_Start"],
+                                "Sequence_End": row["Sequence_End"],
+                                "id": f"{file_i}_{situation_number}",
+                            }
+                        )
 
     results_df = pd.DataFrame(results_data)
     results_df.to_csv(output_csv_path, index=False)
@@ -195,6 +215,7 @@ def extract_and_save_sequences(input_csv_path, output_csv_path):
     print(f"Total matching sequences found: {len(results_data)}")
 
     return results_df
+
 
 def find_5_5_x_for_6_1_1_codes(df):
     results = {}

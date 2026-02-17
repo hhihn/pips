@@ -2,22 +2,20 @@
 # -*- coding: utf-8 -*-
 
 import os
-import math
 import numpy as np
 import pandas as pd
-from collections import Counter
-from typing import Dict, Tuple, Optional, List
+from typing import Dict, Tuple, Optional
 
 import matplotlib.pyplot as plt
 
 from scipy.cluster.hierarchy import linkage, dendrogram, fcluster
-from scipy.spatial.distance import pdist, squareform
-from scipy.stats import zscore
+from scipy.spatial.distance import pdist
 
 
 # =============================================================================
 # HILFSFUNKTIONEN (aus deinem Script, leicht aufgeräumt)
 # =============================================================================
+
 
 def time_to_seconds(time_str: str) -> float:
     if not isinstance(time_str, str) or not time_str.strip():
@@ -62,6 +60,7 @@ def load_and_prepare_data(csv_path: str) -> pd.DataFrame:
 # =============================================================================
 # FK-PROFILE BAUEN (Normalisierung + binär/frequency)
 # =============================================================================
+
 
 def build_fk_code_matrix(
     df: pd.DataFrame,
@@ -108,6 +107,7 @@ def build_fk_code_matrix(
 # DISTANZ + LINKAGE (Jaccard für binär)
 # =============================================================================
 
+
 def compute_distance_matrix(X: pd.DataFrame, metric: str) -> np.ndarray:
     """
     Gibt condensed distance vector (wie pdist) zurück.
@@ -143,6 +143,7 @@ def suggest_cut_distance_by_largest_jump(Z: np.ndarray) -> float:
 # =============================================================================
 # CLUSTERING + PROFILE + EXPORTS
 # =============================================================================
+
 
 def cluster_fachkraefte(
     X: pd.DataFrame,
@@ -182,7 +183,9 @@ def cluster_fachkraefte(
         cut_info = {"type": "distance", "value": float(cut_distance)}
 
     fk_ids = X.index.tolist()
-    cluster_df = pd.DataFrame({"fachkraft": fk_ids, "cluster": clusters}).sort_values(["cluster", "fachkraft"])
+    cluster_df = pd.DataFrame({"fachkraft": fk_ids, "cluster": clusters}).sort_values(
+        ["cluster", "fachkraft"]
+    )
     cluster_df.to_csv(os.path.join(out_dir, "fk_clusters.csv"), index=False)
 
     # --- Dendrogramm plotten ---
@@ -213,22 +216,32 @@ def cluster_fachkraefte(
 
     profile_rows = []
     for cid in sorted(np.unique(clusters)):
-        members = X_with_cluster[X_with_cluster["cluster"] == cid].drop(columns=["cluster"])
+        members = X_with_cluster[X_with_cluster["cluster"] == cid].drop(
+            columns=["cluster"]
+        )
         mean_vec = members.mean(axis=0)
 
         delta = mean_vec - overall_mean
         z = (delta / overall_std).replace([np.inf, -np.inf], np.nan).fillna(0.0)
 
         # Top Codes nach Delta und Z
-        top_delta = delta.sort_values(ascending=False).head(top_codes_for_interpretation)
+        top_delta = delta.sort_values(ascending=False).head(
+            top_codes_for_interpretation
+        )
         top_z = z.sort_values(ascending=False).head(top_codes_for_interpretation)
 
-        profile_rows.append({
-            "cluster": cid,
-            "n_fachkraefte": len(members),
-            "top_codes_by_delta": ", ".join([f"{c}({top_delta[c]:.2f})" for c in top_delta.index]),
-            "top_codes_by_z": ", ".join([f"{c}({top_z[c]:.2f})" for c in top_z.index]),
-        })
+        profile_rows.append(
+            {
+                "cluster": cid,
+                "n_fachkraefte": len(members),
+                "top_codes_by_delta": ", ".join(
+                    [f"{c}({top_delta[c]:.2f})" for c in top_delta.index]
+                ),
+                "top_codes_by_z": ", ".join(
+                    [f"{c}({top_z[c]:.2f})" for c in top_z.index]
+                ),
+            }
+        )
 
     profiles_df = pd.DataFrame(profile_rows).sort_values("cluster")
     profiles_df.to_csv(os.path.join(out_dir, "cluster_profiles.csv"), index=False)
@@ -245,12 +258,18 @@ def cluster_fachkraefte(
     X_plot = X_plot.loc[ordered_fks]
 
     # Standardisieren pro Code für bessere Lesbarkeit (z-score pro Spalte)
-    Xz = X_plot.apply(lambda col: (col - col.mean()) / (col.std() if col.std() > 0 else 1.0), axis=0)
+    Xz = X_plot.apply(
+        lambda col: (col - col.mean()) / (col.std() if col.std() > 0 else 1.0), axis=0
+    )
 
-    plt.figure(figsize=(max(12, len(top_codes) * 0.35), max(6, len(ordered_fks) * 0.25)))
+    plt.figure(
+        figsize=(max(12, len(top_codes) * 0.35), max(6, len(ordered_fks) * 0.25))
+    )
     plt.imshow(Xz.values, aspect="auto", interpolation="nearest")
     plt.yticks(ticks=np.arange(len(ordered_fks)), labels=ordered_fks, fontsize=7)
-    plt.xticks(ticks=np.arange(len(top_codes)), labels=top_codes, rotation=90, fontsize=7)
+    plt.xticks(
+        ticks=np.arange(len(top_codes)), labels=top_codes, rotation=90, fontsize=7
+    )
     plt.colorbar(label="z-score (pro Code)")
     plt.title("Heatmap: Fachkräfte × TopCodes (z-scored), nach Cluster sortiert")
     plt.tight_layout()
@@ -272,7 +291,10 @@ def cluster_fachkraefte(
 # REPORT: Zwei Varianten (6.2.1 vs 6.2.2) + FK-Typen
 # =============================================================================
 
-def filter_df_by_files_containing_code(df: pd.DataFrame, target_code: str) -> pd.DataFrame:
+
+def filter_df_by_files_containing_code(
+    df: pd.DataFrame, target_code: str
+) -> pd.DataFrame:
     files = df.loc[df["base_code"] == target_code, "Filename"].unique()
     return df[df["Filename"].isin(files)].copy()
 
@@ -280,11 +302,11 @@ def filter_df_by_files_containing_code(df: pd.DataFrame, target_code: str) -> pd
 def run_fk_typing_pipeline(
     csv_path: str,
     output_root: str = "fk_typing_reports",
-    fk_matrix_mode: str = "binary",          # "binary" empfohlen für Jaccard
-    distance_metric: str = "jaccard",        # passt zu binary
-    linkage_method: str = "average",         # passt zu Jaccard
-    cut_k: Optional[int] = None,             # z.B. 4, 6, 8
-    cut_distance: Optional[float] = None,    # optional
+    fk_matrix_mode: str = "binary",  # "binary" empfohlen für Jaccard
+    distance_metric: str = "jaccard",  # passt zu binary
+    linkage_method: str = "average",  # passt zu Jaccard
+    cut_k: Optional[int] = None,  # z.B. 4, 6, 8
+    cut_distance: Optional[float] = None,  # optional
 ):
     os.makedirs(output_root, exist_ok=True)
 
@@ -295,7 +317,9 @@ def run_fk_typing_pipeline(
         out_dir = os.path.join(output_root, f"files_with_{code}")
 
         print(f"\n=== FK-Typing für Dateien mit {code} ===")
-        print(f"Rows: {len(df_sub)} | Filenames: {df_sub['Filename'].nunique()} | FKs: {df_sub['fachkraft'].nunique()}")
+        print(
+            f"Rows: {len(df_sub)} | Filenames: {df_sub['Filename'].nunique()} | FKs: {df_sub['fachkraft'].nunique()}"
+        )
 
         X = build_fk_code_matrix(df_sub, exclude_prefixes=("6.1",), mode=fk_matrix_mode)
 

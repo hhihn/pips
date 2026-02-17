@@ -2,8 +2,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import re
+
 sns.set_theme(style="whitegrid", font="DejaVu Sans", context="talk")
 plt.rcParams["axes.grid.axis"] = "x"
+
 
 # ---------------- helpers ----------------
 def extract_code_prefix(code: str, level: int | None = None) -> str:
@@ -15,6 +17,7 @@ def extract_code_prefix(code: str, level: int | None = None) -> str:
     if level is None or level >= len(parts):
         return ".".join(parts)
     return ".".join(parts[:level])
+
 
 def parse_time_to_seconds(t: str) -> float:
     if pd.isna(t) or not isinstance(t, str):
@@ -29,8 +32,10 @@ def parse_time_to_seconds(t: str) -> float:
         return m * 60 + s
     return float(parts[0])
 
+
 def intervals_overlap(a_start, a_end, b_start, b_end) -> bool:
     return max(a_start, b_start) < min(a_end, b_end)
+
 
 # ---------------- core analysis ----------------
 def stacked_occurrence_plot(
@@ -61,8 +66,7 @@ def stacked_occurrence_plot(
     stacked_data = []
     for group_idx, code_group in enumerate(codes):
         group_label = (
-            group_labels[group_idx] if language == "de"
-            else group_labels_en[group_idx]
+            group_labels[group_idx] if language == "de" else group_labels_en[group_idx]
         )
         exclude_map = {}
         for item in code_group:
@@ -87,16 +91,20 @@ def stacked_occurrence_plot(
                         else:
                             if not any(
                                 intervals_overlap(
-                                    a["start_sec"], a["end_sec"],
-                                    b["start_sec"], b["end_sec"]
+                                    a["start_sec"],
+                                    a["end_sec"],
+                                    b["start_sec"],
+                                    b["end_sec"],
                                 )
                                 for _, b in b_rows.iterrows()
                             ):
                                 total_count += 1
                 stacked_data.append(
-                    {"Group": group_label,
-                     "Code": code_labels.get(code_spec, code_spec),
-                     "Cout": total_count}
+                    {
+                        "Group": group_label,
+                        "Code": code_labels.get(code_spec, code_spec),
+                        "Cout": total_count,
+                    }
                 )
             elif isinstance(code_spec, list):
                 code_a, code_b = code_spec
@@ -108,16 +116,21 @@ def stacked_occurrence_plot(
                         co_counts.append(0)
                         continue
                     count = sum(
-                        (a["start_sec"] == b["start_sec"]) and (a["end_sec"] == b["end_sec"])
+                        (a["start_sec"] == b["start_sec"])
+                        and (a["end_sec"] == b["end_sec"])
                         for _, a in a_rows.iterrows()
                         for _, b in b_rows.iterrows()
                     )
                     co_counts.append(count)
                 mean_count = sum(co_counts) if co_counts else 0
                 stacked_data.append(
-                    {"Group": group_label,
-                     "Code": code_labels.get(tuple(code_spec), " + ".join(code_spec)),
-                     "Cout": mean_count}
+                    {
+                        "Group": group_label,
+                        "Code": code_labels.get(
+                            tuple(code_spec), " + ".join(code_spec)
+                        ),
+                        "Cout": mean_count,
+                    }
                 )
 
     plot_df = pd.DataFrame(stacked_data)
@@ -169,7 +182,7 @@ def stacked_occurrence_plot(
 
     ax.set_xlabel("")
     ax.set_title("")
-    ax.set_yticks([10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120])
+    ax.set_yticks([10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150])
     plt.xticks(rotation=0)
     plt.tight_layout()
     plt.show()
@@ -181,18 +194,18 @@ if __name__ == "__main__":
     codes = [
         ["6.4.3", "6.4.4", "6.4.5"],
         [["2.2.3.14", "2.2.3.4"], "2.2.3.14"],
-    #    ["2.2.4.2", "2.2.4.3"],
+        #    ["2.2.4.2", "2.2.4.3"],
     ]
 
     group_labels = [
         "Körperliche Ausrichtung FK",
         "Typ Körperkontakt",
-  #      "Art Körperkontakt",
+        #      "Art Körperkontakt",
     ]
     group_labels_en = [
         "Physical orientation\nCaregiver",
         "Type of body contact",
-   #     "Kind of body contact",
+        #     "Kind of body contact",
     ]
 
     code_labels_de = {
@@ -225,5 +238,5 @@ if __name__ == "__main__":
         group_labels,
         code_labels_de,
         code_labels_en,
-        language="en",
+        language="de",
     )

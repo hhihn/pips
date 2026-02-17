@@ -100,7 +100,8 @@ class PatternAnalyzer:
                         for c in r.child_codes
                         if "matching_6_2_codes" in c and c["matching_6_2_codes"]
                     ]
-                for r in results]
+                    for r in results
+                ]
 
                 count_6_2_matches = sum(
                     len(

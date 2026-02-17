@@ -1,5 +1,4 @@
 import pandas as pd
-import os
 from pathlib import Path
 
 
@@ -10,15 +9,15 @@ def transform_code_column(file_path, output_path):
         df = pd.read_excel(file_path)
 
         # Check if 'Code' column exists
-        if 'Code' not in df.columns:
+        if "Code" not in df.columns:
             print(f"Warning: 'Code' column not found in {file_path.name}")
             # Save unchanged file
             df.to_excel(output_path, index=False)
             return False
 
         # Transform the 'Code' column to keep only the last part after '>'
-        df['Code'] = df['Code'].apply(
-            lambda x: x.split(' > ')[-1] if isinstance(x, str) and ' > ' in x else x
+        df["Code"] = df["Code"].apply(
+            lambda x: x.split(" > ")[-1] if isinstance(x, str) and " > " in x else x
         )
 
         # Save the transformed DataFrame to the output path
@@ -44,11 +43,14 @@ def process_folder(folder_path):
     transformed_folder.mkdir(exist_ok=True)
 
     # Supported Excel file extensions
-    excel_extensions = ['.xlsx', '.xls']
+    excel_extensions = [".xlsx", ".xls"]
 
     # Get all Excel files in the folder
-    excel_files = [f for f in folder_path.iterdir()
-                   if f.is_file() and f.suffix.lower() in excel_extensions]
+    excel_files = [
+        f
+        for f in folder_path.iterdir()
+        if f.is_file() and f.suffix.lower() in excel_extensions
+    ]
 
     if not excel_files:
         print(f"No Excel files found in {folder_path}")
@@ -70,7 +72,7 @@ def process_folder(folder_path):
         else:
             error_count += 1
 
-    print(f"\nProcessing complete!")
+    print("\nProcessing complete!")
     print(f"Successfully processed: {processed_count} files")
     if error_count > 0:
         print(f"Errors encountered: {error_count} files")
@@ -79,7 +81,8 @@ def process_folder(folder_path):
 # Main execution
 if __name__ == "__main__":
     # Specify your folder path here
-    folder_path = "./data/"  # Current directory, change this to your desired folder path
-
+    folder_path = (
+        "./data/"  # Current directory, change this to your desired folder path
+    )
 
     process_folder(folder_path)

@@ -5,7 +5,7 @@ from data_classes import TimeFrame, PatternResult
 from time_converter import TimeConverter
 from sequence_analyzer import SequenceAnalyzer
 
-pd.set_option('display.max_columns', None)
+pd.set_option("display.max_columns", None)
 
 
 class PatternDetector:
@@ -35,12 +35,11 @@ class PatternDetector:
         """
         if tf1.start is None or tf1.end is None or tf2.start is None or tf2.end is None:
             return False
-        return (
-            tf1.start <= tf2.start and
-            tf1.end >= tf2.end
-        )
+        return tf1.start <= tf2.start and tf1.end >= tf2.end
 
-    def _is_contained(self, container: TimeFrame, contained: TimeFrame, tolerance_ms: int = 100) -> bool:
+    def _is_contained(
+        self, container: TimeFrame, contained: TimeFrame, tolerance_ms: int = 100
+    ) -> bool:
         """
         Check if one timeframe is contained within another (with tolerance).
 
@@ -49,8 +48,9 @@ class PatternDetector:
             contained: The inner timeframe
             tolerance_ms: Allow contained to extend this many ms outside container
         """
-        return (container.start <= contained.start + tolerance_ms) and \
-            (container.end >= contained.end - tolerance_ms)
+        return (container.start <= contained.start + tolerance_ms) and (
+            container.end >= contained.end - tolerance_ms
+        )
 
     def _filter_codes_by_pattern(self, df: pd.DataFrame, pattern: str) -> pd.DataFrame:
         """
@@ -67,7 +67,9 @@ class PatternDetector:
         if not filtered_df.empty:
             filtered_df["timeframe"] = filtered_df.apply(
                 lambda row: TimeFrame(
-                    start=self.time_converter.time_string_to_milliseconds(row["Anfang"]),
+                    start=self.time_converter.time_string_to_milliseconds(
+                        row["Anfang"]
+                    ),
                     end=self.time_converter.time_string_to_milliseconds(row["Ende"]),
                     original_start=row["Anfang"],
                     original_end=row["Ende"],
@@ -219,9 +221,13 @@ class PatternDetector:
                 if tf_6_1_1.start is None or tf_6_1_1.end is None:
                     continue
 
-                matching_6_2_codes = self._find_matching_6_2_with_sequences(df, df_6_2, tf_6_1_1)
+                matching_6_2_codes = self._find_matching_6_2_with_sequences(
+                    df, df_6_2, tf_6_1_1
+                )
                 print(f"matched {len(matching_6_2_codes)} 6_2 codes in special case")
-                matching_5_5_codes = self._find_matching_codes_same_timeframe(df_5_5, tf_6_1_1)
+                matching_5_5_codes = self._find_matching_codes_same_timeframe(
+                    df_5_5, tf_6_1_1
+                )
                 print(f"matched {len(matching_5_5_codes)} 5_5 codes in special case")
 
                 orphan_6_1_1_list.append(
@@ -239,7 +245,9 @@ class PatternDetector:
                 PatternResult(
                     filename=filename,
                     parent_code="6.1.1 (no 5.4 parent found)",
-                    parent_timeframe=TimeFrame(start=0, end=0, original_start="", original_end=""),
+                    parent_timeframe=TimeFrame(
+                        start=0, end=0, original_start="", original_end=""
+                    ),
                     child_codes=orphan_6_1_1_list,
                 )
             )
@@ -263,10 +271,12 @@ class PatternDetector:
                     continue
 
                 if self._is_contained(parent_timeframe, child_timeframe):
-                    print(f"found contained 6_1: {child_timeframe} in {parent_timeframe}")
+                    print(
+                        f"found contained 6_1: {child_timeframe} in {parent_timeframe}"
+                    )
                     # Look for matching 6.2.* codes with exact same timeframe
                     matching_6_2_codes = []
-                    if(len(matching_6_2_codes) > 1):
+                    if len(matching_6_2_codes) > 1:
                         print("found more than one matching 6_2 code")
                     for _, row_6_2 in df_6_2.iterrows():
                         match_timeframe = row_6_2["timeframe"]
@@ -275,7 +285,6 @@ class PatternDetector:
                             continue
 
                         if self._are_timeframes_equal(child_timeframe, match_timeframe):
-
                             # Analyze sequence of target codes within this 6.2 timeframe
                             sequence_events = (
                                 self.sequence_analyzer.get_sequence_events(
@@ -345,9 +354,9 @@ class PatternDetector:
         return results
 
     def _find_matching_codes_same_timeframe(
-            self,
-            df_with_timeframe: pd.DataFrame,
-            target_timeframe: TimeFrame,
+        self,
+        df_with_timeframe: pd.DataFrame,
+        target_timeframe: TimeFrame,
     ) -> list[dict[str, str]]:
         """Return codes whose timeframe matches target_timeframe within tolerance."""
         matches: list[dict[str, str]] = []
@@ -362,7 +371,7 @@ class PatternDetector:
         return matches
 
     def _find_matching_6_2_with_sequences(
-            self, df: pd.DataFrame, df_6_2: pd.DataFrame, tf_6_1_1: TimeFrame
+        self, df: pd.DataFrame, df_6_2: pd.DataFrame, tf_6_1_1: TimeFrame
     ) -> list[dict[str, Any]]:
         """Return 6.2.* codes matching tf_6_1_1 and include sequence events for each match."""
         matching_6_2_codes: list[dict[str, Any]] = []

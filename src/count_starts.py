@@ -45,7 +45,7 @@ def find_most_common_start_combinations(csv_path: str, top_n: int = 10):
                 (sub["start_sec"] >= s_start)
                 & (sub["end_sec"] <= s_end)
                 & (sub["Sequence_Code"] != "6.1.1 PK")
-                ].sort_values("start_sec")
+            ].sort_values("start_sec")
 
             if len(inside) >= 2:
                 first_two = inside.head(2)["Sequence_Code"].tolist()
@@ -71,8 +71,13 @@ def find_most_common_start_combinations(csv_path: str, top_n: int = 10):
     plt.ylabel("Erste 2 Codes während 6.1.1", fontsize=12)
     plt.title("Häufigste Anfangskombinationen (während 6.1.1)", fontsize=14)
     for bar, val in zip(bars, values):
-        plt.text(bar.get_width() + 0.1, bar.get_y() + bar.get_height() / 2,
-                 str(val), va='center', fontsize=11)
+        plt.text(
+            bar.get_width() + 0.1,
+            bar.get_y() + bar.get_height() / 2,
+            str(val),
+            va="center",
+            fontsize=11,
+        )
     plt.tight_layout()
     plt.show()
     return freq
