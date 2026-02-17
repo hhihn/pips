@@ -30,13 +30,14 @@ from src.sunburst.helper import (
     wide_to_sunburst_nodes,
     sequences_to_sunburst_wide,
 )
-from src.sunburst.postprocessing import postprocess_sequence
-from src.sunburst.util import (
-    ALLOWED_CODES,
-    CODE_TO_PRIO,
-    PLACEHOLDER_OTHER,
-    GROUP_NAME_TO_CODES,
+from src.sunburst.andere_analysis import (
+    analyze_andere_by_ring,
+    analyze_codes_causing_andere,
+    create_andere_summary,
+    print_andere_report,
 )
+from src.sunburst.postprocessing import postprocess_sequence
+from src.sunburst.code_util import CodeUtil
 
 try:
     import plotly.express as px
@@ -48,15 +49,18 @@ def build_sequences_from_paths_csv(
     df: pd.DataFrame,
     start_lookahead_n: int = 12,
 ) -> Tuple[List[List[str]], pd.DataFrame]:
+    code_util = CodeUtil()
+
     d = df.copy()
     d["code"] = d["Sequence_Code"].map(normalize_code)
     d["start_s"] = d["Sequence_Start"].map(parse_time_to_seconds)
     d["end_s"] = d["Sequence_End"].map(parse_time_to_seconds)
-    d = d[d["code"].isin(ALLOWED_CODES)].copy()
+    d = d[d["code"].isin(code_util.ALLOWED_CODES)].copy()
 
     sequences_labels: List[List[str]] = []
     per_path_rows: List[Dict[str, Any]] = []
     group_cols = ["Filename", "id"] if "id" in d.columns else ["Filename"]
+
 
     for key, g in d.groupby(group_cols, sort=True):
         if isinstance(key, tuple):
@@ -67,7 +71,7 @@ def build_sequences_from_paths_csv(
         # Sort by time
         g_sorted = g.copy()
         g_sorted["code_priority"] = g_sorted["code"].map(
-            lambda c: CODE_TO_PRIO.get(c, (999, 999))
+            lambda c: code_util.CODE_TO_PRIO.get(c, (999, 999))
         )
         g_sorted = g_sorted.sort_values(by=["start_s", "end_s", "code_priority"]).drop(
             "code_priority", axis=1
@@ -97,10 +101,10 @@ def build_sequences_from_paths_csv(
 
         n_bundles = len(bundles)
         if n_bundles == 0:
-            innen_tok = PLACEHOLDER_OTHER
-            mitte_tok = PLACEHOLDER_OTHER
-            aussen_tok = PLACEHOLDER_OTHER
-            aussenring_tok = PLACEHOLDER_OTHER
+            innen_tok = code_util.PLACEHOLDER_OTHER
+            mitte_tok = code_util.PLACEHOLDER_OTHER
+            aussen_tok = code_util.PLACEHOLDER_OTHER
+            aussenring_tok = code_util.PLACEHOLDER_OTHER
         else:
             # Limit to start_lookahead_n bundles
             bundles = bundles[: max(4, start_lookahead_n)]
@@ -147,18 +151,18 @@ def build_sequences_from_paths_csv(
                         tok = pick_group_token_from_first_n(
                             parts_list[j], allowed_codes
                         )
-                        if tok != [PLACEHOLDER_OTHER]:
+                        if tok != [code_util.PLACEHOLDER_OTHER]:
                             return tok
-                return [PLACEHOLDER_OTHER]
+                return [code_util.PLACEHOLDER_OTHER]
 
             parts_list = [innen_df, mitte_df, aussen_df, aussenring_df]
-            innen_tok = pick_with_adjacent(parts_list, 0, GROUP_NAME_TO_CODES["innen"])
-            mitte_tok = pick_with_adjacent(parts_list, 1, GROUP_NAME_TO_CODES["mitte"])
+            innen_tok = pick_with_adjacent(parts_list, 0, code_util.GROUP_NAME_TO_CODES["innen"])
+            mitte_tok = pick_with_adjacent(parts_list, 1, code_util.GROUP_NAME_TO_CODES["mitte"])
             aussen_tok = pick_with_adjacent(
-                parts_list, 2, GROUP_NAME_TO_CODES["aussen"]
+                parts_list, 2, code_util.GROUP_NAME_TO_CODES["aussen"]
             )
             aussenring_tok = pick_with_adjacent(
-                parts_list, 3, GROUP_NAME_TO_CODES["aussenring"]
+                parts_list, 3, code_util.GROUP_NAME_TO_CODES["aussenring"]
             )
 
         seq_tokens = innen_tok + mitte_tok + aussen_tok + aussenring_tok
@@ -171,7 +175,7 @@ def build_sequences_from_paths_csv(
                 "Filename": filename,
                 "id": pid,
                 "start_group": label_for_token(
-                    innen_tok[0] if innen_tok else PLACEHOLDER_OTHER
+                    innen_tok[0] if innen_tok else code_util.PLACEHOLDER_OTHER
                 ),
                 "sequence_tokens": " -> ".join(seq_tokens),
                 "sequence_labels": " -> ".join(seq_labels),
@@ -224,9 +228,8 @@ def main():
 
     # === Load data-driven rules if provided ===
     if args.cooccurrence_csv:
-        from src.sunburst.util import load_data_driven_rules
-
-        load_data_driven_rules(
+        code_util = CodeUtil()
+        code_util.load_data_driven_rules(
             args.cooccurrence_csv, min_window_count=args.min_window_count
         )
 
@@ -259,12 +262,7 @@ def main():
 
     # === NEW: "Andere" Analysis ===
     print("\n[*] Analyzing 'Andere' occurrences by ring...")
-    from src.sunburst.andere_analysis import (
-        analyze_andere_by_ring,
-        analyze_codes_causing_andere,
-        create_andere_summary,
-        print_andere_report,
-    )
+
 
     andere_by_ring = analyze_andere_by_ring(per_path)
     codes_causing_andere = analyze_codes_causing_andere(df, per_path)
@@ -317,10 +315,6 @@ def main():
     html_path = f"{args.out_prefix}_sunburst.html"
     fig.write_html(html_path)
     print(f"[OK] Wrote: {html_path}")
-
-
-if __name__ == "__main__":
-    main()
 
 
 if __name__ == "__main__":

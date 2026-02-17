@@ -4,8 +4,9 @@ from typing import List, Any, Tuple, Dict
 
 import pandas as pd
 
-from src.sunburst.util import PLACEHOLDER_OTHER, CODE_TO_PRIO, COMBO_RULES, LABEL_MAP
+from src.sunburst.code_util import CodeUtil
 
+code_util = CodeUtil()
 
 def parse_time_to_seconds(s: Any) -> float:
     s = str(s).strip().strip('"')
@@ -41,19 +42,19 @@ def atomic_codes(token: str) -> List[str]:
 
 def normalize_combo_key(codes: List[str]) -> str:
     def _key(c: str):
-        return CODE_TO_PRIO.get(c, (999, 999, c))
+        return code_util.CODE_TO_PRIO.get(c, (999, 999, c))
 
     codes_sorted = sorted(set(codes), key=_key)
     return " & ".join(codes_sorted)
 
 
 def label_for_token(token: str) -> str:
-    if token in LABEL_MAP:
-        return LABEL_MAP[token]
+    if token in code_util.LABEL_MAP:
+        return code_util.LABEL_MAP[token]
     if not is_combo_token(token):
-        return LABEL_MAP.get(token, token)
+        return code_util.LABEL_MAP.get(token, token)
     atoms = atomic_codes(token)
-    atom_labels = [LABEL_MAP.get(a, a) for a in atoms]
+    atom_labels = [code_util.LABEL_MAP.get(a, a) for a in atoms]
     return " + ".join(atom_labels)
 
 
@@ -66,13 +67,13 @@ def apply_bundle_combos(codes: List[str]) -> List[str]:
     s = set(codes)
     out: List[str] = []
 
-    for (a, b), combo in COMBO_RULES:
+    for (a, b), combo in code_util.COMBO_RULES:
         if a in s and b in s:
             out.append(combo)
             s.remove(a)
             s.remove(b)
 
-    out.extend(sorted(s, key=lambda c: CODE_TO_PRIO.get(c, (999, 999))))
+    out.extend(sorted(s, key=lambda c: code_util.CODE_TO_PRIO.get(c, (999, 999))))
     return out
 
 
@@ -87,7 +88,7 @@ def pick_group_token_from_first_n(
     - wenn nichts gefunden: PLACEHOLDER_OTHER
     """
     if first_n_events.empty:
-        return [PLACEHOLDER_OTHER]
+        return [code_util.PLACEHOLDER_OTHER]
 
     # bundles in first_n (exakt start/end)
     fe = first_n_events.copy()
@@ -98,7 +99,7 @@ def pick_group_token_from_first_n(
 
     for (bs, be), bg in fe.groupby("bundle_key", sort=False):
         tokens = sorted(
-            set(bg["code"].tolist()), key=lambda c: CODE_TO_PRIO.get(c, (999, 999))
+            set(bg["code"].tolist()), key=lambda c: code_util.CODE_TO_PRIO.get(c, (999, 999))
         )
         #  tokens = atom_codes # apply_bundle_combos(atom_codes)
 
@@ -106,11 +107,11 @@ def pick_group_token_from_first_n(
             atoms = atomic_codes(tok) if is_combo_token(tok) else [tok]
             if any(a in group_codes for a in atoms):
                 # Priority for tie-break: min priority of involved atomic codes
-                pr = min([CODE_TO_PRIO.get(a, (999, 999)) for a in atoms])
+                pr = min([code_util.CODE_TO_PRIO.get(a, (999, 999)) for a in atoms])
                 candidates.append((float(bs), float(be), (pr[0], pr[1], tok), tok))
 
     if not candidates:
-        return [PLACEHOLDER_OTHER]
+        return [code_util.PLACEHOLDER_OTHER]
 
     candidates.sort(key=lambda x: (x[0], x[1], x[2][0], x[2][1], x[2][2]))
     return [c[3] for c in candidates]

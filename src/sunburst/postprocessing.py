@@ -1,5 +1,7 @@
 from typing import List
-from src.sunburst.util import COMBO_RULES, is_predefined_rule
+from src.sunburst.code_util import CodeUtil
+
+code_util = CodeUtil()
 
 
 def postprocess_sequence(tokens: List[str]) -> List[str]:
@@ -29,7 +31,7 @@ def postprocess_sequence(tokens: List[str]) -> List[str]:
             merged.append(collapsed[i])
             break
 
-        for combo_rule in COMBO_RULES:
+        for combo_rule in code_util.COMBO_RULES:
             pair, _label = combo_rule, combo_rule[1]
             if (collapsed[i], collapsed[i + 1]) == pair or (
                 collapsed[i + 1],
@@ -37,7 +39,7 @@ def postprocess_sequence(tokens: List[str]) -> List[str]:
             ) == pair:
                 matched_combo = pair
                 matched_source = (
-                    "predefined" if is_predefined_rule(pair) else "data-driven"
+                    "predefined" if code_util.is_predefined_rule(pair) else "data-driven"
                 )
                 break
 

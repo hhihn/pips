@@ -3,9 +3,9 @@ from typing import Tuple
 import pandas as pd
 
 from src.sunburst.helper import normalize_code, parse_time_to_seconds
-from src.sunburst.util import LABEL_MAP, ALLOWED_CODES
+from src.sunburst.code_util import CodeUtil
 
-
+code_util = CodeUtil()
 def analyze_code_cooccurrences(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
     Analyze temporal co-occurrences of codes.
@@ -17,7 +17,7 @@ def analyze_code_cooccurrences(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataF
     d["code"] = d["Sequence_Code"].map(normalize_code)
     d["start_s"] = d["Sequence_Start"].map(parse_time_to_seconds)
     d["end_s"] = d["Sequence_End"].map(parse_time_to_seconds)
-    d = d[d["code"].isin(ALLOWED_CODES)].copy()
+    d = d[d["code"].isin(code_util.ALLOWED_CODES)].copy()
 
     # ===== CO-OCCURRENCE 1: Same Start Time =====
     same_start_pairs = []
@@ -30,9 +30,9 @@ def analyze_code_cooccurrences(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataF
                     same_start_pairs.append(
                         {
                             "code1": code1,
-                            "label1": LABEL_MAP.get(code1, code1),
+                            "label1": code_util.LABEL_MAP.get(code1, code1),
                             "code2": code2,
-                            "label2": LABEL_MAP.get(code2, code2),
+                            "label2": code_util.LABEL_MAP.get(code2, code2),
                             "start_time": start_time,
                             "cooccurrence_type": "Same Start Time",
                         }
@@ -59,9 +59,9 @@ def analyze_code_cooccurrences(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataF
                     same_window_pairs.append(
                         {
                             "code1": code1,
-                            "label1": LABEL_MAP.get(code1, code1),
+                            "label1": code_util.LABEL_MAP.get(code1, code1),
                             "code2": code2,
-                            "label2": LABEL_MAP.get(code2, code2),
+                            "label2": code_util.LABEL_MAP.get(code2, code2),
                             "start_time": start_time,
                             "end_time": end_time,
                             "duration": end_time - start_time,
