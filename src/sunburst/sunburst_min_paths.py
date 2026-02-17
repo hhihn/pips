@@ -17,13 +17,18 @@ from typing import Dict, List, Tuple, Any
 
 import pandas as pd
 
-from src.sunburst.cooccurrrence import create_cooccurrence_summary, analyze_code_cooccurrences
+from src.sunburst.cooccurrrence import (
+    create_cooccurrence_summary,
+    analyze_code_cooccurrences,
+)
 from src.sunburst.helper import (
     normalize_code,
     parse_time_to_seconds,
     pick_group_token_from_first_n,
     label_for_token,
-    customwrap, wide_to_sunburst_nodes, sequences_to_sunburst_wide,
+    customwrap,
+    wide_to_sunburst_nodes,
+    sequences_to_sunburst_wide,
 )
 from src.sunburst.postprocessing import postprocess_sequence
 from src.sunburst.util import (
@@ -196,19 +201,23 @@ def build_sequences_from_paths_csv(
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--csv", default="../extracted_sequences.csv", help="Input CSV")
-    ap.add_argument("--out_prefix", default="out_paths", help="Prefix für Output-Dateien")
-    ap.add_argument("--max_depth", type=int, default=3, help="Max Tiefe für Sunburst")
-    ap.add_argument("--start_lookahead_n", type=int, default=5, help="Lookahead N Events pro Pfad")
+    ap.add_argument(
+        "--out_prefix", default="out_paths", help="Prefix für Output-Dateien"
+    )
+    ap.add_argument("--max_depth", type=int, default=4, help="Max Tiefe für Sunburst")
+    ap.add_argument(
+        "--start_lookahead_n", type=int, default=5, help="Lookahead N Events pro Pfad"
+    )
     ap.add_argument(
         "--cooccurrence_csv",
-        default=None,
-        help="Path to cooccurrence_summary.csv to load data-driven rules"
+        default="out_paths_cooccurrence_summary.csv",
+        help="Path to cooccurrence_summary.csv to load data-driven rules",
     )
     ap.add_argument(
         "--min_window_count",
         type=int,
         default=5,
-        help="Min Same_Window_Count to create data-driven rule"
+        help="Min Same_Window_Count to create data-driven rule",
     )
     ap.add_argument("--no_sunburst", action="store_true", help="Kein Sunburst erzeugen")
     args = ap.parse_args()
@@ -216,7 +225,10 @@ def main():
     # === Load data-driven rules if provided ===
     if args.cooccurrence_csv:
         from src.sunburst.util import load_data_driven_rules
-        load_data_driven_rules(args.cooccurrence_csv, min_window_count=args.min_window_count)
+
+        load_data_driven_rules(
+            args.cooccurrence_csv, min_window_count=args.min_window_count
+        )
 
     df = pd.read_csv(args.csv)
 
@@ -224,7 +236,6 @@ def main():
     seqs_labels, per_path = build_sequences_from_paths_csv(
         df, start_lookahead_n=args.start_lookahead_n
     )
-
     per_path.to_csv(f"{args.out_prefix}_per_path_sequences.csv", index=False)
     counts = (
         per_path.groupby(["start_group", "sequence_labels"])
@@ -234,14 +245,37 @@ def main():
     )
     counts.to_csv(f"{args.out_prefix}_path_counts.csv", index=False)
 
+    # === Co-occurrence Analysis ===
     print("\n[*] Analyzing code co-occurrences...")
     same_start_counts, same_window_counts = analyze_code_cooccurrences(df)
-
-    same_start_counts.to_csv(f"{args.out_prefix}_cooccurrence_same_start.csv", index=False)
-    same_window_counts.to_csv(f"{args.out_prefix}_cooccurrence_same_window.csv", index=False)
-
+    same_start_counts.to_csv(
+        f"{args.out_prefix}_cooccurrence_same_start.csv", index=False
+    )
+    same_window_counts.to_csv(
+        f"{args.out_prefix}_cooccurrence_same_window.csv", index=False
+    )
     summary = create_cooccurrence_summary(same_start_counts, same_window_counts)
     summary.to_csv(f"{args.out_prefix}_cooccurrence_summary.csv", index=False)
+
+    # === NEW: "Andere" Analysis ===
+    print("\n[*] Analyzing 'Andere' occurrences by ring...")
+    from src.sunburst.andere_analysis import (
+        analyze_andere_by_ring,
+        analyze_codes_causing_andere,
+        create_andere_summary,
+        print_andere_report,
+    )
+
+    andere_by_ring = analyze_andere_by_ring(per_path)
+    codes_causing_andere = analyze_codes_causing_andere(df, per_path)
+
+    andere_by_ring.to_csv(f"{args.out_prefix}_andere_by_ring.csv", index=False)
+    codes_causing_andere.to_csv(
+        f"{args.out_prefix}_codes_in_andere_cases.csv", index=False
+    )
+
+    andere_summary = create_andere_summary(andere_by_ring, codes_causing_andere)
+    print_andere_report(andere_summary)
 
     print(
         f"[OK] Wrote:\n"
@@ -249,9 +283,12 @@ def main():
         f" - {args.out_prefix}_path_counts.csv\n"
         f" - {args.out_prefix}_cooccurrence_same_start.csv\n"
         f" - {args.out_prefix}_cooccurrence_same_window.csv\n"
-        f" - {args.out_prefix}_cooccurrence_summary.csv"
+        f" - {args.out_prefix}_cooccurrence_summary.csv\n"
+        f" - {args.out_prefix}_andere_by_ring.csv\n"
+        f" - {args.out_prefix}_codes_in_andere_cases.csv"
     )
 
+    # === Sunburst ===
     if args.no_sunburst:
         return
     if px is None:
@@ -262,7 +299,7 @@ def main():
 
     wide = sequences_to_sunburst_wide(seqs_labels, max_depth=args.max_depth)
     nodes = wide_to_sunburst_nodes(wide, max_depth=args.max_depth)
-    nodes['label'] = nodes['label'].map(lambda x: customwrap(x, width=20))
+    nodes["label"] = nodes["label"].map(lambda x: customwrap(x, width=20))
 
     fig = px.sunburst(
         nodes,
@@ -273,8 +310,8 @@ def main():
     )
     fig.update_traces(
         hovertemplate="<b>%{label}</b><br>"
-                      "count=%{value}<br>"
-                      "p(child|parent)=%{customdata:.3f}<extra></extra>",
+        "count=%{value}<br>"
+        "p(child|parent)=%{customdata:.3f}<extra></extra>",
         customdata=nodes["p_child_given_parent"],
     )
     html_path = f"{args.out_prefix}_sunburst.html"
@@ -285,3 +322,6 @@ def main():
 if __name__ == "__main__":
     main()
 
+
+if __name__ == "__main__":
+    main()

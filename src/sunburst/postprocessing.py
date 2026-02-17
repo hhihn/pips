@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import List
 from src.sunburst.util import COMBO_RULES, is_predefined_rule
 
 
@@ -30,13 +30,15 @@ def postprocess_sequence(tokens: List[str]) -> List[str]:
             break
 
         for combo_rule in COMBO_RULES:
-            pair, label = combo_rule, combo_rule[1]
+            pair, _label = combo_rule, combo_rule[1]
             if (collapsed[i], collapsed[i + 1]) == pair or (
-                    collapsed[i + 1],
-                    collapsed[i],
+                collapsed[i + 1],
+                collapsed[i],
             ) == pair:
                 matched_combo = pair
-                matched_source = "predefined" if is_predefined_rule(pair) else "data-driven"
+                matched_source = (
+                    "predefined" if is_predefined_rule(pair) else "data-driven"
+                )
                 break
 
         if matched_combo:

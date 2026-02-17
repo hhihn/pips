@@ -6,6 +6,7 @@ import pandas as pd
 
 from src.sunburst.util import PLACEHOLDER_OTHER, CODE_TO_PRIO, COMBO_RULES, LABEL_MAP
 
+
 def parse_time_to_seconds(s: Any) -> float:
     s = str(s).strip().strip('"')
     parts = s.split(":")
@@ -121,6 +122,7 @@ def customwrap(s, width=20):
         return "<br>".join(textwrap.wrap(s, width=width))
     except:
         return s
+
 
 def sequences_to_sunburst_wide(
     seqs: List[List[str]], max_depth: int = 12

@@ -65,7 +65,9 @@ for (a, b), combo in PREDEFINED_COMBO_RULES:
 # ===================================================================
 # 4) DATA-DRIVEN COMBO RULES (Generated from Co-occurrence Analysis)
 # ===================================================================
-DATA_DRIVEN_COMBO_RULES: List[Tuple[Tuple[str, str], str, int]] = []  # (pair, label, count)
+DATA_DRIVEN_COMBO_RULES: List[
+    Tuple[Tuple[str, str], str, int]
+] = []  # (pair, label, count)
 
 
 def load_data_driven_rules(cooccurrence_csv: str, min_window_count: int = 5):
@@ -88,9 +90,7 @@ def load_data_driven_rules(cooccurrence_csv: str, min_window_count: int = 5):
     # Filter for significant co-occurrences
     significant = df[df["Same_Window_Count"] >= min_window_count].copy()
 
-    predefined_pairs = {
-        frozenset(pair) for pair in PREDEFINED_COMBO_RULES
-    }
+    predefined_pairs = {frozenset(pair) for pair in PREDEFINED_COMBO_RULES}
 
     for _, row in significant.iterrows():
         code1, code2 = row["Code1"], row["Code2"]
@@ -101,7 +101,9 @@ def load_data_driven_rules(cooccurrence_csv: str, min_window_count: int = 5):
             continue
 
         # Create normalized pair (sorted by priority)
-        pair_sorted = tuple(sorted([code1, code2], key=lambda c: CODE_TO_PRIO.get(c, (999, 999))))
+        pair_sorted = tuple(
+            sorted([code1, code2], key=lambda c: CODE_TO_PRIO.get(c, (999, 999)))
+        )
         label = f"{row['Label1']} + {row['Label2']}"
         count = int(row["Same_Window_Count"])
 
@@ -111,21 +113,29 @@ def load_data_driven_rules(cooccurrence_csv: str, min_window_count: int = 5):
         combo_key = f"{pair_sorted} & {pair_sorted[1]}"
         LABEL_MAP[combo_key] = label
 
-    print(f"[OK] Loaded {len(DATA_DRIVEN_COMBO_RULES)} data-driven combo rules from {cooccurrence_csv}")
+    print(
+        f"[OK] Loaded {len(DATA_DRIVEN_COMBO_RULES)} data-driven combo rules from {cooccurrence_csv}"
+    )
     print(f"     (filtered for Same_Window_Count >= {min_window_count})")
+    json.dump(
+        obj=DATA_DRIVEN_COMBO_RULES,
+        fp=open("DATA_DRIVEN_COMBO_RULES.json", "w"),
+        indent=2,
+        ensure_ascii=False,
+    )
 
 
 def get_all_combo_rules() -> List[Tuple[Tuple[str, str], str]]:
     """Combine predefined and data-driven rules, excluding duplicates."""
     all_rules = PREDEFINED_COMBO_RULES.copy()
-    for (pair, label, count) in DATA_DRIVEN_COMBO_RULES:
+    for pair, label, count in DATA_DRIVEN_COMBO_RULES:
         all_rules.append((pair, f"{label} [data-driven: n={count}]"))
     return all_rules
 
 
 def is_predefined_rule(pair: Tuple[str, str]) -> bool:
     """Check if a rule was predefined by an expert."""
-    for (predefined_pair, _) in PREDEFINED_COMBO_RULES:
+    for predefined_pair, _ in PREDEFINED_COMBO_RULES:
         if set(pair) == set(predefined_pair):
             return True
     return False
