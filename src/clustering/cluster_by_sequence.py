@@ -312,7 +312,7 @@ def run_sequence_clustering_pipeline(
 if __name__ == "__main__":
     # Standard: 4 Cluster, alle Filenames bekommen einen Cluster
     run_sequence_clustering_pipeline(
-        csv_path="extracted_sequences.csv",
+        csv_path="../extracted_sequences.csv",
         output_root="sequence_typing_reports",
         matrix_mode="binary",
         distance_metric="jaccard",

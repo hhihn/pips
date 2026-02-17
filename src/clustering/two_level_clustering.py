@@ -576,7 +576,7 @@ def run_fk_typing_pipeline_two_level(
 
 if __name__ == "__main__":
     run_fk_typing_pipeline_two_level(
-        csv_path="extracted_sequences.csv",
+        csv_path="../extracted_sequences.csv",
         output_root="fk_typing_reports_two_level",
         fk_matrix_mode="binary",
         distance_metric="jaccard",
