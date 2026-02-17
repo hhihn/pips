@@ -61,7 +61,7 @@ def analyze_code_cooccurrences(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataF
                     same_window_pairs.append(
                         {
                             "code1": code1,
-                            "label1":code_util.LABEL_MAP.get(code1, code1),
+                            "label1": code_util.LABEL_MAP.get(code1, code1),
                             "code2": code2,
                             "label2": code_util.LABEL_MAP.get(code2, code2),
                             "start_time": start_time,

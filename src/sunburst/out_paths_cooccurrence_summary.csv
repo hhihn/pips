@@ -1,69 +1,42 @@
-Code_Pair,Code1,Code2,Label1,Label2,Same_Start_Count,Same_Window_Count,Cooccurrence_Type
-2.2.3.14 ↔ 2.1.3.1,2.2.3.14,2.1.3.1,über Gegenstand vermittelte Berührung,FK führt Hdlg. für Kind aus,37,34,Both Same Start & Window
-2.2.3.4 ↔ 2.2.3.14,2.2.3.4,2.2.3.14,halten,über Gegenstand vermittelte Berührung,31,32,Both Same Start & Window
-2.2.3.14 ↔ 2.2.3.4,2.2.3.14,2.2.3.4,über Gegenstand vermittelte Berührung,halten,28,30,Both Same Start & Window
-2.2.3.4 ↔ 2.1.3.1,2.2.3.4,2.1.3.1,halten,FK führt Hdlg. für Kind aus,26,25,Both Same Start & Window
-2.1.3.1 ↔ 2.2.3.14,2.1.3.1,2.2.3.14,FK führt Hdlg. für Kind aus,über Gegenstand vermittelte Berührung,26,25,Both Same Start & Window
-2.1.3.1 ↔ 2.2.3.4,2.1.3.1,2.2.3.4,FK führt Hdlg. für Kind aus,halten,24,23,Both Same Start & Window
-6.4.4 ↔ 2.2.3.4,6.4.4,2.2.3.4,FK führt Pflegehandlung von der Seite durch,halten,20,19,Both Same Start & Window
-6.4.4 ↔ 2.2.3.14,6.4.4,2.2.3.14,FK führt Pflegehandlung von der Seite durch,über Gegenstand vermittelte Berührung,19,17,Both Same Start & Window
-6.4.4 ↔ 2.1.3.1,6.4.4,2.1.3.1,FK führt Pflegehandlung von der Seite durch,FK führt Hdlg. für Kind aus,15,13,Both Same Start & Window
-6.4.3 ↔ 2.1.3.1,6.4.3,2.1.3.1,FK führt Pflegehandlung von vorne durch,FK führt Hdlg. für Kind aus,14,13,Both Same Start & Window
-2.1.3.1 ↔ 6.4.4,2.1.3.1,6.4.4,FK führt Hdlg. für Kind aus,FK führt Pflegehandlung von der Seite durch,14,12,Both Same Start & Window
-2.1.2.3 ↔ 6.4.2,2.1.2.3,6.4.2,FK benennt oder zeigt Ziel,FK fordert K zu Pflege-Vor/Nachbereitung auf,14,12,Both Same Start & Window
-6.4.3 ↔ 2.2.3.14,6.4.3,2.2.3.14,FK führt Pflegehandlung von vorne durch,über Gegenstand vermittelte Berührung,13,11,Both Same Start & Window
-2.2.3.14 ↔ 6.4.4,2.2.3.14,6.4.4,über Gegenstand vermittelte Berührung,FK führt Pflegehandlung von der Seite durch,12,9,Both Same Start & Window
-6.4.5 ↔ 2.1.3.1,6.4.5,2.1.3.1,FK führt Pflegehandlung von hinten durch,FK führt Hdlg. für Kind aus,9,8,Both Same Start & Window
-2.1.3.1 ↔ 6.4.5,2.1.3.1,6.4.5,FK führt Hdlg. für Kind aus,FK führt Pflegehandlung von hinten durch,8,8,Both Same Start & Window
-2.2.3.4 ↔ 6.4.5,2.2.3.4,6.4.5,halten,FK führt Pflegehandlung von hinten durch,9,8,Both Same Start & Window
-2.2.3.14 ↔ 6.4.5,2.2.3.14,6.4.5,über Gegenstand vermittelte Berührung,FK führt Pflegehandlung von hinten durch,9,8,Both Same Start & Window
-2.2.3.4 ↔ 6.4.4,2.2.3.4,6.4.4,halten,FK führt Pflegehandlung von der Seite durch,10,6,Both Same Start & Window
-6.4.3 ↔ 2.2.3.4,6.4.3,2.2.3.4,FK führt Pflegehandlung von vorne durch,halten,7,6,Both Same Start & Window
-6.4.5 ↔ 2.2.3.14,6.4.5,2.2.3.14,FK führt Pflegehandlung von hinten durch,über Gegenstand vermittelte Berührung,7,6,Both Same Start & Window
-2.2.3.14 ↔ 6.4.3,2.2.3.14,6.4.3,über Gegenstand vermittelte Berührung,FK führt Pflegehandlung von vorne durch,7,6,Both Same Start & Window
-2.2.3.4 ↔ 6.4.3,2.2.3.4,6.4.3,halten,FK führt Pflegehandlung von vorne durch,4,4,Both Same Start & Window
-2.1.3.1 ↔ 6.4.3,2.1.3.1,6.4.3,FK führt Hdlg. für Kind aus,FK führt Pflegehandlung von vorne durch,4,3,Both Same Start & Window
-6.4.2 ↔ 2.1.2.3,6.4.2,2.1.2.3,FK fordert K zu Pflege-Vor/Nachbereitung auf,FK benennt oder zeigt Ziel,6,2,Both Same Start & Window
-6.4.5 ↔ 2.2.3.4,6.4.5,2.2.3.4,FK führt Pflegehandlung von hinten durch,halten,2,2,Both Same Start & Window
-6.4.3 ↔ 6.5.3,6.4.3,6.5.3,FK führt Pflegehandlung von vorne durch,K führt Pflegehandlung eigenständig durch,1,1,Both Same Start & Window
-2.2.3.14 ↔ 6.5.3,2.2.3.14,6.5.3,über Gegenstand vermittelte Berührung,K führt Pflegehandlung eigenständig durch,1,1,Both Same Start & Window
-2.2.3.14 ↔ 2.1.2.3,2.2.3.14,2.1.2.3,über Gegenstand vermittelte Berührung,FK benennt oder zeigt Ziel,1,1,Both Same Start & Window
-6.4.3 ↔ 2.1.2.3,6.4.3,2.1.2.3,FK führt Pflegehandlung von vorne durch,FK benennt oder zeigt Ziel,1,1,Both Same Start & Window
-2.1.3.1 ↔ 6.4.2,2.1.3.1,6.4.2,FK führt Hdlg. für Kind aus,FK fordert K zu Pflege-Vor/Nachbereitung auf,2,1,Both Same Start & Window
-2.2.3.4 ↔ 6.5.3,2.2.3.4,6.5.3,halten,K führt Pflegehandlung eigenständig durch,1,1,Both Same Start & Window
-2.2.3.4 ↔ 6.4.2,2.2.3.4,6.4.2,halten,FK fordert K zu Pflege-Vor/Nachbereitung auf,3,1,Both Same Start & Window
-2.2.3.14 ↔ 6.4.2,2.2.3.14,6.4.2,über Gegenstand vermittelte Berührung,FK fordert K zu Pflege-Vor/Nachbereitung auf,4,1,Both Same Start & Window
-6.5.3 ↔ 2.2.3.14,6.5.3,2.2.3.14,K führt Pflegehandlung eigenständig durch,über Gegenstand vermittelte Berührung,3,0,Same Start Time Only
-2.1.2.3 ↔ 6.4.4,2.1.2.3,6.4.4,FK benennt oder zeigt Ziel,FK führt Pflegehandlung von der Seite durch,4,0,Same Start Time Only
-6.5.3 ↔ 2.1.2.3,6.5.3,2.1.2.3,K führt Pflegehandlung eigenständig durch,FK benennt oder zeigt Ziel,1,0,Same Start Time Only
-6.5.1 ↔ 6.4.5,6.5.1,6.4.5,K signalisiert Pflegeanlass,FK führt Pflegehandlung von hinten durch,1,0,Same Start Time Only
-2.1.3.1 ↔ 6.5.1,2.1.3.1,6.5.1,FK führt Hdlg. für Kind aus,K signalisiert Pflegeanlass,1,0,Same Start Time Only
-2.1.3.1 ↔ 6.5.3,2.1.3.1,6.5.3,FK führt Hdlg. für Kind aus,K führt Pflegehandlung eigenständig durch,1,0,Same Start Time Only
-6.4.5 ↔ 6.4.3,6.4.5,6.4.3,FK führt Pflegehandlung von hinten durch,FK führt Pflegehandlung von vorne durch,1,0,Same Start Time Only
-6.4.5 ↔ 6.4.2,6.4.5,6.4.2,FK führt Pflegehandlung von hinten durch,FK fordert K zu Pflege-Vor/Nachbereitung auf,1,0,Same Start Time Only
-2.1.2.3 ↔ 2.2.3.4,2.1.2.3,2.2.3.4,FK benennt oder zeigt Ziel,halten,5,0,Same Start Time Only
-2.1.2.3 ↔ 6.5.4,2.1.2.3,6.5.4,FK benennt oder zeigt Ziel,K führt Pflege-Vor/Nachbereitung eigenständig durch,1,0,Same Start Time Only
-6.4.5 ↔ 2.1.2.3,6.4.5,2.1.2.3,FK führt Pflegehandlung von hinten durch,FK benennt oder zeigt Ziel,1,0,Same Start Time Only
-6.4.4 ↔ 6.4.5,6.4.4,6.4.5,FK führt Pflegehandlung von der Seite durch,FK führt Pflegehandlung von hinten durch,1,0,Same Start Time Only
-2.1.2.3 ↔ 2.2.3.14,2.1.2.3,2.2.3.14,FK benennt oder zeigt Ziel,über Gegenstand vermittelte Berührung,6,0,Same Start Time Only
-2.2.3.14 ↔ 6.5.4,2.2.3.14,6.5.4,über Gegenstand vermittelte Berührung,K führt Pflege-Vor/Nachbereitung eigenständig durch,1,0,Same Start Time Only
-2.2.3.4 ↔ 6.5.1,2.2.3.4,6.5.1,halten,K signalisiert Pflegeanlass,1,0,Same Start Time Only
-2.1.2.3 ↔ 2.1.3.1,2.1.2.3,2.1.3.1,FK benennt oder zeigt Ziel,FK führt Hdlg. für Kind aus,6,0,Same Start Time Only
-2.1.3.1 ↔ 2.1.2.3,2.1.3.1,2.1.2.3,FK führt Hdlg. für Kind aus,FK benennt oder zeigt Ziel,1,0,Same Start Time Only
-6.5.4 ↔ 2.1.2.3,6.5.4,2.1.2.3,K führt Pflege-Vor/Nachbereitung eigenständig durch,FK benennt oder zeigt Ziel,1,0,Same Start Time Only
-6.5.3 ↔ 2.1.3.1,6.5.3,2.1.3.1,K führt Pflegehandlung eigenständig durch,FK führt Hdlg. für Kind aus,3,0,Same Start Time Only
-2.1.2.3 ↔ 6.4.3,2.1.2.3,6.4.3,FK benennt oder zeigt Ziel,FK führt Pflegehandlung von vorne durch,1,0,Same Start Time Only
-6.4.5 ↔ 6.5.4,6.4.5,6.5.4,FK führt Pflegehandlung von hinten durch,K führt Pflege-Vor/Nachbereitung eigenständig durch,1,0,Same Start Time Only
-6.4.2 ↔ 6.5.1,6.4.2,6.5.1,FK fordert K zu Pflege-Vor/Nachbereitung auf,K signalisiert Pflegeanlass,1,0,Same Start Time Only
-2.2.3.14 ↔ 6.5.1,2.2.3.14,6.5.1,über Gegenstand vermittelte Berührung,K signalisiert Pflegeanlass,2,0,Same Start Time Only
-2.1.2.3 ↔ 6.4.5,2.1.2.3,6.4.5,FK benennt oder zeigt Ziel,FK führt Pflegehandlung von hinten durch,2,0,Same Start Time Only
-6.4.2 ↔ 2.1.3.1,6.4.2,2.1.3.1,FK fordert K zu Pflege-Vor/Nachbereitung auf,FK führt Hdlg. für Kind aus,2,0,Same Start Time Only
-6.4.2 ↔ 2.2.3.14,6.4.2,2.2.3.14,FK fordert K zu Pflege-Vor/Nachbereitung auf,über Gegenstand vermittelte Berührung,2,0,Same Start Time Only
-6.4.2 ↔ 2.2.3.4,6.4.2,2.2.3.4,FK fordert K zu Pflege-Vor/Nachbereitung auf,halten,2,0,Same Start Time Only
-6.4.2 ↔ 6.4.4,6.4.2,6.4.4,FK fordert K zu Pflege-Vor/Nachbereitung auf,FK führt Pflegehandlung von der Seite durch,2,0,Same Start Time Only
-6.5.4 ↔ 6.5.1,6.5.4,6.5.1,K führt Pflege-Vor/Nachbereitung eigenständig durch,K signalisiert Pflegeanlass,2,0,Same Start Time Only
-6.5.1 ↔ 2.1.2.3,6.5.1,2.1.2.3,K signalisiert Pflegeanlass,FK benennt oder zeigt Ziel,2,0,Same Start Time Only
-6.4.3 ↔ 6.4.2,6.4.3,6.4.2,FK führt Pflegehandlung von vorne durch,FK fordert K zu Pflege-Vor/Nachbereitung auf,2,0,Same Start Time Only
-6.5.4 ↔ 6.4.2,6.5.4,6.4.2,K führt Pflege-Vor/Nachbereitung eigenständig durch,FK fordert K zu Pflege-Vor/Nachbereitung auf,2,0,Same Start Time Only
-6.5.3 ↔ 2.2.3.4,6.5.3,2.2.3.4,K führt Pflegehandlung eigenständig durch,halten,3,0,Same Start Time Only
-6.5.3 ↔ 6.4.4,6.5.3,6.4.4,K führt Pflegehandlung eigenständig durch,FK führt Pflegehandlung von der Seite durch,3,0,Same Start Time Only
+Group,Num_Codes,Codes,Labels,Avg_Duration,Count,Group_Type
+2.1.3.1 + 2.2.3.14 + 2.2.3.4 + 6.4.4,4,"['2.1.3.1', '2.2.3.14', '2.2.3.4', '6.4.4']",FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von der Seite durch,4.664999999999999,20,4-Tuple
+2.1.3.1 + 2.2.3.14 + 2.2.3.4 + 6.4.5,4,"['2.1.3.1', '2.2.3.14', '2.2.3.4', '6.4.5']",FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von hinten durch,2.69,10,4-Tuple
+2.1.3.1 + 2.2.3.14 + 2.2.3.4 + 6.4.3,4,"['2.1.3.1', '2.2.3.14', '2.2.3.4', '6.4.3']",FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von vorne durch,3.8999999999999977,9,4-Tuple
+2.2.3.14 + 2.2.3.4 + 6.4.3 + 6.5.3,4,"['2.2.3.14', '2.2.3.4', '6.4.3', '6.5.3']",über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von vorne durch + K führt Pflegehandlung eigenständig durch,4.900000000000006,1,4-Tuple
+2.1.3.1 + 2.2.3.14 + 2.2.3.4 + 6.4.2,4,"['2.1.3.1', '2.2.3.14', '2.2.3.4', '6.4.2']",FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + halten + FK fordert K zu Pflege-Vor/Nachbereitung auf,7.0,1,4-Tuple
+2.1.3.1 + 2.2.3.14 + 2.2.3.4,3,"['2.1.3.1', '2.2.3.14', '2.2.3.4']",FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + halten,5.628571428571426,7,3-Tuple
+2.1.3.1 + 2.2.3.14 + 6.4.3,3,"['2.1.3.1', '2.2.3.14', '6.4.3']",FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + FK führt Pflegehandlung von vorne durch,3.650000000000002,6,3-Tuple
+2.2.3.14 + 2.2.3.4 + 6.4.4,3,"['2.2.3.14', '2.2.3.4', '6.4.4']",über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von der Seite durch,4.850000000000005,4,3-Tuple
+2.1.3.1 + 2.2.3.14 + 6.4.5,3,"['2.1.3.1', '2.2.3.14', '6.4.5']",FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + FK führt Pflegehandlung von hinten durch,2.733333333333339,3,3-Tuple
+2.1.2.3 + 2.2.3.14 + 6.4.3,3,"['2.1.2.3', '2.2.3.14', '6.4.3']",FK benennt oder zeigt Ziel + über Gegenstand vermittelte Berührung + FK führt Pflegehandlung von vorne durch,5.099999999999994,1,3-Tuple
+2.1.3.1 + 2.2.3.4 + 6.4.4,3,"['2.1.3.1', '2.2.3.4', '6.4.4']",FK führt Hdlg. für Kind aus + halten + FK führt Pflegehandlung von der Seite durch,3.0999999999999943,1,3-Tuple
+2.1.3.1 + 2.2.3.14 + 6.4.4,3,"['2.1.3.1', '2.2.3.14', '6.4.4']",FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + FK führt Pflegehandlung von der Seite durch,5.900000000000006,1,3-Tuple
+2.2.3.14 ↔ 2.2.3.4,2,"['2.2.3.14', '2.2.3.4']",über Gegenstand vermittelte Berührung + halten,4.382258064516129,62,Pair
+2.1.3.1 ↔ 2.2.3.14,2,"['2.1.3.1', '2.2.3.14']",FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung,4.169491525423728,59,Pair
+2.1.3.1 ↔ 2.2.3.4,2,"['2.1.3.1', '2.2.3.4']",FK führt Hdlg. für Kind aus + halten,4.266666666666666,48,Pair
+2.2.3.14 ↔ 6.4.4,2,"['2.2.3.14', '6.4.4']",über Gegenstand vermittelte Berührung + FK führt Pflegehandlung von der Seite durch,4.711538461538462,26,Pair
+2.1.3.1 ↔ 6.4.4,2,"['2.1.3.1', '6.4.4']",FK führt Hdlg. für Kind aus + FK führt Pflegehandlung von der Seite durch,4.712,25,Pair
+2.2.3.4 ↔ 6.4.4,2,"['2.2.3.4', '6.4.4']",halten + FK führt Pflegehandlung von der Seite durch,4.632,25,Pair
+2.2.3.14 ↔ 6.4.3,2,"['2.2.3.14', '6.4.3']",über Gegenstand vermittelte Berührung + FK führt Pflegehandlung von vorne durch,3.9411764705882355,17,Pair
+2.1.3.1 ↔ 6.4.3,2,"['2.1.3.1', '6.4.3']",FK führt Hdlg. für Kind aus + FK führt Pflegehandlung von vorne durch,4.206249999999999,16,Pair
+2.1.3.1 ↔ 6.4.5,2,"['2.1.3.1', '6.4.5']",FK führt Hdlg. für Kind aus + FK führt Pflegehandlung von hinten durch,3.5687500000000014,16,Pair
+2.1.2.3 ↔ 6.4.2,2,"['2.1.2.3', '6.4.2']",FK benennt oder zeigt Ziel + FK fordert K zu Pflege-Vor/Nachbereitung auf,1.664285714285715,14,Pair
+2.2.3.14 ↔ 6.4.5,2,"['2.2.3.14', '6.4.5']",über Gegenstand vermittelte Berührung + FK führt Pflegehandlung von hinten durch,3.3214285714285725,14,Pair
+2.1.2.3 + 6.4.2,2,"['2.1.2.3', '6.4.2']",FK benennt oder zeigt Ziel + FK fordert K zu Pflege-Vor/Nachbereitung auf,1.664285714285715,14,2-Tuple
+2.2.3.4 ↔ 6.4.3,2,"['2.2.3.4', '6.4.3']",halten + FK führt Pflegehandlung von vorne durch,3.9999999999999987,10,Pair
+2.2.3.4 ↔ 6.4.5,2,"['2.2.3.4', '6.4.5']",halten + FK führt Pflegehandlung von hinten durch,2.69,10,Pair
+2.2.3.14 + 2.2.3.4,2,"['2.2.3.14', '2.2.3.4']",über Gegenstand vermittelte Berührung + halten,4.57,10,2-Tuple
+2.1.3.1 + 6.4.5,2,"['2.1.3.1', '6.4.5']",FK führt Hdlg. für Kind aus + FK führt Pflegehandlung von hinten durch,7.333333333333335,3,2-Tuple
+2.1.3.1 + 6.4.4,2,"['2.1.3.1', '6.4.4']",FK führt Hdlg. für Kind aus + FK führt Pflegehandlung von der Seite durch,5.166666666666665,3,2-Tuple
+2.1.3.1 + 2.2.3.14,2,"['2.1.3.1', '2.2.3.14']",FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung,4.1499999999999915,2,2-Tuple
+2.1.2.3 ↔ 2.2.3.14,2,"['2.1.2.3', '2.2.3.14']",FK benennt oder zeigt Ziel + über Gegenstand vermittelte Berührung,5.099999999999994,1,Pair
+2.2.3.4 ↔ 6.5.3,2,"['2.2.3.4', '6.5.3']",halten + K führt Pflegehandlung eigenständig durch,4.900000000000006,1,Pair
+2.2.3.14 ↔ 6.4.2,2,"['2.2.3.14', '6.4.2']",über Gegenstand vermittelte Berührung + FK fordert K zu Pflege-Vor/Nachbereitung auf,7.0,1,Pair
+2.2.3.4 ↔ 6.4.2,2,"['2.2.3.4', '6.4.2']",halten + FK fordert K zu Pflege-Vor/Nachbereitung auf,7.0,1,Pair
+2.2.3.14 ↔ 6.5.3,2,"['2.2.3.14', '6.5.3']",über Gegenstand vermittelte Berührung + K führt Pflegehandlung eigenständig durch,4.900000000000006,1,Pair
+2.1.3.1 ↔ 6.4.2,2,"['2.1.3.1', '6.4.2']",FK führt Hdlg. für Kind aus + FK fordert K zu Pflege-Vor/Nachbereitung auf,7.0,1,Pair
+2.1.2.3 ↔ 6.4.3,2,"['2.1.2.3', '6.4.3']",FK benennt oder zeigt Ziel + FK führt Pflegehandlung von vorne durch,5.099999999999994,1,Pair
+6.4.3 ↔ 6.5.3,2,"['6.4.3', '6.5.3']",FK führt Pflegehandlung von vorne durch + K führt Pflegehandlung eigenständig durch,4.900000000000006,1,Pair
+2.2.3.14 + 6.4.4,2,"['2.2.3.14', '6.4.4']",über Gegenstand vermittelte Berührung + FK führt Pflegehandlung von der Seite durch,3.9000000000000057,1,2-Tuple
+2.1.3.1 + 6.4.3,2,"['2.1.3.1', '6.4.3']",FK führt Hdlg. für Kind aus + FK führt Pflegehandlung von vorne durch,10.299999999999997,1,2-Tuple
+2.2.3.14 + 6.4.5,2,"['2.2.3.14', '6.4.5']",über Gegenstand vermittelte Berührung + FK führt Pflegehandlung von hinten durch,11.399999999999999,1,2-Tuple

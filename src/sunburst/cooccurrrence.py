@@ -1,82 +1,101 @@
-from typing import Tuple
-
+from typing import Tuple, List
 import pandas as pd
-
+from itertools import combinations
 from src.sunburst.helper import normalize_code, parse_time_to_seconds
 from src.sunburst.code_util import CodeUtil
 
-code_util = CodeUtil()
+
 def analyze_code_cooccurrences(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
-    Analyze temporal co-occurrences of codes.
+    Analyze temporal co-occurrences of codes at arbitrary lengths.
+
     Returns two tables:
-    1. Codes starting at same time
-    2. Codes with identical (start_s, end_s) windows
+    1. All pairwise combinations (for backward compatibility)
+    2. All temporal bundles (complete groups of codes)
     """
+    # Get singleton instance
+    code_util = CodeUtil()
+
     d = df.copy()
     d["code"] = d["Sequence_Code"].map(normalize_code)
     d["start_s"] = d["Sequence_Start"].map(parse_time_to_seconds)
     d["end_s"] = d["Sequence_End"].map(parse_time_to_seconds)
+    # Use singleton's ALLOWED_CODES
     d = d[d["code"].isin(code_util.ALLOWED_CODES)].copy()
 
-    # ===== CO-OCCURRENCE 1: Same Start Time =====
-    same_start_pairs = []
-    for start_time, group in d.groupby("start_s"):
-        codes_at_time = group["code"].unique()
-        if len(codes_at_time) > 1:
-            # Generate all pairs
-            for i, code1 in enumerate(codes_at_time):
-                for code2 in codes_at_time[i + 1 :]:
-                    same_start_pairs.append(
-                        {
-                            "code1": code1,
-                            "label1": code_util.LABEL_MAP.get(code1, code1),
-                            "code2": code2,
-                            "label2": code_util.LABEL_MAP.get(code2, code2),
-                            "start_time": start_time,
-                            "cooccurrence_type": "Same Start Time",
-                        }
-                    )
+    # ===== CO-OCCURRENCE: Complete Bundles (All codes at same window) =====
+    bundle_records = []
 
-    same_start_df = pd.DataFrame(same_start_pairs)
-    if not same_start_df.empty:
-        same_start_counts = (
-            same_start_df.groupby(["code1", "label1", "code2", "label2"])
-            .size()
-            .reset_index(name="count")
-            .sort_values("count", ascending=False)
-        )
-    else:
-        same_start_counts = pd.DataFrame()
-
-    # ===== CO-OCCURRENCE 2: Same Start AND End Time (Exact Bundles) =====
-    same_window_pairs = []
     for (start_time, end_time), group in d.groupby(["start_s", "end_s"]):
-        codes_in_window = group["code"].unique()
-        if len(codes_in_window) > 1:
-            for i, code1 in enumerate(codes_in_window):
-                for code2 in codes_in_window[i + 1 :]:
-                    same_window_pairs.append(
-                        {
-                            "code1": code1,
-                            "label1": code_util.LABEL_MAP.get(code1, code1),
-                            "code2": code2,
-                            "label2": code_util.LABEL_MAP.get(code2, code2),
-                            "start_time": start_time,
-                            "end_time": end_time,
-                            "duration": end_time - start_time,
-                            "cooccurrence_type": "Same Start & End Time",
-                        }
-                    )
+        codes_in_window = sorted(group["code"].unique().tolist())
 
-    same_window_df = pd.DataFrame(same_window_pairs)
-    if not same_window_df.empty:
-        same_window_counts = (
-            same_window_df.groupby(["code1", "label1", "code2", "label2"])
+        if len(codes_in_window) > 1:
+            # Create bundle identifier (all codes together)
+            bundle_key = " + ".join(codes_in_window)
+            # Use singleton's LABEL_MAP
+            labels = [code_util.LABEL_MAP.get(c, c) for c in codes_in_window]
+            bundle_label = " + ".join(labels)
+
+            bundle_records.append(
+                {
+                    "bundle_key": bundle_key,
+                    "bundle_label": bundle_label,
+                    "num_codes": len(codes_in_window),
+                    "codes": codes_in_window,
+                    "start_time": start_time,
+                    "end_time": end_time,
+                    "duration": end_time - start_time,
+                }
+            )
+
+    # Create DataFrame and aggregate by bundle
+    bundles_df = pd.DataFrame(bundle_records)
+
+    if not bundles_df.empty:
+        bundle_counts = (
+            bundles_df.groupby(["bundle_key", "bundle_label", "num_codes"])
             .agg({"duration": ["mean", "min", "max"], "start_time": "count"})
             .reset_index()
         )
-        same_window_counts.columns = [
+        bundle_counts.columns = [
+            "bundle_key",
+            "bundle_label",
+            "num_codes",
+            "avg_duration",
+            "min_duration",
+            "max_duration",
+            "count",
+        ]
+        bundle_counts = bundle_counts.sort_values("count", ascending=False)
+    else:
+        bundle_counts = pd.DataFrame()
+
+    # ===== BACKWARD COMPATIBILITY: Generate pairwise combinations =====
+    pair_records = []
+    for _, row in bundles_df.iterrows():
+        codes = row["codes"]
+        for code1, code2 in combinations(codes, 2):
+            pair_records.append(
+                {
+                    "code1": code1,
+                    "label1": code_util.LABEL_MAP.get(code1, code1),
+                    "code2": code2,
+                    "label2": code_util.LABEL_MAP.get(code2, code2),
+                    "start_time": row["start_time"],
+                    "end_time": row["end_time"],
+                    "duration": row["duration"],
+                }
+            )
+
+    pairs_df = pd.DataFrame(pair_records)
+
+    if not pairs_df.empty:
+        pair_counts = (
+            pairs_df.groupby(["code1", "label1", "code2", "label2"])
+            .agg({"duration": ["mean", "min", "max"], "start_time": "count"})
+            .reset_index()
+        )
+        pair_counts.columns = [
             "code1",
             "label1",
             "code2",
@@ -86,61 +105,81 @@ def analyze_code_cooccurrences(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataF
             "max_duration",
             "count",
         ]
-        same_window_counts = same_window_counts.sort_values("count", ascending=False)
+        pair_counts = pair_counts.sort_values("count", ascending=False)
     else:
-        same_window_counts = pd.DataFrame()
+        pair_counts = pd.DataFrame()
 
-    return same_start_counts, same_window_counts
+    return pair_counts, bundle_counts
 
 
 def create_cooccurrence_summary(
-    same_start_df: pd.DataFrame, same_window_df: pd.DataFrame
+    pair_df: pd.DataFrame, bundle_df: pd.DataFrame
 ) -> pd.DataFrame:
     """
-    Create a summary table of all unique co-occurring pairs with frequency.
+    Create summary of all co-occurring code groups, ranked by frequency.
     """
     summary_rows = []
 
-    # From same start time
-    if not same_start_df.empty:
-        for _, row in same_start_df.iterrows():
+    # Add pairwise co-occurrences
+    if not pair_df.empty:
+        for _, row in pair_df.iterrows():
             summary_rows.append(
                 {
-                    "Code_Pair": f"{row['code1']} ↔ {row['code2']}",
-                    "Code1": row["code1"],
-                    "Code2": row["code2"],
-                    "Label1": row["label1"],
-                    "Label2": row["label2"],
-                    "Same_Start_Count": row["count"],
-                    "Same_Window_Count": 0,
-                    "Cooccurrence_Type": "Same Start Time Only",
+                    "Group": f"{row['code1']} ↔ {row['code2']}",
+                    "Num_Codes": 2,
+                    "Codes": [row["code1"], row["code2"]],
+                    "Labels": f"{row['label1']} + {row['label2']}",
+                    "Avg_Duration": row["avg_duration"],
+                    "Count": int(row["count"]),
+                    "Group_Type": "Pair",
                 }
             )
 
-    # From same window (update counts if pairs already exist)
-    if not same_window_df.empty:
-        existing_pairs = {
-            f"{row['Code1']} ↔ {row['Code2']}": idx
-            for idx, row in enumerate(summary_rows)
-        }
-        for _, row in same_window_df.iterrows():
-            pair_key = f"{row['code1']} ↔ {row['code2']}"
-            if pair_key in existing_pairs:
-                idx = existing_pairs[pair_key]
-                summary_rows[idx]["Same_Window_Count"] = int(row["count"])
-                summary_rows[idx]["Cooccurrence_Type"] = "Both Same Start & Window"
-            else:
-                summary_rows.append(
-                    {
-                        "Code_Pair": pair_key,
-                        "Code1": row["code1"],
-                        "Code2": row["code2"],
-                        "Label1": row["label1"],
-                        "Label2": row["label2"],
-                        "Same_Start_Count": 0,
-                        "Same_Window_Count": int(row["count"]),
-                        "Cooccurrence_Type": "Same Window Only",
-                    }
-                )
+    # Add larger bundles
+    if not bundle_df.empty:
+        for _, row in bundle_df.iterrows():
+            summary_rows.append(
+                {
+                    "Group": row["bundle_key"],
+                    "Num_Codes": int(row["num_codes"]),
+                    "Codes": row["bundle_key"].split(" + "),
+                    "Labels": row["bundle_label"],
+                    "Avg_Duration": row["avg_duration"],
+                    "Count": int(row["count"]),
+                    "Group_Type": f"{int(row['num_codes'])}-Tuple",
+                }
+            )
 
-    return pd.DataFrame(summary_rows).sort_values("Same_Window_Count", ascending=False)
+    result = pd.DataFrame(summary_rows)
+    return result.sort_values(["Num_Codes", "Count"], ascending=[False, False])
+
+
+def generate_combo_rules_from_bundles(
+    bundle_df: pd.DataFrame, min_count: int = 5
+) -> List[Tuple]:
+    """
+    Generate combo rules (for merging) from frequently occurring bundles.
+    Only bundles with count >= min_count become rules.
+
+    Returns list of (tuple_of_codes, label, count)
+    """
+    code_util = CodeUtil()
+    rules = []
+
+    if bundle_df.empty:
+        return rules
+
+    # Filter by minimum count
+    significant_bundles = bundle_df[bundle_df["count"] >= min_count]
+
+    for _, row in significant_bundles.iterrows():
+        codes = row["bundle_key"].split(" + ")
+        codes_tuple = tuple(
+            sorted(codes, key=lambda c: code_util.CODE_TO_PRIO.get(c, (999, 999)))
+        )
+        label = row["bundle_label"]
+        count = int(row["count"])
+
+        rules.append((codes_tuple, label, count))
+
+    return sorted(rules, key=lambda x: x[2], reverse=True)

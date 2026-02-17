@@ -36,7 +36,9 @@ def analyze_andere_by_ring(per_path_df: pd.DataFrame) -> pd.DataFrame:
 
         # Count paths where this ring contains "Andere"
         # Note: token columns store strings like "[\'Andere\']", so we check for the placeholder
-        andere_count = per_path_df[col].str.contains(code_util.PLACEHOLDER_OTHER, na=False).sum()
+        andere_count = (
+            per_path_df[col].str.contains(code_util.PLACEHOLDER_OTHER, na=False).sum()
+        )
 
         percentage = (andere_count / total * 100) if total > 0 else 0
 
@@ -60,7 +62,6 @@ def analyze_codes_causing_andere(
     that resulted in "Andere" selection.
     """
     from src.sunburst.helper import normalize_code, parse_time_to_seconds
-
 
     d = df.copy()
     d["code"] = d["Sequence_Code"].map(normalize_code)

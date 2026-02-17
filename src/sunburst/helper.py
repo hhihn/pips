@@ -8,6 +8,7 @@ from src.sunburst.code_util import CodeUtil
 
 code_util = CodeUtil()
 
+
 def parse_time_to_seconds(s: Any) -> float:
     s = str(s).strip().strip('"')
     parts = s.split(":")
@@ -99,7 +100,8 @@ def pick_group_token_from_first_n(
 
     for (bs, be), bg in fe.groupby("bundle_key", sort=False):
         tokens = sorted(
-            set(bg["code"].tolist()), key=lambda c: code_util.CODE_TO_PRIO.get(c, (999, 999))
+            set(bg["code"].tolist()),
+            key=lambda c: code_util.CODE_TO_PRIO.get(c, (999, 999)),
         )
         #  tokens = atom_codes # apply_bundle_combos(atom_codes)
 

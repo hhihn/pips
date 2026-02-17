@@ -1,3 +1,4 @@
+import json
 from typing import List
 from src.sunburst.code_util import CodeUtil
 
@@ -6,8 +7,8 @@ code_util = CodeUtil()
 
 def postprocess_sequence(tokens: List[str]) -> List[str]:
     """
-    Merge co-occurring tokens according to combo rules.
-    Tracks whether each merge was from a predefined or data-driven rule.
+    Postprocessing to merge co-occurring codes at arbitrary lengths.
+    Handles combo rules with 2, 3, 4, or more codes.
     """
     if not tokens:
         return tokens
@@ -18,49 +19,79 @@ def postprocess_sequence(tokens: List[str]) -> List[str]:
         if not collapsed or collapsed[-1] != t:
             collapsed.append(t)
 
-    # (2) Merge co-occurring tokens
+    # (2) Merge co-occurring sequences of arbitrary length
     merged: List[str] = []
-    merge_log: List[str] = []  # Track merges
+    changed = False
     i = 0
 
-    while i <= len(collapsed) - 1:
+    while i < len(collapsed):
         matched_combo = None
-        matched_source = None
+        matched_length = 0
 
-        if i == len(collapsed) - 1:
-            merged.append(collapsed[i])
-            break
+        # Try to match sequences of decreasing length (greedy from longest)
+        # This prioritizes longer matches over shorter ones[1]
+        max_lookahead = len(collapsed) - i
 
-        for combo_rule in code_util.COMBO_RULES:
-            pair, _label = combo_rule, combo_rule[1]
-            if (collapsed[i], collapsed[i + 1]) == pair or (
-                collapsed[i + 1],
-                collapsed[i],
-            ) == pair:
-                matched_combo = pair
-                matched_source = (
-                    "predefined" if code_util.is_predefined_rule(pair) else "data-driven"
-                )
+        for length in range(max_lookahead, 0, -1):
+            # Get the next `length` tokens
+            candidate_sequence = tuple(collapsed[i : i + length])
+
+            # Check if this sequence matches any combo rule
+            for combo_codes, combo_label in code_util.COMBO_RULES:
+                # Check both original and reverse order (order-independent matching)
+                if _matches_combo(candidate_sequence, combo_codes):
+                    matched_combo = combo_label
+                    matched_length = length
+                    changed = True
+                    if len(combo_codes) > 2:
+                        print(f"[INFO] Matched Combo Code of length > 2: {combo_codes}")
+                    break
+
+            # Stop at first match (longest match found)
+            if matched_combo:
                 break
 
         if matched_combo:
-            # Create combo token
-            combo_token = f"{matched_combo} & {matched_combo[1]}"
-            merged.append(combo_token)
-
-            # Log the merge
-            merge_log.append(
-                f"[{matched_source.upper()}] {collapsed[i]} + {collapsed[i + 1]} "
-                f"→ {combo_token}"
-            )
-            i += 2
+            # Add the merged combo
+            merged.append(matched_combo)
+            # Skip the matched tokens
+            i += matched_length
         else:
+            # No match, keep the single token
             merged.append(collapsed[i])
             i += 1
 
-    if merge_log:
-        print(f"\n[MERGES] ({len(merge_log)} total):")
-        for log in merge_log:
-            print(f"  {log}")
+    if changed:
+        print(f"changed {collapsed} to {merged}")
 
     return merged
+
+
+def _matches_combo(sequence: tuple, combo_codes: tuple) -> bool:
+    """
+    Check if a sequence of tokens matches a combo rule.
+    Handles order-independent matching for arbitrary-length tuples[1][2].
+
+    Args:
+        sequence: Tuple of consecutive tokens from collapsed list
+        combo_codes: Tuple of codes from a combo rule
+
+    Returns:
+        True if sequence matches the combo (in any order or exact order)
+    """
+    # Exact order match
+    if sequence == combo_codes:
+        return True
+
+    # Reverse order match (for sequences that can appear in either order)
+    if sequence == tuple(reversed(combo_codes)):
+        return True
+
+    # Set-based match (order doesn't matter)
+    # Use frozenset for unordered comparison
+    if frozenset(sequence) == frozenset(combo_codes) and len(sequence) == len(
+        combo_codes
+    ):
+        return True
+
+    return False
