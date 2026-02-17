@@ -196,24 +196,36 @@ def build_sequences_from_paths_csv(
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--csv", default="../extracted_sequences.csv", help="Input CSV")
-    ap.add_argument(
-        "--out_prefix", default="out_paths", help="Prefix für Output-Dateien"
-    )
+    ap.add_argument("--out_prefix", default="out_paths", help="Prefix für Output-Dateien")
     ap.add_argument("--max_depth", type=int, default=3, help="Max Tiefe für Sunburst")
+    ap.add_argument("--start_lookahead_n", type=int, default=5, help="Lookahead N Events pro Pfad")
     ap.add_argument(
-        "--start_lookahead_n", type=int, default=5, help="Lookahead N Events pro Pfad"
+        "--cooccurrence_csv",
+        default=None,
+        help="Path to cooccurrence_summary.csv to load data-driven rules"
+    )
+    ap.add_argument(
+        "--min_window_count",
+        type=int,
+        default=5,
+        help="Min Same_Window_Count to create data-driven rule"
     )
     ap.add_argument("--no_sunburst", action="store_true", help="Kein Sunburst erzeugen")
     args = ap.parse_args()
 
+    # === Load data-driven rules if provided ===
+    if args.cooccurrence_csv:
+        from src.sunburst.util import load_data_driven_rules
+        load_data_driven_rules(args.cooccurrence_csv, min_window_count=args.min_window_count)
+
     df = pd.read_csv(args.csv)
 
+    # === Sequence Analysis ===
     seqs_labels, per_path = build_sequences_from_paths_csv(
         df, start_lookahead_n=args.start_lookahead_n
     )
 
     per_path.to_csv(f"{args.out_prefix}_per_path_sequences.csv", index=False)
-
     counts = (
         per_path.groupby(["start_group", "sequence_labels"])
         .size()
@@ -273,5 +285,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-if __name__ == "__main__":
-    main()
