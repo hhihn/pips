@@ -17,6 +17,7 @@ from typing import Dict, List, Tuple, Any
 
 import pandas as pd
 
+from src.sunburst.cooccurrrence import create_cooccurrence_summary, analyze_code_cooccurrences
 from src.sunburst.helper import (
     normalize_code,
     parse_time_to_seconds,
@@ -194,7 +195,7 @@ def build_sequences_from_paths_csv(
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--csv", default="extracted_sequences.csv", help="Input CSV")
+    ap.add_argument("--csv", default="../extracted_sequences.csv", help="Input CSV")
     ap.add_argument(
         "--out_prefix", default="out_paths", help="Prefix für Output-Dateien"
     )
@@ -221,10 +222,22 @@ def main():
     )
     counts.to_csv(f"{args.out_prefix}_path_counts.csv", index=False)
 
+    print("\n[*] Analyzing code co-occurrences...")
+    same_start_counts, same_window_counts = analyze_code_cooccurrences(df)
+
+    same_start_counts.to_csv(f"{args.out_prefix}_cooccurrence_same_start.csv", index=False)
+    same_window_counts.to_csv(f"{args.out_prefix}_cooccurrence_same_window.csv", index=False)
+
+    summary = create_cooccurrence_summary(same_start_counts, same_window_counts)
+    summary.to_csv(f"{args.out_prefix}_cooccurrence_summary.csv", index=False)
+
     print(
         f"[OK] Wrote:\n"
         f" - {args.out_prefix}_per_path_sequences.csv\n"
-        f" - {args.out_prefix}_path_counts.csv"
+        f" - {args.out_prefix}_path_counts.csv\n"
+        f" - {args.out_prefix}_cooccurrence_same_start.csv\n"
+        f" - {args.out_prefix}_cooccurrence_same_window.csv\n"
+        f" - {args.out_prefix}_cooccurrence_summary.csv"
     )
 
     if args.no_sunburst:
@@ -237,8 +250,8 @@ def main():
 
     wide = sequences_to_sunburst_wide(seqs_labels, max_depth=args.max_depth)
     nodes = wide_to_sunburst_nodes(wide, max_depth=args.max_depth)
+    nodes['label'] = nodes['label'].map(lambda x: customwrap(x, width=20))
 
-    nodes["label"] = nodes["label"].map(lambda x: customwrap(x, width=20))
     fig = px.sunburst(
         nodes,
         ids="id",
@@ -248,15 +261,17 @@ def main():
     )
     fig.update_traces(
         hovertemplate="<b>%{label}</b><br>"
-        "count=%{value}<br>"
-        "p(child|parent)=%{customdata:.3f}<extra></extra>",
+                      "count=%{value}<br>"
+                      "p(child|parent)=%{customdata:.3f}<extra></extra>",
         customdata=nodes["p_child_given_parent"],
     )
-
     html_path = f"{args.out_prefix}_sunburst.html"
     fig.write_html(html_path)
     print(f"[OK] Wrote: {html_path}")
 
+
+if __name__ == "__main__":
+    main()
 
 if __name__ == "__main__":
     main()

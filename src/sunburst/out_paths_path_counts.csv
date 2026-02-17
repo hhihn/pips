@@ -1,0 +1,50 @@
+start_group,sequence_labels,count
+Andere,Andere -> FK führt Hdlg. von der Seite aus -> KK Halten + Objektbezug,8
+Andere,Andere -> FK führt Hdlg. von Hinten aus -> KK Halten + Objektbezug,7
+Andere,Andere -> FK führt Hdlg. von Hinten aus -> über Gegenstand vermittelte Berührung,4
+Andere,Andere -> FK führt Hdlg. von vorn aus -> KK Halten + Objektbezug,2
+Andere,Andere -> FK führt Hdlg. von vorn aus -> über Gegenstand vermittelte Berührung,2
+Andere,Andere -> FK führt Pflegehandlung von der Seite durch -> KK Halten + Objektbezug,2
+Andere,Andere -> FK führt Pflegehandlung von hinten durch -> KK Halten + Objektbezug,2
+Andere,Andere -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> FK führt Hdlg. aus + Objektbezug -> halten,1
+Andere,Andere -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> FK führt Hdlg. von vorn aus -> über Gegenstand vermittelte Berührung,1
+Andere,Andere -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> FK führt Pflegehandlung von hinten durch -> KK Halten + Objektbezug,1
+Andere,Andere -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> FK führt Hdlg. aus + Objektbezug -> halten,1
+Andere,Andere -> FK führt Hdlg. von der Seite aus -> Andere,1
+Andere,Andere -> FK führt Hdlg. von der Seite aus -> halten,1
+Andere,Andere -> FK führt Pflegehandlung von der Seite durch -> über Gegenstand vermittelte Berührung,1
+Andere,Andere -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> FK führt Hdlg. von der Seite aus -> KK Halten + Objektbezug,1
+Andere,Andere -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> K führt Pflegehandlung eigenständig durch -> Andere,1
+Andere,Andere -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> K führt Pflegehandlung eigenständig durch -> über Gegenstand vermittelte Berührung,1
+Andere,Andere -> K führt Pflegehandlung eigenständig durch -> KK Halten + Objektbezug,1
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> Andere -> FK führt Hdlg. von der Seite aus -> KK Halten + Objektbezug,7
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> K führt Pflegehandlung eigenständig durch -> Andere,4
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> Andere -> FK führt Hdlg. von Hinten aus -> KK Halten + Objektbezug,3
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> K führt Pflegehandlung eigenständig durch -> Andere,3
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> Andere -> K führt Pflegehandlung eigenständig durch -> über Gegenstand vermittelte Berührung,2
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> Andere -> FK führt Hdlg. aus + Objektbezug,1
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> Andere -> FK führt Hdlg. aus + Objektbezug -> halten,1
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> Andere -> FK führt Hdlg. von vorn aus -> KK Halten + Objektbezug,1
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> Andere -> FK führt Hdlg. von vorn aus -> über Gegenstand vermittelte Berührung,1
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> Andere -> FK führt Pflegehandlung von der Seite durch -> KK Halten + Objektbezug,1
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> Andere -> FK führt Pflegehandlung von vorne durch -> über Gegenstand vermittelte Berührung,1
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> Andere -> K führt Pflegehandlung eigenständig durch -> KK Halten + Objektbezug,1
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> Andere -> KK Halten + Objektbezug,1
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> Andere -> halten,1
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> FK führt Hdlg. von der Seite aus -> KK Halten + Objektbezug,1
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> FK führt Hdlg. von vorn aus -> KK Halten + Objektbezug,1
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> FK führt Hdlg. von der Seite aus -> KK Halten + Objektbezug,1
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> FK führt Hdlg. von vorn aus -> KK Halten + Objektbezug,1
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> K führt Pflegehandlung eigenständig durch -> KK Halten + Objektbezug,1
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> FK führt Hdlg. von der Seite aus -> KK Halten + Objektbezug,1
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> FK führt Pflegehandlung von der Seite durch -> KK Halten + Objektbezug,1
+K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> Andere -> FK führt Hdlg. von Hinten aus -> KK Halten + Objektbezug,2
+K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> FK führt Hdlg. von vorn aus -> KK Halten + Objektbezug,2
+K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> Andere -> FK führt Hdlg. aus + Objektbezug,1
+K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> Andere -> FK führt Hdlg. aus + Objektbezug -> halten,1
+K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> Andere -> FK führt Hdlg. von der Seite aus -> KK Halten + Objektbezug,1
+K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> Andere -> FK führt Hdlg. von vorn aus -> über Gegenstand vermittelte Berührung,1
+K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> FK führt Hdlg. aus + Objektbezug,1
+K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> FK führt Hdlg. von der Seite aus -> über Gegenstand vermittelte Berührung,1
+K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> K führt Pflegehandlung eigenständig durch -> Andere,1
+K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> K führt Pflegehandlung eigenständig durch -> FK führt Pflegehandlung von vorne durch -> KK Halten + Objektbezug,1

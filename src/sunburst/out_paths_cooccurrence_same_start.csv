@@ -1,0 +1,69 @@
+code1,label1,code2,label2,count
+2.2.3.14,über Gegenstand vermittelte Berührung,2.1.3.1,FK führt Hdlg. für Kind aus,37
+2.2.3.4,halten,2.2.3.14,über Gegenstand vermittelte Berührung,31
+2.2.3.14,über Gegenstand vermittelte Berührung,2.2.3.4,halten,28
+2.2.3.4,halten,2.1.3.1,FK führt Hdlg. für Kind aus,26
+2.1.3.1,FK führt Hdlg. für Kind aus,2.2.3.14,über Gegenstand vermittelte Berührung,26
+2.1.3.1,FK führt Hdlg. für Kind aus,2.2.3.4,halten,24
+6.4.4,FK führt Pflegehandlung von der Seite durch,2.2.3.4,halten,20
+6.4.4,FK führt Pflegehandlung von der Seite durch,2.2.3.14,über Gegenstand vermittelte Berührung,19
+6.4.4,FK führt Pflegehandlung von der Seite durch,2.1.3.1,FK führt Hdlg. für Kind aus,15
+2.1.3.1,FK führt Hdlg. für Kind aus,6.4.4,FK führt Pflegehandlung von der Seite durch,14
+2.1.2.3,FK benennt oder zeigt Ziel,6.4.2,FK fordert K zu Pflege-Vor/Nachbereitung auf,14
+6.4.3,FK führt Pflegehandlung von vorne durch,2.1.3.1,FK führt Hdlg. für Kind aus,14
+6.4.3,FK führt Pflegehandlung von vorne durch,2.2.3.14,über Gegenstand vermittelte Berührung,13
+2.2.3.14,über Gegenstand vermittelte Berührung,6.4.4,FK führt Pflegehandlung von der Seite durch,12
+2.2.3.4,halten,6.4.4,FK führt Pflegehandlung von der Seite durch,10
+2.2.3.4,halten,6.4.5,FK führt Pflegehandlung von hinten durch,9
+2.2.3.14,über Gegenstand vermittelte Berührung,6.4.5,FK führt Pflegehandlung von hinten durch,9
+6.4.5,FK führt Pflegehandlung von hinten durch,2.1.3.1,FK führt Hdlg. für Kind aus,9
+2.1.3.1,FK führt Hdlg. für Kind aus,6.4.5,FK führt Pflegehandlung von hinten durch,8
+6.4.3,FK führt Pflegehandlung von vorne durch,2.2.3.4,halten,7
+6.4.5,FK führt Pflegehandlung von hinten durch,2.2.3.14,über Gegenstand vermittelte Berührung,7
+2.2.3.14,über Gegenstand vermittelte Berührung,6.4.3,FK führt Pflegehandlung von vorne durch,7
+2.1.2.3,FK benennt oder zeigt Ziel,2.1.3.1,FK führt Hdlg. für Kind aus,6
+6.4.2,FK fordert K zu Pflege-Vor/Nachbereitung auf,2.1.2.3,FK benennt oder zeigt Ziel,6
+2.1.2.3,FK benennt oder zeigt Ziel,2.2.3.14,über Gegenstand vermittelte Berührung,6
+2.1.2.3,FK benennt oder zeigt Ziel,2.2.3.4,halten,5
+2.2.3.4,halten,6.4.3,FK führt Pflegehandlung von vorne durch,4
+2.1.3.1,FK führt Hdlg. für Kind aus,6.4.3,FK führt Pflegehandlung von vorne durch,4
+2.1.2.3,FK benennt oder zeigt Ziel,6.4.4,FK führt Pflegehandlung von der Seite durch,4
+2.2.3.14,über Gegenstand vermittelte Berührung,6.4.2,FK fordert K zu Pflege-Vor/Nachbereitung auf,4
+2.2.3.4,halten,6.4.2,FK fordert K zu Pflege-Vor/Nachbereitung auf,3
+6.5.3,K führt Pflegehandlung eigenständig durch,2.2.3.4,halten,3
+6.5.3,K führt Pflegehandlung eigenständig durch,2.2.3.14,über Gegenstand vermittelte Berührung,3
+6.5.3,K führt Pflegehandlung eigenständig durch,2.1.3.1,FK führt Hdlg. für Kind aus,3
+6.5.3,K führt Pflegehandlung eigenständig durch,6.4.4,FK führt Pflegehandlung von der Seite durch,3
+6.5.4,K führt Pflege-Vor/Nachbereitung eigenständig durch,6.4.2,FK fordert K zu Pflege-Vor/Nachbereitung auf,2
+6.4.5,FK führt Pflegehandlung von hinten durch,2.2.3.4,halten,2
+6.4.3,FK führt Pflegehandlung von vorne durch,6.4.2,FK fordert K zu Pflege-Vor/Nachbereitung auf,2
+6.5.1,K signalisiert Pflegeanlass,2.1.2.3,FK benennt oder zeigt Ziel,2
+6.5.4,K führt Pflege-Vor/Nachbereitung eigenständig durch,6.5.1,K signalisiert Pflegeanlass,2
+6.4.2,FK fordert K zu Pflege-Vor/Nachbereitung auf,6.4.4,FK führt Pflegehandlung von der Seite durch,2
+6.4.2,FK fordert K zu Pflege-Vor/Nachbereitung auf,2.2.3.4,halten,2
+6.4.2,FK fordert K zu Pflege-Vor/Nachbereitung auf,2.2.3.14,über Gegenstand vermittelte Berührung,2
+6.4.2,FK fordert K zu Pflege-Vor/Nachbereitung auf,2.1.3.1,FK führt Hdlg. für Kind aus,2
+2.1.2.3,FK benennt oder zeigt Ziel,6.4.5,FK führt Pflegehandlung von hinten durch,2
+2.1.3.1,FK führt Hdlg. für Kind aus,6.4.2,FK fordert K zu Pflege-Vor/Nachbereitung auf,2
+2.2.3.14,über Gegenstand vermittelte Berührung,6.5.1,K signalisiert Pflegeanlass,2
+6.4.2,FK fordert K zu Pflege-Vor/Nachbereitung auf,6.5.1,K signalisiert Pflegeanlass,1
+6.4.5,FK führt Pflegehandlung von hinten durch,6.5.4,K führt Pflege-Vor/Nachbereitung eigenständig durch,1
+2.1.2.3,FK benennt oder zeigt Ziel,6.4.3,FK führt Pflegehandlung von vorne durch,1
+6.5.4,K führt Pflege-Vor/Nachbereitung eigenständig durch,2.1.2.3,FK benennt oder zeigt Ziel,1
+2.1.2.3,FK benennt oder zeigt Ziel,6.5.4,K führt Pflege-Vor/Nachbereitung eigenständig durch,1
+2.1.3.1,FK führt Hdlg. für Kind aus,2.1.2.3,FK benennt oder zeigt Ziel,1
+6.5.3,K führt Pflegehandlung eigenständig durch,2.1.2.3,FK benennt oder zeigt Ziel,1
+6.5.1,K signalisiert Pflegeanlass,6.4.5,FK führt Pflegehandlung von hinten durch,1
+2.1.3.1,FK führt Hdlg. für Kind aus,6.5.1,K signalisiert Pflegeanlass,1
+2.1.3.1,FK führt Hdlg. für Kind aus,6.5.3,K führt Pflegehandlung eigenständig durch,1
+6.4.5,FK führt Pflegehandlung von hinten durch,6.4.3,FK führt Pflegehandlung von vorne durch,1
+6.4.5,FK führt Pflegehandlung von hinten durch,6.4.2,FK fordert K zu Pflege-Vor/Nachbereitung auf,1
+6.4.3,FK führt Pflegehandlung von vorne durch,2.1.2.3,FK benennt oder zeigt Ziel,1
+2.2.3.14,über Gegenstand vermittelte Berührung,2.1.2.3,FK benennt oder zeigt Ziel,1
+6.4.5,FK führt Pflegehandlung von hinten durch,2.1.2.3,FK benennt oder zeigt Ziel,1
+6.4.4,FK führt Pflegehandlung von der Seite durch,6.4.5,FK führt Pflegehandlung von hinten durch,1
+2.2.3.14,über Gegenstand vermittelte Berührung,6.5.3,K führt Pflegehandlung eigenständig durch,1
+2.2.3.14,über Gegenstand vermittelte Berührung,6.5.4,K führt Pflege-Vor/Nachbereitung eigenständig durch,1
+2.2.3.4,halten,6.5.1,K signalisiert Pflegeanlass,1
+6.4.3,FK führt Pflegehandlung von vorne durch,6.5.3,K führt Pflegehandlung eigenständig durch,1
+2.2.3.4,halten,6.5.3,K führt Pflegehandlung eigenständig durch,1
