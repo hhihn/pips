@@ -21,10 +21,10 @@ from src.sunburst.helper import (
     normalize_code,
     parse_time_to_seconds,
     pick_group_token_from_first_n,
-    postprocess_sequence,
     label_for_token,
-    customwrap,
+    customwrap, wide_to_sunburst_nodes, sequences_to_sunburst_wide,
 )
+from src.sunburst.postprocessing import postprocess_sequence
 from src.sunburst.util import (
     ALLOWED_CODES,
     CODE_TO_PRIO,
