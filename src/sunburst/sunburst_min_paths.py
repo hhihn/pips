@@ -238,7 +238,7 @@ def main():
         code_util.load_data_driven_rules(
             args.cooccurrence_csv,
             min_window_count=args.min_window_count,
-            refresh=False
+            refresh=True
         )
 
     df = pd.read_csv(args.csv)
