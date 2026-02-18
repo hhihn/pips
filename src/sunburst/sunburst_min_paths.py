@@ -33,11 +33,6 @@ from src.sunburst.branching_analysis import (
     analyze_branching_codes,
     analyze_branching_nodes,
 )
-from src.sunburst.code_merging import (
-    build_merge_map,
-    register_meta_codes_in_code_util,
-    summarize_merge_map,
-)
 from src.sunburst.postprocessing import postprocess_sequence
 from src.sunburst.code_util import CodeUtil
 
@@ -50,20 +45,14 @@ except Exception:
 def build_sequences_parts_approach(
     df: pd.DataFrame,
     start_lookahead_n: int = 12,
-    merge_map: Dict[str, str] | None = None,
 ) -> Tuple[List[List[str]], pd.DataFrame]:
     """Original approach: split sequence into 4 temporal parts (innen/mitte/aussen/aussenring)"""
     code_util = CodeUtil()
     d = df.copy()
     d["code"] = d["Sequence_Code"].map(normalize_code)
-    if merge_map:
-        d["code"] = d["code"].map(lambda c: merge_map.get(c, c))
     d["start_s"] = d["Sequence_Start"].map(parse_time_to_seconds)
     d["end_s"] = d["Sequence_End"].map(parse_time_to_seconds)
-    allowed_codes = set(code_util.ALLOWED_CODES)
-    if merge_map:
-        allowed_codes.update(merge_map.values())
-    d = d[d["code"].isin(allowed_codes)].copy()
+    d = d[d["code"].isin(code_util.ALLOWED_CODES)].copy()
     sequences_labels: List[List[str]] = []
     per_path_rows: List[Dict[str, Any]] = []
     group_cols = ["Filename", "id"] if "id" in d.columns else ["Filename"]
@@ -189,20 +178,14 @@ def build_sequences_parts_approach(
 def build_sequences_all_together(
     df: pd.DataFrame,
     start_lookahead_n: int = 12,
-    merge_map: Dict[str, str] | None = None,
 ) -> Tuple[List[List[str]], pd.DataFrame]:
     """Alternative approach: consider all codes together without parts division"""
     code_util = CodeUtil()
     d = df.copy()
     d["code"] = d["Sequence_Code"].map(normalize_code)
-    if merge_map:
-        d["code"] = d["code"].map(lambda c: merge_map.get(c, c))
     d["start_s"] = d["Sequence_Start"].map(parse_time_to_seconds)
     d["end_s"] = d["Sequence_End"].map(parse_time_to_seconds)
-    allowed_codes = set(code_util.ALLOWED_CODES)
-    if merge_map:
-        allowed_codes.update(merge_map.values())
-    d = d[d["code"].isin(allowed_codes)].copy()
+    d = d[d["code"].isin(code_util.ALLOWED_CODES)].copy()
     sequences_labels: List[List[str]] = []
     per_path_rows: List[Dict[str, Any]] = []
     group_cols = ["Filename", "id"] if "id" in d.columns else ["Filename"]
@@ -285,29 +268,6 @@ def main():
     ap.add_argument("--min_window_count", type=int, default=5)
     ap.add_argument("--refresh_data_driven_rules", action="store_true", default=False)
     ap.add_argument("--no_sunburst", action="store_true")
-    ap.add_argument(
-        "--enable_code_merging",
-        action="store_true",
-        help="Enable code merging via --merge_rule and/or --merge_rules_json.",
-        default=True
-    )
-    ap.add_argument(
-        "--merge_rule",
-        action="append",
-        default=[],
-        help=(
-            "Inline merge rule. Format: META=code1,code2,... "
-            "(repeat flag for multiple meta-codes)."
-        ),
-    )
-    ap.add_argument(
-        "--merge_rules_json",
-        default="merge_rules.json",
-        help=(
-            "Path to JSON merge rules. Supports {meta:[codes]} or "
-            "[{meta_code:'...', codes:[...]}]."
-        ),
-    )
     ap.add_argument("--no_branching_analysis", action="store_true")
     ap.add_argument(
         "--branching_max_depth",
@@ -352,33 +312,17 @@ def main():
         )
 
     df = pd.read_csv(args.csv)
-    merge_map: Dict[str, str] = {}
-    if args.enable_code_merging:
-        merge_map = build_merge_map(
-            merge_rules=args.merge_rule,
-            merge_rules_json=args.merge_rules_json,
-        )
-        code_util = CodeUtil()
-        register_meta_codes_in_code_util(code_util, merge_map)
-        merge_rows = summarize_merge_map(merge_map)
-        pd.DataFrame(merge_rows).to_csv(
-            f"{args.out_prefix}_code_merge_map.csv", index=False
-        )
-        print(
-            f"[*] Applied code merging ({len(merge_rows)} mappings): "
-            f"{args.out_prefix}_code_merge_map.csv"
-        )
 
     # === FEATURE TOGGLE: Select analysis approach ===
     if args.all_codes_together:
         print("[*] Using ALL_CODES_TOGETHER approach")
         seqs_labels, per_path = build_sequences_all_together(
-            df, start_lookahead_n=args.start_lookahead_n, merge_map=merge_map
+            df, start_lookahead_n=args.start_lookahead_n
         )
     else:
         print("[*] Using PARTS_APPROACH (4 rings: innen/mitte/aussen/aussenring)")
         seqs_labels, per_path = build_sequences_parts_approach(
-            df, start_lookahead_n=args.start_lookahead_n, merge_map=merge_map
+            df, start_lookahead_n=args.start_lookahead_n
         )
 
     per_path.to_csv(f"{args.out_prefix}_per_path_sequences.csv", index=False)
