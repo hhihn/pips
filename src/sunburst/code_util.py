@@ -23,10 +23,22 @@ class CodeUtil:
         # Initialize all variables
         self.PLACEHOLDER_OTHER = "Andere"
         self.PRIO_GROUPS: List[Tuple[str, List[str]]] = [
-            ("innen", ["2.1.2.3", "6.5.1", ".", "2.2.3.14", "2.1.3.1", "2.2.3.4", "6.5.3"]),
-            ("mitte", ["6.4.2", "6.5.4", ".", "2.2.3.14", "2.1.3.1", "2.2.3.4", "2.1.2.3", "6.4.4"]),
-            ("aussen", ["2.1.3.1", "6.5.3", "6.4.3", "6.4.4", "6.4.5", ".", "2.1.2.3", "6.4.2"]),
-            ("aussenring", ["2.1.3.5", "2.2.3.14", "2.2.3.4", ".", "6.5.4", "2.1.3.1", "2.2.3.14", "2.2.3.4"]),
+            (
+                "innen",
+                ["2.1.2.3", "6.5.1"],
+            ),  # ".", "2.2.3.14", "2.1.3.1", "2.2.3.4", "6.5.3"
+            (
+                "mitte",
+                ["6.4.2", "6.5.4"],
+            ),  # , ".", "2.2.3.14", "2.1.3.1", "2.2.3.4", "2.1.2.3", "6.4.4"
+            (
+                "aussen",
+                ["2.1.3.1", "6.5.3", "6.4.3", "6.4.4", "6.4.5"],
+            ),  # , ".", "2.1.2.3", "6.4.2"
+            (
+                "aussenring",
+                ["2.1.3.5", "2.2.3.14", "2.2.3.4"],
+            ),  # , ".", "6.5.4", "2.1.3.1", "2.2.3.14", "2.2.3.4"
         ]
 
         # Build CODE_TO_PRIO
@@ -75,8 +87,9 @@ class CodeUtil:
 
         # Data-driven rules: Now supports arbitrary-length tuples
         self.DATA_DRIVEN_COMBO_RULES: List[Tuple[Tuple[str, ...], str, int]] = []
-        self.load_data_driven_rules(cooccurrence_csv="out_paths_cooccurrence_same_window.csv",
-                                    refresh=False)
+        self.load_data_driven_rules(
+            cooccurrence_csv="out_paths_cooccurrence_same_window.csv", refresh=False
+        )
         # Combo rules
         self.COMBO_RULES = self._get_all_combo_rules()
         self.ALLOWED_CODES = self._compute_allowed_codes()
