@@ -128,7 +128,10 @@ def customwrap(s, width=20):
 
 
 def sequences_to_sunburst_wide(
-    seqs: List[List[str]], max_depth: int = 12
+    seqs: List[List[str]],
+    max_depth: int = 12,
+    min_support: int = 1,
+    rare_label: str | None = "Andere (selten)",
 ) -> pd.DataFrame:
     counts: Dict[Tuple[str, ...], int] = {}
     for seq in seqs:
@@ -136,6 +139,26 @@ def sequences_to_sunburst_wide(
             continue
         truncated = tuple(seq[:max_depth])
         counts[truncated] = counts.get(truncated, 0) + 1
+
+    if min_support > 1:
+        filtered: Dict[Tuple[str, ...], int] = {}
+        for path, c in counts.items():
+            if c >= min_support:
+                filtered[path] = filtered.get(path, 0) + c
+                continue
+
+            if rare_label is None:
+                continue
+
+            if len(path) == 0:
+                bucket = (rare_label,)
+            elif len(path) == 1:
+                bucket = (path[0], rare_label)
+            else:
+                bucket = (path[0], rare_label)
+            filtered[bucket] = filtered.get(bucket, 0) + c
+
+        counts = filtered
 
     rows = []
     for path, c in counts.items():

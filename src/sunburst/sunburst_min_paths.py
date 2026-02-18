@@ -214,6 +214,22 @@ def main():
     ap.add_argument("--max_depth", type=int, default=4, help="Max Tiefe für Sunburst")
     ap.add_argument("--start_lookahead_n", type=int, default=5, help="Lookahead N Events pro Pfad")
     ap.add_argument(
+        "--min_support",
+        type=int,
+        default=1,
+        help="Minimum number of occurrences for a full path in sunburst.",
+    )
+    ap.add_argument(
+        "--rare_label",
+        default="Andere (selten)",
+        help="Bucket label for paths below --min_support.",
+    )
+    ap.add_argument(
+        "--drop_rare_paths",
+        action="store_true",
+        help="Drop paths below --min_support instead of bucketing them.",
+    )
+    ap.add_argument(
         "--cooccurrence_csv",
         default="out_paths_cooccurrence_same_window.csv",
         help="Path to cooccurrence CSV",
@@ -226,7 +242,7 @@ def main():
     ap.add_argument(
         "--all_codes_together",
         action="store_true",
-        default=False,
+        default=True,
         help="Use all-codes-together approach. Overrides --use_parts_approach"
     )
 
@@ -288,7 +304,12 @@ def main():
     if args.no_sunburst or px is None:
         return
 
-    wide = sequences_to_sunburst_wide(seqs_labels, max_depth=args.max_depth)
+    wide = sequences_to_sunburst_wide(
+        seqs_labels,
+        max_depth=args.max_depth,
+        min_support=max(1, args.min_support),
+        rare_label=None if args.drop_rare_paths else args.rare_label,
+    )
     nodes = wide_to_sunburst_nodes(wide, max_depth=args.max_depth)
     nodes["label"] = nodes["label"].map(lambda x: customwrap(x, width=20))
 
