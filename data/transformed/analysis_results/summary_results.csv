@@ -115,7 +115,7 @@ Filename,Parent_Code,Parent_Start,Parent_End,Child_Code,Child_Start,Child_End,Ch
 29-P-1_transformed.xlsx,Body Orientation,,,Body,"0:00:00,0","0:01:00,0",60000,False,False,False,False
 29-P-1_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:00,0","0:01:00,0",60000,False,False,False,False
 29-P-1_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:00,0","0:01:00,0",60000,False,False,False,False
-29-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:01:09,9",6.1.1 Pflegesituation,"0:00:03,7","0:00:37,6",33900,True,1,True,12
+29-P-1_transformed.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:01:09,9",6.1.1 Pflegesituation,"0:00:03,7","0:00:37,6",33900,True,1,True,11
 30-P-4_transformed.xlsx,Talking,,,Talking,"0:00:33,9","0:00:51,4",17500,False,False,False,False
 30-P-4_transformed.xlsx,Body Orientation,,,Body,"0:00:00,0","0:01:13,8",73800,False,False,False,False
 30-P-4_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:00,0","0:01:13,8",73800,False,False,False,False
@@ -275,7 +275,7 @@ Filename,Parent_Code,Parent_Start,Parent_End,Child_Code,Child_Start,Child_End,Ch
 48-P-2_transformed.xlsx,Body Orientation,,,Body,"0:00:00,0","0:00:36,1",36100,False,False,False,False
 48-P-2_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:00,0","0:01:00,0",60000,False,False,False,False
 48-P-2_transformed.xlsx,Valence and Arousal Codes,,,Arousal,"0:00:00,0","0:01:00,0",60000,False,False,False,False
-48-P-2_transformed.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:01:05,6",6.1.1 Pflegesituation,"0:00:28,1","0:00:36,1",8000,True,2,True,5
+48-P-2_transformed.xlsx,5.4.2 Essenssituation,"0:00:00,0","0:01:05,6",6.1.1 Pflegesituation,"0:00:28,1","0:00:36,1",8000,True,2,True,4
 43-P-1_K2_transformed.xlsx,Talking,,,Talking,"0:00:58,3","0:01:37,0",38700,False,False,False,False
 43-P-1_K2_transformed.xlsx,Body Orientation,,,Body,"0:00:00,0","0:01:41,1",101100,False,False,False,False
 43-P-1_K2_transformed.xlsx,Valence and Arousal Codes,,,Valence,"0:00:00,0","0:02:00,0",120000,False,False,False,False
