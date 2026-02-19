@@ -1,7 +1,9 @@
 from typing import List
+import logging
 from src.sunburst.code_util import CodeUtil
 
 code_util = CodeUtil()
+logger = logging.getLogger(__name__)
 
 
 def postprocess_sequence(tokens: List[str]) -> List[str]:
@@ -43,7 +45,9 @@ def postprocess_sequence(tokens: List[str]) -> List[str]:
                     matched_length = length
                     changed = True
                     if len(combo_codes) > 2:
-                        print(f"[INFO] Matched Combo Code of length > 2: {combo_codes}")
+                        logger.info(
+                            "Matched combo code with length > 2: %s", combo_codes
+                        )
                     break
 
             # Stop at first match (longest match found)
@@ -61,7 +65,7 @@ def postprocess_sequence(tokens: List[str]) -> List[str]:
             i += 1
 
     if changed:
-        print(f"changed {collapsed} to {merged}")
+        logger.debug("Postprocessing changed %s to %s", collapsed, merged)
 
     return merged
 

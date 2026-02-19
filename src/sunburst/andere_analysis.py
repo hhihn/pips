@@ -6,10 +6,12 @@ Identify which codes are present but not selected for each ring.
 """
 
 from typing import Dict, Literal
+import logging
 import pandas as pd
 from src.sunburst.code_util import CodeUtil
 
 code_util = CodeUtil()
+logger = logging.getLogger(__name__)
 
 
 def analyze_andere_by_ring(per_path_df: pd.DataFrame) -> pd.DataFrame:
@@ -192,24 +194,26 @@ def create_andere_summary(
 
 def print_andere_report(summary_dict: Dict[str, pd.DataFrame]):
     """Pretty-print the "Andere" analysis report."""
-    print("\n" + "=" * 80)
-    print("ANALYSE: 'Andere' (PLACEHOLDER_OTHER) NACH RING")
-    print("=" * 80)
+    logger.info("%s", "=" * 80)
+    logger.info("ANALYSE: 'Andere' (PLACEHOLDER_OTHER) NACH RING")
+    logger.info("%s", "=" * 80)
 
-    print("\n[1] ZUSAMMENFASSUNG PRO RING:")
-    print("-" * 80)
-    print(summary_dict["summary"].to_string(index=False))
+    logger.info("[1] ZUSAMMENFASSUNG PRO RING:")
+    logger.info("%s", "-" * 80)
+    logger.info("\n%s", summary_dict["summary"].to_string(index=False))
 
-    print("\n\n[2] VERFÜGBARE CODES BEI 'Andere'-SELEKTION:")
-    print("-" * 80)
+    logger.info("[2] VERFÜGBARE CODES BEI 'Andere'-SELEKTION:")
+    logger.info("%s", "-" * 80)
     if not summary_dict["codes"].empty:
         # Group by ring for better readability
         for ring in ["innen", "mitte", "aussen", "aussenring"]:
             ring_data = summary_dict["codes"][summary_dict["codes"]["Ring"] == ring]
             if not ring_data.empty:
-                print(f"\n{ring.upper()}:")
-                print(ring_data[["Code", "Label", "Count"]].to_string(index=False))
+                logger.info("%s:", ring.upper())
+                logger.info(
+                    "\n%s", ring_data[["Code", "Label", "Count"]].to_string(index=False)
+                )
     else:
-        print("(Keine Daten verfügbar)")
+        logger.info("(Keine Daten verfügbar)")
 
-    print("\n" + "=" * 80 + "\n")
+    logger.info("%s", "=" * 80)

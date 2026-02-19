@@ -8,6 +8,7 @@ Neu: Toggle zwischen zwei Ansätzen:
 """
 
 import argparse
+import logging
 from typing import Dict, List, Tuple, Any
 import pandas as pd
 from src.sunburst.cooccurrrence import (
@@ -41,6 +42,8 @@ try:
     import plotly.express as px
 except Exception:
     px = None
+
+logger = logging.getLogger(__name__)
 
 
 def build_sequences_parts_approach(
@@ -311,8 +314,18 @@ def main():
         default="overlap",
         help="How temporal combo bundles are detected in path building: exact (same start/end) or overlap (overlapping windows).",
     )
+    ap.add_argument(
+        "--log_level",
+        choices=["DEBUG", "INFO", "WARNING", "ERROR"],
+        default="INFO",
+        help="Logging level.",
+    )
 
     args = ap.parse_args()
+    logging.basicConfig(
+        level=getattr(logging, args.log_level),
+        format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+    )
 
     # === Load data-driven rules ===
     if args.cooccurrence_csv:
@@ -327,13 +340,13 @@ def main():
 
     # === FEATURE TOGGLE: Select analysis approach ===
     if args.all_codes_together:
-        print("[*] Using ALL_CODES_TOGETHER approach")
+        logger.info("Using ALL_CODES_TOGETHER approach")
         seqs_labels, per_path = build_sequences_all_together(
             df, start_lookahead_n=args.start_lookahead_n
         )
     else:
-        print("[*] Using PARTS_APPROACH (4 rings: innen/mitte/aussen/aussenring)")
-        print(f"[*] Combo time matching mode: {args.combo_time_match_mode}")
+        logger.info("Using PARTS_APPROACH (4 rings: innen/mitte/aussen/aussenring)")
+        logger.info("Combo time matching mode: %s", args.combo_time_match_mode)
         seqs_labels, per_path = build_sequences_parts_approach(
             df,
             start_lookahead_n=args.start_lookahead_n,
@@ -351,7 +364,7 @@ def main():
 
     # === Branching Analysis ===
     if not args.no_branching_analysis:
-        print("\n[*] Analyzing branching codes/nodes...")
+        logger.info("Analyzing branching codes/nodes...")
         branch_depth = (
             args.branching_max_depth
             if args.branching_max_depth is not None
@@ -373,13 +386,14 @@ def main():
         )
         branching_codes.to_csv(f"{args.out_prefix}_branching_codes.csv", index=False)
         branching_nodes.to_csv(f"{args.out_prefix}_branching_nodes.csv", index=False)
-        print(
-            f"[OK] Wrote: {args.out_prefix}_branching_codes.csv, "
-            f"{args.out_prefix}_branching_nodes.csv"
+        logger.info(
+            "Wrote: %s_branching_codes.csv, %s_branching_nodes.csv",
+            args.out_prefix,
+            args.out_prefix,
         )
 
     # === Co-occurrence Analysis ===
-    print("\n[*] Analyzing code co-occurrences...")
+    logger.info("Analyzing code co-occurrences...")
     same_start_counts, same_window_counts = analyze_code_cooccurrences(df)
     same_start_counts.to_csv(
         f"{args.out_prefix}_cooccurrence_same_start.csv", index=False
@@ -392,7 +406,7 @@ def main():
 
     # === "Andere" Analysis ===
     if not args.all_codes_together:
-        print("\n[*] Analyzing 'Andere' occurrences...")
+        logger.info("Analyzing 'Andere' occurrences...")
         andere_by_ring = analyze_andere_by_ring(per_path)
         codes_causing_andere = analyze_codes_causing_andere(
             df,
@@ -407,7 +421,7 @@ def main():
         andere_summary = create_andere_summary(andere_by_ring, codes_causing_andere)
         print_andere_report(andere_summary)
 
-    print(f"[OK] Wrote output files with prefix: {args.out_prefix}")
+    logger.info("Wrote output files with prefix: %s", args.out_prefix)
 
     # === Sunburst ===
     if args.no_sunburst or px is None:
@@ -435,7 +449,7 @@ def main():
     )
     html_path = f"{args.out_prefix}_sunburst.html"
     fig.write_html(html_path)
-    print(f"[OK] Wrote: {html_path}")
+    logger.info("Wrote: %s", html_path)
 
 
 if __name__ == "__main__":

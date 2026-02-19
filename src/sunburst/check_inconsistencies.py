@@ -1,4 +1,13 @@
 import pandas as pd
+import logging
+
+if not logging.getLogger().handlers:
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+    )
+
+logger = logging.getLogger(__name__)
 
 input_file = "out_paths_cooccurrence_same_window.csv"
 
@@ -24,19 +33,19 @@ df_A = df[mask_pos & ~mask_fk]
 # B) FK führt Hdlg. vorhanden, aber keine Position
 df_B = df[mask_fk & ~mask_pos]
 
-print("\n==============================")
-print("A) Position (hinten/seite/vorne) OHNE FK führt Hdlg.")
-print("==============================")
-print(df_A[["bundle_key", "bundle_label", "count"]])
+logger.info("==============================")
+logger.info("A) Position (hinten/seite/vorne) OHNE FK führt Hdlg.")
+logger.info("==============================")
+logger.info("\n%s", df_A[["bundle_key", "bundle_label", "count"]])
 
-print("\n==============================")
-print("B) FK führt Hdlg. OHNE Position (hinten/seite/vorne)")
-print("==============================")
-print(df_B[["bundle_key", "bundle_label", "count"]])
+logger.info("==============================")
+logger.info("B) FK führt Hdlg. OHNE Position (hinten/seite/vorne)")
+logger.info("==============================")
+logger.info("\n%s", df_B[["bundle_key", "bundle_label", "count"]])
 
 df_A.to_csv("filter_A_position_ohne_fk.csv", index=False)
 df_B.to_csv("filter_B_fk_ohne_position.csv", index=False)
 
-print("\nDateien gespeichert:")
-print(" - filter_A_position_ohne_fk.csv")
-print(" - filter_B_fk_ohne_position.csv")
+logger.info("Dateien gespeichert:")
+logger.info("- filter_A_position_ohne_fk.csv")
+logger.info("- filter_B_fk_ohne_position.csv")
