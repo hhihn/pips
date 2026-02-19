@@ -8,13 +8,14 @@ Identify which codes are present but not selected for each ring.
 from typing import Dict, Literal
 import logging
 import pandas as pd
-from src.sunburst.code_util import CodeUtil
+from src.sunburst.context import AnalysisContext, get_default_context
 
-code_util = CodeUtil()
 logger = logging.getLogger(__name__)
 
 
-def analyze_andere_by_ring(per_path_df: pd.DataFrame) -> pd.DataFrame:
+def analyze_andere_by_ring(
+    per_path_df: pd.DataFrame, context: AnalysisContext | None = None
+) -> pd.DataFrame:
     """
     Count how many times "Andere" appears in each ring.
 
@@ -24,6 +25,7 @@ def analyze_andere_by_ring(per_path_df: pd.DataFrame) -> pd.DataFrame:
     - Total_Paths: Total paths analyzed
     - Percentage: Percentage of paths with "Andere" in this ring
     """
+    ctx = context if context is not None else get_default_context()
     token_columns = {
         "innen": "innen_token",
         "mitte": "mitte_token",
@@ -39,7 +41,7 @@ def analyze_andere_by_ring(per_path_df: pd.DataFrame) -> pd.DataFrame:
         # Count paths where this ring contains "Andere"
         # Note: token columns store strings like "[\'Andere\']", so we check for the placeholder
         andere_count = (
-            per_path_df[col].str.contains(code_util.PLACEHOLDER_OTHER, na=False).sum()
+            per_path_df[col].str.contains(ctx.placeholder_other, na=False).sum()
         )
 
         percentage = (andere_count / total * 100) if total > 0 else 0
@@ -61,18 +63,20 @@ def analyze_codes_causing_andere(
     per_path_df: pd.DataFrame,
     start_lookahead_n: int = 12,
     combo_time_match_mode: Literal["exact", "overlap"] = "exact",
+    context: AnalysisContext | None = None,
 ) -> pd.DataFrame:
     """
     For each ring, identify what codes were present in bundles
     that resulted in "Andere" selection.
     """
+    ctx = context if context is not None else get_default_context()
     from src.sunburst.helper import normalize_code, parse_time_to_seconds, build_time_bundles
 
     d = df.copy()
     d["code"] = d["Sequence_Code"].map(normalize_code)
     d["start_s"] = d["Sequence_Start"].map(parse_time_to_seconds)
     d["end_s"] = d["Sequence_End"].map(parse_time_to_seconds)
-    d = d[d["code"].isin(code_util.ALLOWED_CODES)].copy()
+    d = d[d["code"].isin(ctx.allowed_codes)].copy()
 
     group_cols = ["Filename", "id"] if "id" in d.columns else ["Filename"]
 
@@ -95,7 +99,7 @@ def analyze_codes_causing_andere(
         # Sort by time
         g_sorted = g.copy()
         g_sorted["code_priority"] = g_sorted["code"].map(
-            lambda c: code_util.CODE_TO_PRIO.get(c, (999, 999))
+            lambda c: ctx.code_to_prio.get(c, (999, 999))
         )
         g_sorted = g_sorted.sort_values(by=["start_s", "end_s", "code_priority"]).drop(
             "code_priority", axis=1
@@ -149,14 +153,14 @@ def analyze_codes_causing_andere(
         ):
             # Check if this ring has "Andere"
             token_value = path_row[token_col]
-            if code_util.PLACEHOLDER_OTHER in str(token_value):
+            if ctx.placeholder_other in str(token_value):
                 # This ring selected "Andere" - record what codes were available
                 for code in codes_in_ring:
                     analysis_rows.append(
                         {
                             "Ring": ring_name,
                             "Code": code,
-                            "Label": code_util.LABEL_MAP.get(code, code),
+                            "Label": ctx.label_map.get(code, code),
                             "Available_In_Andere_Cases": 1,
                         }
                     )

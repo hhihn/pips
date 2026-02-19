@@ -4,9 +4,12 @@ from typing import List, Any, Tuple, Dict, Literal
 
 import pandas as pd
 
-from src.sunburst.code_util import CodeUtil
+from src.sunburst.bundling import make_bundle_strategy
+from src.sunburst.context import AnalysisContext, get_default_context
 
-code_util = CodeUtil()
+
+def _ctx(context: AnalysisContext | None) -> AnalysisContext:
+    return context if context is not None else get_default_context()
 
 
 def parse_time_to_seconds(s: Any) -> float:
@@ -41,40 +44,48 @@ def atomic_codes(token: str) -> List[str]:
     return [p for p in parts if p]
 
 
-def normalize_combo_key(codes: List[str]) -> str:
+def normalize_combo_key(
+    codes: List[str], context: AnalysisContext | None = None
+) -> str:
+    ctx = _ctx(context)
+
     def _key(c: str):
-        return code_util.CODE_TO_PRIO.get(c, (999, 999, c))
+        return ctx.code_to_prio.get(c, (999, 999, c))
 
     codes_sorted = sorted(set(codes), key=_key)
     return " & ".join(codes_sorted)
 
 
-def label_for_token(token: str) -> str:
-    if token in code_util.LABEL_MAP:
-        return code_util.LABEL_MAP[token]
+def label_for_token(token: str, context: AnalysisContext | None = None) -> str:
+    ctx = _ctx(context)
+    if token in ctx.label_map:
+        return ctx.label_map[token]
     if not is_combo_token(token):
-        return code_util.LABEL_MAP.get(token, token)
+        return ctx.label_map.get(token, token)
     atoms = atomic_codes(token)
-    atom_labels = [code_util.LABEL_MAP.get(a, a) for a in atoms]
+    atom_labels = [ctx.label_map.get(a, a) for a in atoms]
     return " + ".join(atom_labels)
 
 
-def apply_bundle_combos(codes: List[str]) -> List[str]:
+def apply_bundle_combos(
+    codes: List[str], context: AnalysisContext | None = None
+) -> List[str]:
     """
     Wendet Kombi-Regeln innerhalb eines Bundles an.
     Input: codes (atomare Codes) innerhalb exakt gleicher (start,end)
     Output: Liste aus Kombi-Tokens und ggf. Rest-atomaren Codes
     """
+    ctx = _ctx(context)
     s = set(codes)
     out: List[str] = []
 
-    for (a, b), combo in code_util.COMBO_RULES:
+    for (a, b), combo in ctx.combo_rules:
         if a in s and b in s:
             out.append(combo)
             s.remove(a)
             s.remove(b)
 
-    out.extend(sorted(s, key=lambda c: code_util.CODE_TO_PRIO.get(c, (999, 999))))
+    out.extend(sorted(s, key=lambda c: ctx.code_to_prio.get(c, (999, 999))))
     return out
 
 
@@ -87,55 +98,14 @@ def build_time_bundles(
     - exact: same (start_s, end_s)
     - overlap: overlapping time windows are merged into one bundle
     """
-    if events.empty:
-        return []
-
-    fe = events.sort_values(by=["start_s", "end_s"]).copy()
-
-    if combo_time_match_mode == "exact":
-        return [bg.copy() for _, bg in fe.groupby(["start_s", "end_s"], sort=False)]
-
-    if combo_time_match_mode != "overlap":
-        raise ValueError(
-            f"Invalid combo_time_match_mode='{combo_time_match_mode}'. Use 'exact' or 'overlap'."
-        )
-
-    bundles: List[pd.DataFrame] = []
-    current_rows: List[int] = []
-    current_start = None
-    current_end = None
-
-    for idx, row in fe.iterrows():
-        start_s = float(row["start_s"])
-        end_s = float(row["end_s"])
-
-        if not current_rows:
-            current_rows = [idx]
-            current_start = start_s
-            current_end = end_s
-            continue
-
-        overlaps_current = start_s < current_end and end_s > current_start
-        if overlaps_current:
-            current_rows.append(idx)
-            current_start = min(current_start, start_s)
-            current_end = max(current_end, end_s)
-        else:
-            bundles.append(fe.loc[current_rows].copy())
-            current_rows = [idx]
-            current_start = start_s
-            current_end = end_s
-
-    if current_rows:
-        bundles.append(fe.loc[current_rows].copy())
-
-    return bundles
+    return make_bundle_strategy(combo_time_match_mode).build(events)
 
 
 def pick_group_token_from_first_n(
     first_n_events: pd.DataFrame,
     group_codes: set,
     combo_time_match_mode: Literal["exact", "overlap"] = "exact",
+    context: AnalysisContext | None = None,
 ) -> List[str]:
     """
     Wählt für eine Gruppe (innen/mitte/außen/außenring) das früheste Token
@@ -143,8 +113,9 @@ def pick_group_token_from_first_n(
     - berücksichtigt COMBO_RULES pro Bundle
     - wenn nichts gefunden: PLACEHOLDER_OTHER
     """
+    ctx = _ctx(context)
     if first_n_events.empty:
-        return [code_util.PLACEHOLDER_OTHER]
+        return [ctx.placeholder_other]
 
     # bundles in first_n according to requested matching mode
     fe = first_n_events.copy()
@@ -158,7 +129,7 @@ def pick_group_token_from_first_n(
         be = float(bg["end_s"].max())
         tokens = sorted(
             set(bg["code"].tolist()),
-            key=lambda c: code_util.CODE_TO_PRIO.get(c, (999, 999)),
+            key=lambda c: ctx.code_to_prio.get(c, (999, 999)),
         )
         #  tokens = atom_codes # apply_bundle_combos(atom_codes)
 
@@ -166,11 +137,11 @@ def pick_group_token_from_first_n(
             atoms = atomic_codes(tok) if is_combo_token(tok) else [tok]
             if any(a in group_codes for a in atoms):
                 # Priority for tie-break: min priority of involved atomic codes
-                pr = min([code_util.CODE_TO_PRIO.get(a, (999, 999)) for a in atoms])
+                pr = min([ctx.code_to_prio.get(a, (999, 999)) for a in atoms])
                 candidates.append((float(bs), float(be), (pr[0], pr[1], tok), tok))
 
     if not candidates:
-        return [code_util.PLACEHOLDER_OTHER]
+        return [ctx.placeholder_other]
 
     candidates.sort(key=lambda x: (x[0], x[1], x[2][0], x[2][1], x[2][2]))
     return [candidates[0][3]]

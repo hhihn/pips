@@ -9,34 +9,24 @@ Neu: Toggle zwischen zwei Ansätzen:
 
 import argparse
 import logging
-from typing import Dict, List, Tuple, Any
+from typing import List, Tuple
 import pandas as pd
-from src.sunburst.cooccurrrence import (
-    create_cooccurrence_summary,
-    analyze_code_cooccurrences,
-)
 from src.sunburst.helper import (
-    normalize_code,
-    parse_time_to_seconds,
-    pick_group_token_from_first_n,
-    build_time_bundles,
-    label_for_token,
     customwrap,
     wide_to_sunburst_nodes,
     sequences_to_sunburst_wide,
 )
-from src.sunburst.andere_analysis import (
-    analyze_andere_by_ring,
-    analyze_codes_causing_andere,
-    create_andere_summary,
-    print_andere_report,
-)
-from src.sunburst.branching_analysis import (
-    analyze_branching_codes,
-    analyze_branching_nodes,
-)
-from src.sunburst.postprocessing import postprocess_sequence
+from src.sunburst.andere_analysis import print_andere_report
 from src.sunburst.code_util import CodeUtil
+from src.sunburst.context import AnalysisContext
+from src.sunburst.rules_repo import CodeUtilRulesRepository
+from src.sunburst.bundling import make_bundle_strategy
+from src.sunburst.sequence_builders import PartsSequenceBuilder, AllCodesSequenceBuilder
+from src.sunburst.services import (
+    BranchingAnalyzerService,
+    CooccurrenceAnalyzerService,
+    AndereAnalyzerService,
+)
 
 try:
     import plotly.express as px
@@ -50,195 +40,24 @@ def build_sequences_parts_approach(
     df: pd.DataFrame,
     start_lookahead_n: int = 12,
     combo_time_match_mode: str = "exact",
+    context: AnalysisContext | None = None,
 ) -> Tuple[List[List[str]], pd.DataFrame]:
-    """Original approach: split sequence into 4 temporal parts (innen/mitte/aussen/aussenring)"""
-    code_util = CodeUtil()
-    d = df.copy()
-    d["code"] = d["Sequence_Code"].map(normalize_code)
-    d["start_s"] = d["Sequence_Start"].map(parse_time_to_seconds)
-    d["end_s"] = d["Sequence_End"].map(parse_time_to_seconds)
-    d = d[d["code"].isin(code_util.ALLOWED_CODES)].copy()
-    sequences_labels: List[List[str]] = []
-    per_path_rows: List[Dict[str, Any]] = []
-    group_cols = ["Filename", "id"] if "id" in d.columns else ["Filename"]
-
-    for key, g in d.groupby(group_cols, sort=True):
-        if isinstance(key, tuple):
-            filename, pid = key
-        else:
-            filename, pid = key, ""
-
-        g_sorted = g.copy()
-        g_sorted["code_priority"] = g_sorted["code"].map(
-            lambda c: code_util.CODE_TO_PRIO.get(c, (999, 999))
-        )
-        g_sorted = g_sorted.sort_values(by=["start_s", "end_s", "code_priority"]).drop(
-            "code_priority", axis=1
-        )
-
-        bundles = []
-        for bundle_group in build_time_bundles(
-            g_sorted, combo_time_match_mode=combo_time_match_mode
-        ):
-            bundles.append(
-                {
-                    "start_s": float(bundle_group["start_s"].min()),
-                    "end_s": float(bundle_group["end_s"].max()),
-                    "codes": bundle_group["code"].tolist(),
-                    "data": bundle_group.copy(),
-                }
-            )
-
-        bundles.sort(key=lambda b: (b["start_s"], b["end_s"]))
-
-        n_bundles = len(bundles)
-        if n_bundles == 0:
-            innen_tok = code_util.PLACEHOLDER_OTHER
-            mitte_tok = code_util.PLACEHOLDER_OTHER
-            aussen_tok = code_util.PLACEHOLDER_OTHER
-            aussenring_tok = code_util.PLACEHOLDER_OTHER
-            parts_bundles = []
-        else:
-            bundles = bundles[: max(4, start_lookahead_n)]
-            n_bundles = len(bundles)
-            base = n_bundles // 4
-            rem = n_bundles % 4
-            sizes = [base + (1 if i < rem else 0) for i in range(4)]
-
-            parts_bundles = []
-            idx0 = 0
-            for sz in sizes:
-                bundle_subset = bundles[idx0 : idx0 + sz]
-                dfs = [b["data"] for b in bundle_subset]
-                combined_df = (
-                    pd.concat(dfs, ignore_index=True) if dfs else pd.DataFrame()
-                )
-                parts_bundles.append(combined_df)
-                idx0 += sz
-
-            innen_df, mitte_df, aussen_df, aussenring_df = parts_bundles
-
-            def pick_with_adjacent(parts_list, idx, allowed_codes):
-                n_parts = len(parts_list)
-                for dist in range(n_parts):
-                    candidates = []
-                    if dist == 0:
-                        candidates = [idx]
-                    else:
-                        if idx - dist >= 0:
-                            candidates.append(idx - dist)
-                        if idx + dist < n_parts:
-                            candidates.append(idx + dist)
-                    for j in candidates:
-                        tok = pick_group_token_from_first_n(
-                            parts_list[j],
-                            allowed_codes,
-                            combo_time_match_mode=combo_time_match_mode,
-                        )
-                        if tok != [code_util.PLACEHOLDER_OTHER]:
-                            return tok
-                return [code_util.PLACEHOLDER_OTHER]
-
-            parts_list = [innen_df, mitte_df, aussen_df, aussenring_df]
-            innen_tok = pick_with_adjacent(
-                parts_list, 0, code_util.GROUP_NAME_TO_CODES["innen"]
-            )
-            mitte_tok = pick_with_adjacent(
-                parts_list, 1, code_util.GROUP_NAME_TO_CODES["mitte"]
-            )
-            aussen_tok = pick_with_adjacent(
-                parts_list, 2, code_util.GROUP_NAME_TO_CODES["aussen"]
-            )
-            aussenring_tok = pick_with_adjacent(
-                parts_list, 3, code_util.GROUP_NAME_TO_CODES["aussenring"]
-            )
-
-        seq_tokens = innen_tok + mitte_tok + aussen_tok + aussenring_tok
-        seq_tokens = postprocess_sequence(seq_tokens)
-        seq_labels = [label_for_token(t) for t in seq_tokens]
-        sequences_labels.append(seq_labels)
-
-        per_path_rows.append(
-            {
-                "Filename": filename,
-                "id": pid,
-                "start_group": label_for_token(
-                    innen_tok[0] if innen_tok else code_util.PLACEHOLDER_OTHER
-                ),
-                "sequence_tokens": " -> ".join(seq_tokens),
-                "sequence_labels": " -> ".join(seq_labels),
-                "innen_token": str(innen_tok),
-                "mitte_token": str(mitte_tok),
-                "aussen_token": str(aussen_tok),
-                "aussenring_token": str(aussenring_tok),
-                "n_bundles": len(bundles) if n_bundles > 0 else 0,
-                "bundle_sizes": "|".join(map(str, [len(df) for df in parts_bundles]))
-                if parts_bundles
-                else "0|0|0|0",
-            }
-        )
-
-    per_path_table = pd.DataFrame(per_path_rows)
-    return sequences_labels, per_path_table
+    """Build sequences via parts strategy using an injected analysis context."""
+    ctx = context if context is not None else AnalysisContext.from_code_util(CodeUtil())
+    strategy = make_bundle_strategy(combo_time_match_mode)
+    builder = PartsSequenceBuilder(context=ctx, bundle_strategy=strategy)
+    return builder.build(df, start_lookahead_n=start_lookahead_n)
 
 
 def build_sequences_all_together(
     df: pd.DataFrame,
     start_lookahead_n: int = 12,
+    context: AnalysisContext | None = None,
 ) -> Tuple[List[List[str]], pd.DataFrame]:
-    """Alternative approach: consider all codes together without parts division"""
-    code_util = CodeUtil()
-    d = df.copy()
-    d["code"] = d["Sequence_Code"].map(normalize_code)
-    d["start_s"] = d["Sequence_Start"].map(parse_time_to_seconds)
-    d["end_s"] = d["Sequence_End"].map(parse_time_to_seconds)
-    d = d[d["code"].isin(code_util.ALLOWED_CODES)].copy()
-    sequences_labels: List[List[str]] = []
-    per_path_rows: List[Dict[str, Any]] = []
-    group_cols = ["Filename", "id"] if "id" in d.columns else ["Filename"]
-
-    for key, g in d.groupby(group_cols, sort=True):
-        if isinstance(key, tuple):
-            filename, pid = key
-        else:
-            filename, pid = key, ""
-
-        g_sorted = g.copy()
-        g_sorted["code_priority"] = g_sorted["code"].map(
-            lambda c: code_util.CODE_TO_PRIO.get(c, (999, 999))
-        )
-        g_sorted = g_sorted.sort_values(by=["start_s", "end_s", "code_priority"]).drop(
-            "code_priority", axis=1
-        )
-
-        # Limit to first N events
-        first_n = g_sorted.head(max(4, start_lookahead_n)).copy()
-
-        if first_n.empty:
-            seq_tokens = [code_util.PLACEHOLDER_OTHER]
-        else:
-            # Get all unique codes (without parts division)
-            all_codes = sorted(first_n["code"].unique().tolist())
-            seq_tokens = all_codes if all_codes else [code_util.PLACEHOLDER_OTHER]
-
-        seq_tokens = postprocess_sequence(seq_tokens)
-        seq_labels = [label_for_token(t) for t in seq_tokens]
-        sequences_labels.append(seq_labels)
-
-        per_path_rows.append(
-            {
-                "Filename": filename,
-                "id": pid,
-                "start_group": "All Codes Together",
-                "sequence_tokens": " -> ".join(seq_tokens),
-                "sequence_labels": " -> ".join(seq_labels),
-                "all_codes_token": str(seq_tokens),
-                "n_events": len(first_n),
-            }
-        )
-
-    per_path_table = pd.DataFrame(per_path_rows)
-    return sequences_labels, per_path_table
+    """Build sequences via all-codes strategy using an injected analysis context."""
+    ctx = context if context is not None else AnalysisContext.from_code_util(CodeUtil())
+    builder = AllCodesSequenceBuilder(context=ctx)
+    return builder.build(df, start_lookahead_n=start_lookahead_n)
 
 
 def main():
@@ -311,7 +130,7 @@ def main():
     ap.add_argument(
         "--combo_time_match_mode",
         choices=["exact", "overlap"],
-        default="overlap",
+        default="exact",
         help="How temporal combo bundles are detected in path building: exact (same start/end) or overlap (overlapping windows).",
     )
     ap.add_argument(
@@ -327,30 +146,35 @@ def main():
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
     )
 
-    # === Load data-driven rules ===
+    code_util = CodeUtil()
+    rules_repo = CodeUtilRulesRepository(code_util=code_util)
     if args.cooccurrence_csv:
-        code_util = CodeUtil()
-        code_util.load_data_driven_rules(
-            args.cooccurrence_csv,
+        context = rules_repo.load_context(
+            cooccurrence_csv=args.cooccurrence_csv,
             min_window_count=args.min_window_count,
             refresh=args.refresh_data_driven_rules,
         )
+    else:
+        context = AnalysisContext.from_code_util(code_util)
 
     df = pd.read_csv(args.csv)
 
     # === FEATURE TOGGLE: Select analysis approach ===
     if args.all_codes_together:
         logger.info("Using ALL_CODES_TOGETHER approach")
-        seqs_labels, per_path = build_sequences_all_together(
-            df, start_lookahead_n=args.start_lookahead_n
+        seqs_labels, per_path = AllCodesSequenceBuilder(context=context).build(
+            df,
+            start_lookahead_n=args.start_lookahead_n,
         )
     else:
         logger.info("Using PARTS_APPROACH (4 rings: innen/mitte/aussen/aussenring)")
         logger.info("Combo time matching mode: %s", args.combo_time_match_mode)
-        seqs_labels, per_path = build_sequences_parts_approach(
+        seqs_labels, per_path = PartsSequenceBuilder(
+            context=context,
+            bundle_strategy=make_bundle_strategy(args.combo_time_match_mode),
+        ).build(
             df,
             start_lookahead_n=args.start_lookahead_n,
-            combo_time_match_mode=args.combo_time_match_mode,
         )
 
     per_path.to_csv(f"{args.out_prefix}_per_path_sequences.csv", index=False)
@@ -370,16 +194,9 @@ def main():
             if args.branching_max_depth is not None
             else args.max_depth
         )
-        branching_codes = analyze_branching_codes(
+        branching_codes, branching_nodes = BranchingAnalyzerService().analyze(
             seqs_labels,
-            max_depth=branch_depth,
-            min_parent_count=max(1, args.min_branch_parent_count),
-            min_child_count=max(1, args.min_branch_child_count),
-            min_distinct_children=max(2, args.min_branch_children),
-        )
-        branching_nodes = analyze_branching_nodes(
-            seqs_labels,
-            max_depth=branch_depth,
+            branch_depth=branch_depth,
             min_parent_count=max(1, args.min_branch_parent_count),
             min_child_count=max(1, args.min_branch_child_count),
             min_distinct_children=max(2, args.min_branch_children),
@@ -394,31 +211,32 @@ def main():
 
     # === Co-occurrence Analysis ===
     logger.info("Analyzing code co-occurrences...")
-    same_start_counts, same_window_counts = analyze_code_cooccurrences(df)
+    same_start_counts, same_window_counts, summary = CooccurrenceAnalyzerService(
+        context=context
+    ).analyze(df)
     same_start_counts.to_csv(
         f"{args.out_prefix}_cooccurrence_same_start.csv", index=False
     )
     same_window_counts.to_csv(
         f"{args.out_prefix}_cooccurrence_same_window.csv", index=False
     )
-    summary = create_cooccurrence_summary(same_start_counts, same_window_counts)
     summary.to_csv(f"{args.out_prefix}_cooccurrence_summary.csv", index=False)
 
     # === "Andere" Analysis ===
     if not args.all_codes_together:
         logger.info("Analyzing 'Andere' occurrences...")
-        andere_by_ring = analyze_andere_by_ring(per_path)
-        codes_causing_andere = analyze_codes_causing_andere(
-            df,
-            per_path,
+        andere_by_ring, codes_causing_andere, andere_summary = AndereAnalyzerService(
+            context=context,
             start_lookahead_n=args.start_lookahead_n,
             combo_time_match_mode=args.combo_time_match_mode,
+        ).analyze(
+            df,
+            per_path,
         )
         andere_by_ring.to_csv(f"{args.out_prefix}_andere_by_ring.csv", index=False)
         codes_causing_andere.to_csv(
             f"{args.out_prefix}_codes_in_andere_cases.csv", index=False
         )
-        andere_summary = create_andere_summary(andere_by_ring, codes_causing_andere)
         print_andere_report(andere_summary)
 
     logger.info("Wrote output files with prefix: %s", args.out_prefix)

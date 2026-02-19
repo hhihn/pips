@@ -2,10 +2,12 @@ from typing import Tuple
 import pandas as pd
 from itertools import combinations
 from src.sunburst.helper import normalize_code, parse_time_to_seconds
-from src.sunburst.code_util import CodeUtil
+from src.sunburst.context import AnalysisContext, get_default_context
 
 
-def analyze_code_cooccurrences(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
+def analyze_code_cooccurrences(
+    df: pd.DataFrame, context: AnalysisContext | None = None
+) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
     Analyze temporal co-occurrences of codes at arbitrary lengths.
     Preserves Filename for source tracking.
@@ -14,12 +16,12 @@ def analyze_code_cooccurrences(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataF
     1. All pairwise combinations (for backward compatibility)
     2. All temporal bundles (complete groups of codes)
     """
-    code_util = CodeUtil()
+    ctx = context if context is not None else get_default_context()
     d = df.copy()
     d["code"] = d["Sequence_Code"].map(normalize_code)
     d["start_s"] = d["Sequence_Start"].map(parse_time_to_seconds)
     d["end_s"] = d["Sequence_End"].map(parse_time_to_seconds)
-    d = d[d["code"].isin(code_util.ALLOWED_CODES)].copy()
+    d = d[d["code"].isin(ctx.allowed_codes)].copy()
 
     # ===== CO-OCCURRENCE: Complete Bundles (All codes at same window) =====
     bundle_records = []
@@ -32,7 +34,7 @@ def analyze_code_cooccurrences(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataF
 
         if len(codes_in_window) > 1:
             bundle_key = " + ".join(codes_in_window)
-            labels = [code_util.LABEL_MAP.get(c, c) for c in codes_in_window]
+            labels = [ctx.label_map.get(c, c) for c in codes_in_window]
             bundle_label = " + ".join(labels)
 
             bundle_records.append(
@@ -98,9 +100,9 @@ def analyze_code_cooccurrences(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataF
                 {
                     "Filename": row["Filename"],  # ADD: Source file
                     "code1": code1,
-                    "label1": code_util.LABEL_MAP.get(code1, code1),
+                    "label1": ctx.label_map.get(code1, code1),
                     "code2": code2,
-                    "label2": code_util.LABEL_MAP.get(code2, code2),
+                    "label2": ctx.label_map.get(code2, code2),
                     "start_time": row["start_time"],
                     "end_time": row["end_time"],
                     "duration": row["duration"],

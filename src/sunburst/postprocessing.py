@@ -1,16 +1,18 @@
 from typing import List
 import logging
-from src.sunburst.code_util import CodeUtil
+from src.sunburst.context import AnalysisContext, get_default_context
 
-code_util = CodeUtil()
 logger = logging.getLogger(__name__)
 
 
-def postprocess_sequence(tokens: List[str]) -> List[str]:
+def postprocess_sequence(
+    tokens: List[str], context: AnalysisContext | None = None
+) -> List[str]:
     """
     Postprocessing to merge co-occurring codes at arbitrary lengths.
     Handles combo rules with 2, 3, 4, or more codes.
     """
+    ctx = context if context is not None else get_default_context()
     if not tokens:
         return tokens
 
@@ -38,7 +40,7 @@ def postprocess_sequence(tokens: List[str]) -> List[str]:
             candidate_sequence = tuple(collapsed[i : i + length])
 
             # Check if this sequence matches any combo rule
-            for combo_codes, combo_label in code_util.COMBO_RULES:
+            for combo_codes, combo_label in ctx.combo_rules:
                 # Check both original and reverse order (order-independent matching)
                 if _matches_combo(candidate_sequence, combo_codes):
                     matched_combo = combo_label
