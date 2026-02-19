@@ -18,6 +18,7 @@ from src.sunburst.helper import (
     normalize_code,
     parse_time_to_seconds,
     pick_group_token_from_first_n,
+    build_time_bundles,
     label_for_token,
     customwrap,
     wide_to_sunburst_nodes,
@@ -45,6 +46,7 @@ except Exception:
 def build_sequences_parts_approach(
     df: pd.DataFrame,
     start_lookahead_n: int = 12,
+    combo_time_match_mode: str = "exact",
 ) -> Tuple[List[List[str]], pd.DataFrame]:
     """Original approach: split sequence into 4 temporal parts (innen/mitte/aussen/aussenring)"""
     code_util = CodeUtil()
@@ -72,13 +74,13 @@ def build_sequences_parts_approach(
         )
 
         bundles = []
-        for (bs, be), bundle_group in g_sorted.groupby(
-            ["start_s", "end_s"], sort=False
+        for bundle_group in build_time_bundles(
+            g_sorted, combo_time_match_mode=combo_time_match_mode
         ):
             bundles.append(
                 {
-                    "start_s": float(bs),
-                    "end_s": float(be),
+                    "start_s": float(bundle_group["start_s"].min()),
+                    "end_s": float(bundle_group["end_s"].max()),
                     "codes": bundle_group["code"].tolist(),
                     "data": bundle_group.copy(),
                 }
@@ -126,7 +128,9 @@ def build_sequences_parts_approach(
                             candidates.append(idx + dist)
                     for j in candidates:
                         tok = pick_group_token_from_first_n(
-                            parts_list[j], allowed_codes
+                            parts_list[j],
+                            allowed_codes,
+                            combo_time_match_mode=combo_time_match_mode,
                         )
                         if tok != [code_util.PLACEHOLDER_OTHER]:
                             return tok
@@ -301,6 +305,12 @@ def main():
         default=False,
         help="Use all-codes-together approach. Overrides --use_parts_approach",
     )
+    ap.add_argument(
+        "--combo_time_match_mode",
+        choices=["exact", "overlap"],
+        default="overlap",
+        help="How temporal combo bundles are detected in path building: exact (same start/end) or overlap (overlapping windows).",
+    )
 
     args = ap.parse_args()
 
@@ -321,8 +331,11 @@ def main():
         )
     else:
         print("[*] Using PARTS_APPROACH (4 rings: innen/mitte/aussen/aussenring)")
+        print(f"[*] Combo time matching mode: {args.combo_time_match_mode}")
         seqs_labels, per_path = build_sequences_parts_approach(
-            df, start_lookahead_n=args.start_lookahead_n
+            df,
+            start_lookahead_n=args.start_lookahead_n,
+            combo_time_match_mode=args.combo_time_match_mode,
         )
 
     per_path.to_csv(f"{args.out_prefix}_per_path_sequences.csv", index=False)

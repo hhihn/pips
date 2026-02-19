@@ -1,4 +1,4 @@
-from typing import Tuple, List
+from typing import Tuple
 import pandas as pd
 from itertools import combinations
 from src.sunburst.helper import normalize_code, parse_time_to_seconds

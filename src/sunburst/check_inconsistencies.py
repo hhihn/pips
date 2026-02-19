@@ -9,15 +9,12 @@ fk_term = "FK führt Hdlg. für Kind aus"
 pos_terms = [
     "FK führt Pflegehandlung von hinten durch",
     "FK führt Pflegehandlung von der Seite durch",
-    "FK führt Pflegehandlung von vorne durch"
+    "FK führt Pflegehandlung von vorne durch",
 ]
 
 mask_fk = df["bundle_label"].str.contains(fk_term, na=False)
 
-mask_pos = df["bundle_label"].str.contains(
-    "|".join(pos_terms),
-    na=False
-)
+mask_pos = df["bundle_label"].str.contains("|".join(pos_terms), na=False)
 
 # A) Position vorhanden, aber FK führt Hdlg. NICHT
 df_A = df[mask_pos & ~mask_fk]

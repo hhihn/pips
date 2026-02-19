@@ -1,6 +1,6 @@
 import math
 import textwrap
-from typing import List, Any, Tuple, Dict
+from typing import List, Any, Tuple, Dict, Literal
 
 import pandas as pd
 
@@ -78,9 +78,64 @@ def apply_bundle_combos(codes: List[str]) -> List[str]:
     return out
 
 
+def build_time_bundles(
+    events: pd.DataFrame,
+    combo_time_match_mode: Literal["exact", "overlap"] = "exact",
+) -> List[pd.DataFrame]:
+    """
+    Build temporal bundles from events.
+    - exact: same (start_s, end_s)
+    - overlap: overlapping time windows are merged into one bundle
+    """
+    if events.empty:
+        return []
+
+    fe = events.sort_values(by=["start_s", "end_s"]).copy()
+
+    if combo_time_match_mode == "exact":
+        return [bg.copy() for _, bg in fe.groupby(["start_s", "end_s"], sort=False)]
+
+    if combo_time_match_mode != "overlap":
+        raise ValueError(
+            f"Invalid combo_time_match_mode='{combo_time_match_mode}'. Use 'exact' or 'overlap'."
+        )
+
+    bundles: List[pd.DataFrame] = []
+    current_rows: List[int] = []
+    current_start = None
+    current_end = None
+
+    for idx, row in fe.iterrows():
+        start_s = float(row["start_s"])
+        end_s = float(row["end_s"])
+
+        if not current_rows:
+            current_rows = [idx]
+            current_start = start_s
+            current_end = end_s
+            continue
+
+        overlaps_current = start_s < current_end and end_s > current_start
+        if overlaps_current:
+            current_rows.append(idx)
+            current_start = min(current_start, start_s)
+            current_end = max(current_end, end_s)
+        else:
+            bundles.append(fe.loc[current_rows].copy())
+            current_rows = [idx]
+            current_start = start_s
+            current_end = end_s
+
+    if current_rows:
+        bundles.append(fe.loc[current_rows].copy())
+
+    return bundles
+
+
 def pick_group_token_from_first_n(
     first_n_events: pd.DataFrame,
     group_codes: set,
+    combo_time_match_mode: Literal["exact", "overlap"] = "exact",
 ) -> List[str]:
     """
     Wählt für eine Gruppe (innen/mitte/außen/außenring) das früheste Token
@@ -91,14 +146,16 @@ def pick_group_token_from_first_n(
     if first_n_events.empty:
         return [code_util.PLACEHOLDER_OTHER]
 
-    # bundles in first_n (exakt start/end)
+    # bundles in first_n according to requested matching mode
     fe = first_n_events.copy()
-    fe["bundle_key"] = list(zip(fe["start_s"], fe["end_s"]))
+    bundle_frames = build_time_bundles(fe, combo_time_match_mode=combo_time_match_mode)
 
     candidates: List[Tuple[float, float, Tuple[int, int, str], str]] = []
     # (start_s, end_s, prio, token)
 
-    for (bs, be), bg in fe.groupby("bundle_key", sort=False):
+    for bg in bundle_frames:
+        bs = float(bg["start_s"].min())
+        be = float(bg["end_s"].max())
         tokens = sorted(
             set(bg["code"].tolist()),
             key=lambda c: code_util.CODE_TO_PRIO.get(c, (999, 999)),
