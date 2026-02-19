@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 import pandas as pd
 from typing import List, Tuple, Dict
 
@@ -108,8 +109,10 @@ class CodeUtil:
 
     def _load_external_labels(self):
         """Load labels from JSON file if available."""
+        base_dir = Path(__file__).resolve().parent
+        labels_path = base_dir.parent / "output.json"
         try:
-            with open("../output.json", "r") as f:
+            with labels_path.open("r", encoding="utf-8") as f:
                 labels = json.load(f)
             for key, label in self.LABEL_MAP.items():
                 self.LABEL_MAP[key] = labels.get(key, label)
@@ -137,11 +140,13 @@ class CodeUtil:
         self, cooccurrence_csv: str, min_window_count: int = 5, refresh: bool = False
     ):
         """Load data-driven combo rules from co-occurrence analysis (bundles or pairs)."""
+        base_dir = Path(__file__).resolve().parent
+        rules_cache_path = base_dir / "DATA_DRIVEN_COMBO_RULES.json"
+
         if not refresh:
             try:
-                self.DATA_DRIVEN_COMBO_RULES = json.load(
-                    open("DATA_DRIVEN_COMBO_RULES.json", "r")
-                )
+                with rules_cache_path.open("r", encoding="utf-8") as f:
+                    self.DATA_DRIVEN_COMBO_RULES = json.load(f)
                 print("[OK] Loaded data-driven combo rules from co-occurrence analysis")
                 print(json.dumps(self.DATA_DRIVEN_COMBO_RULES, indent=4))
                 return
@@ -150,10 +155,14 @@ class CodeUtil:
                     "[WARN] Could not load pre-computed combo rules file. Proceeding with refresh."
                 )
 
+        cooccurrence_path = Path(cooccurrence_csv)
+        if not cooccurrence_path.is_absolute():
+            cooccurrence_path = base_dir / cooccurrence_path
+
         try:
-            df = pd.read_csv(cooccurrence_csv)
+            df = pd.read_csv(cooccurrence_path)
         except FileNotFoundError:
-            print(f"[WARN] Could not load co-occurrence file: {cooccurrence_csv}")
+            print(f"[WARN] Could not load co-occurrence file: {cooccurrence_path}")
             return
 
         # Check what columns exist in the CSV[1][4]
@@ -172,15 +181,16 @@ class CodeUtil:
         self._instance.COMBO_RULES = self._get_all_combo_rules()
         self.ALLOWED_CODES = self._compute_allowed_codes()
 
-        json.dump(
-            [
-                (list(codes), label, count)
-                for codes, label, count in self.DATA_DRIVEN_COMBO_RULES
-            ],
-            open("DATA_DRIVEN_COMBO_RULES.json", "w"),
-            ensure_ascii=False,
-            indent=4,
-        )
+        with rules_cache_path.open("w", encoding="utf-8") as f:
+            json.dump(
+                [
+                    (list(codes), label, count)
+                    for codes, label, count in self.DATA_DRIVEN_COMBO_RULES
+                ],
+                f,
+                ensure_ascii=False,
+                indent=4,
+            )
         print(f"[OK] Loaded {len(self.DATA_DRIVEN_COMBO_RULES)} data-driven rules")
 
     def _load_bundle_rules(self, df: pd.DataFrame, min_window_count: int = 5):

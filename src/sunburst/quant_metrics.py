@@ -8,6 +8,14 @@ from src.sunburst.code_util import CodeUtil
 code_util = CodeUtil()
 
 
+def _ordered_pair(code1: str, code2: str) -> tuple[str, str]:
+    def _key(c: str) -> tuple[int, int, str]:
+        pr = code_util.CODE_TO_PRIO.get(c, (999, 999))
+        return (pr[0], pr[1], c)
+
+    return tuple(sorted((code1, code2), key=_key))
+
+
 def analyze_code_cooccurrences(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
     Analyze temporal co-occurrences of codes.
@@ -23,18 +31,19 @@ def analyze_code_cooccurrences(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataF
 
     # ===== CO-OCCURRENCE 1: Same Start Time =====
     same_start_pairs = []
-    for start_time, group in d.groupby("start_s"):
+    for (_filename, start_time), group in d.groupby(["Filename", "start_s"]):
         codes_at_time = group["code"].unique()
         if len(codes_at_time) > 1:
             # Generate all pairs
             for i, code1 in enumerate(codes_at_time):
                 for code2 in codes_at_time[i + 1 :]:
+                    left, right = _ordered_pair(code1, code2)
                     same_start_pairs.append(
                         {
-                            "code1": code1,
-                            "label1": code_util.LABEL_MAP.get(code1, code1),
-                            "code2": code2,
-                            "label2": code_util.LABEL_MAP.get(code2, code2),
+                            "code1": left,
+                            "label1": code_util.LABEL_MAP.get(left, left),
+                            "code2": right,
+                            "label2": code_util.LABEL_MAP.get(right, right),
                             "start_time": start_time,
                             "cooccurrence_type": "Same Start Time",
                         }
@@ -53,17 +62,20 @@ def analyze_code_cooccurrences(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataF
 
     # ===== CO-OCCURRENCE 2: Same Start AND End Time (Exact Bundles) =====
     same_window_pairs = []
-    for (start_time, end_time), group in d.groupby(["start_s", "end_s"]):
+    for (_filename, start_time, end_time), group in d.groupby(
+        ["Filename", "start_s", "end_s"]
+    ):
         codes_in_window = group["code"].unique()
         if len(codes_in_window) > 1:
             for i, code1 in enumerate(codes_in_window):
                 for code2 in codes_in_window[i + 1 :]:
+                    left, right = _ordered_pair(code1, code2)
                     same_window_pairs.append(
                         {
-                            "code1": code1,
-                            "label1": code_util.LABEL_MAP.get(code1, code1),
-                            "code2": code2,
-                            "label2": code_util.LABEL_MAP.get(code2, code2),
+                            "code1": left,
+                            "label1": code_util.LABEL_MAP.get(left, left),
+                            "code2": right,
+                            "label2": code_util.LABEL_MAP.get(right, right),
                             "start_time": start_time,
                             "end_time": end_time,
                             "duration": end_time - start_time,

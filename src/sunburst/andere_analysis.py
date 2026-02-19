@@ -5,7 +5,7 @@ Analyze PLACEHOLDER_OTHER ("Andere") occurrences in each ring.
 Identify which codes are present but not selected for each ring.
 """
 
-from typing import Dict
+from typing import Dict, Literal
 import pandas as pd
 from src.sunburst.code_util import CodeUtil
 
@@ -55,13 +55,16 @@ def analyze_andere_by_ring(per_path_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def analyze_codes_causing_andere(
-    df: pd.DataFrame, per_path_df: pd.DataFrame
+    df: pd.DataFrame,
+    per_path_df: pd.DataFrame,
+    start_lookahead_n: int = 12,
+    combo_time_match_mode: Literal["exact", "overlap"] = "exact",
 ) -> pd.DataFrame:
     """
     For each ring, identify what codes were present in bundles
     that resulted in "Andere" selection.
     """
-    from src.sunburst.helper import normalize_code, parse_time_to_seconds
+    from src.sunburst.helper import normalize_code, parse_time_to_seconds, build_time_bundles
 
     d = df.copy()
     d["code"] = d["Sequence_Code"].map(normalize_code)
@@ -96,15 +99,15 @@ def analyze_codes_causing_andere(
             "code_priority", axis=1
         )
 
-        # Group by bundles
+        # Group by bundles in the same mode used for path building
         bundles = []
-        for (bs, be), bundle_group in g_sorted.groupby(
-            ["start_s", "end_s"], sort=False
+        for bundle_group in build_time_bundles(
+            g_sorted, combo_time_match_mode=combo_time_match_mode
         ):
             bundles.append(
                 {
-                    "start_s": float(bs),
-                    "end_s": float(be),
+                    "start_s": float(bundle_group["start_s"].min()),
+                    "end_s": float(bundle_group["end_s"].max()),
                     "codes": bundle_group["code"].tolist(),
                 }
             )
@@ -115,7 +118,7 @@ def analyze_codes_causing_andere(
         if n_bundles == 0:
             continue
 
-        bundles = bundles[: max(4, 12)]  # Use same lookahead as main
+        bundles = bundles[: max(4, start_lookahead_n)]
         n_bundles = len(bundles)
 
         # Split into 4 rings

@@ -173,14 +173,14 @@ def pick_group_token_from_first_n(
         return [code_util.PLACEHOLDER_OTHER]
 
     candidates.sort(key=lambda x: (x[0], x[1], x[2][0], x[2][1], x[2][2]))
-    return [c[3] for c in candidates]
+    return [candidates[0][3]]
 
 
 def customwrap(s, width=20):
     """Wrap text by adding <br> tags for Plotly"""
     try:
         return "<br>".join(textwrap.wrap(s, width=width))
-    except:
+    except Exception:
         return s
 
 

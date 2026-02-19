@@ -318,7 +318,9 @@ def main():
     if args.cooccurrence_csv:
         code_util = CodeUtil()
         code_util.load_data_driven_rules(
-            args.cooccurrence_csv, min_window_count=args.min_window_count, refresh=True
+            args.cooccurrence_csv,
+            min_window_count=args.min_window_count,
+            refresh=args.refresh_data_driven_rules,
         )
 
     df = pd.read_csv(args.csv)
@@ -392,7 +394,12 @@ def main():
     if not args.all_codes_together:
         print("\n[*] Analyzing 'Andere' occurrences...")
         andere_by_ring = analyze_andere_by_ring(per_path)
-        codes_causing_andere = analyze_codes_causing_andere(df, per_path)
+        codes_causing_andere = analyze_codes_causing_andere(
+            df,
+            per_path,
+            start_lookahead_n=args.start_lookahead_n,
+            combo_time_match_mode=args.combo_time_match_mode,
+        )
         andere_by_ring.to_csv(f"{args.out_prefix}_andere_by_ring.csv", index=False)
         codes_causing_andere.to_csv(
             f"{args.out_prefix}_codes_in_andere_cases.csv", index=False
