@@ -28,6 +28,7 @@ from src.sunburst.services import (
     CooccurrenceAnalyzerService,
     AndereAnalyzerService,
 )
+from src.sunburst.time_series_loader import TimeSeriesLoader
 
 try:
     import plotly.express as px
@@ -173,7 +174,14 @@ def main():
     else:
         context = AnalysisContext.from_code_util(code_util)
 
-    df = pd.read_csv(args.csv)
+    dataset = TimeSeriesLoader().from_csv(args.csv)
+    df = dataset.to_legacy_dataframe()
+    logger.info(
+        "Loaded %s events (%s interval, %s point).",
+        len(dataset.events),
+        sum(1 for e in dataset.events if e.start_seconds != e.end_seconds),
+        sum(1 for e in dataset.events if e.start_seconds == e.end_seconds),
+    )
 
     # === FEATURE TOGGLE: Select analysis approach ===
     if args.all_codes_together:

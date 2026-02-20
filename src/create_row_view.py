@@ -417,5 +417,5 @@ def main(input_path, output_path):
 
 if __name__ == "__main__":
     input_path = "../data/transformed/analysis_results/sequence_analysis.csv"
-    output_path = "row_view_sequence_analysis.csv"
+    output_path = "übersicht_situationen_länge_pro_datei.csv"
     main(input_path, output_path)

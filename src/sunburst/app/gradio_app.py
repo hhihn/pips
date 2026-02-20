@@ -329,74 +329,111 @@ def build_demo() -> gr.Blocks:
                 )
                 csv_pfad = gr.Textbox(
                     label="CSV-Pfad (wenn kein Upload)",
+                    info="Pfad zur Eingabe-CSV auf dem Dateisystem. Wird genutzt, wenn kein Upload gewählt wurde.",
                     value=str(DEFAULT_CSV),
                 )
                 out_prefix = gr.Textbox(
                     label="Ausgabepräfix",
+                    info="Basisname für erzeugte Dateien wie HTML und Analyse-CSV.",
                     value="out_paths",
                 )
 
                 with gr.Tabs():
                     with gr.Tab("Kern-Einstellungen"):
                         max_depth = gr.Number(
-                            label="Maximale Sunburst-Tiefe", value=4, precision=0
+                            label="Maximale Sunburst-Tiefe",
+                            info="Begrenzt die Anzahl der Ebenen im Sunburst.",
+                            value=4,
+                            precision=0,
                         )
                         start_lookahead_n = gr.Number(
-                            label="Lookahead N", value=5, precision=0
+                            label="Lookahead N",
+                            info="Anzahl folgender Schritte, die pro Startpunkt für Pfade berücksichtigt werden.",
+                            value=5,
+                            precision=0,
                         )
                         min_support = gr.Number(
-                            label="Mindest-Support", value=1, precision=0
+                            label="Mindest-Support",
+                            info="Minimale Häufigkeit, damit ein Pfad im Ergebnis bleibt.",
+                            value=1,
+                            precision=0,
                         )
                         rare_label = gr.Textbox(
-                            label="Label für seltene Pfade", value="Andere (selten)"
+                            label="Label für seltene Pfade",
+                            info="Textlabel für zusammengefasste seltene Pfade.",
+                            value="Andere (selten)",
                         )
                         drop_rare_paths = gr.Checkbox(
-                            label="Seltene Pfade verwerfen", value=False
+                            label="Seltene Pfade verwerfen",
+                            info="Entfernt seltene Pfade vollständig statt sie unter einem Sammellabel zu gruppieren.",
+                            value=False,
                         )
 
                     with gr.Tab("Erweiterte Einstellungen"):
                         cooccurrence_csv = gr.Textbox(
                             label="Co-Occurrence CSV",
+                            info="Pfad zur Co-Occurrence-Datei für datengetriebene Combo-Regeln.",
                             value="csv_analysen/cooccurrence/out_paths_cooccurrence_same_window.csv",
                         )
                         min_window_count = gr.Number(
-                            label="Minimale Fensteranzahl", value=5, precision=0
+                            label="Minimale Fensteranzahl",
+                            info="Mindestanzahl gemeinsamer Fenster für die Übernahme einer Combo-Regel.",
+                            value=5,
+                            precision=0,
                         )
                         refresh_data_driven_rules = gr.Checkbox(
                             label="Data-driven Regeln neu berechnen",
+                            info="Berechnet DATA_DRIVEN_COMBO_RULES.json vor dem Lauf neu aus den Co-Occurrence-Daten.",
                             value=False,
                         )
                         no_sunburst = gr.Checkbox(
-                            label="Sunburst nicht erzeugen (--no_sunburst)", value=False
+                            label="Sunburst nicht erzeugen (--no_sunburst)",
+                            info="Überspringt die HTML-Sunburst-Erzeugung und führt nur die Analysen aus.",
+                            value=False,
                         )
                         no_branching_analysis = gr.Checkbox(
                             label="Branching-Analyse deaktivieren",
+                            info="Schaltet die Branching-Auswertung aus und erzeugt keine Branching-CSV.",
                             value=False,
                         )
                         branching_max_depth = gr.Number(
                             label="Branching max depth (leer = max_depth)",
+                            info="Maximale Tiefe nur für Branching-Analyse. Leer nutzt die Sunburst-Tiefe.",
                             value=None,
                             precision=0,
                         )
                         min_branch_parent_count = gr.Number(
-                            label="Min Branch Parent Count", value=3, precision=0
+                            label="Min Branch Parent Count",
+                            info="Mindesthäufigkeit des Elternknotens für Branching-Auswertung.",
+                            value=3,
+                            precision=0,
                         )
                         min_branch_child_count = gr.Number(
-                            label="Min Branch Child Count", value=1, precision=0
+                            label="Min Branch Child Count",
+                            info="Mindesthäufigkeit eines Kindknotens innerhalb eines Branchings.",
+                            value=1,
+                            precision=0,
                         )
                         min_branch_children = gr.Number(
-                            label="Min Distinct Branch Children", value=2, precision=0
+                            label="Min Distinct Branch Children",
+                            info="Mindestanzahl unterschiedlicher Kinder, damit ein Knoten als Branching gilt.",
+                            value=2,
+                            precision=0,
                         )
                         all_codes_together = gr.Checkbox(
-                            label="Alle Codes zusammen", value=False
+                            label="Alle Codes zusammen",
+                            info="Verarbeitet alle Code-Gruppen gemeinsam statt getrennt.",
+                            value=False,
                         )
                         combo_time_match_mode = gr.Radio(
                             label="Combo-Zeitmodus",
+                            info="keine: keine Combos, exact: nur identische Zeitfenster, overlap: überlappende Zeitfenster.",
                             choices=["keine", "exact", "overlap"],
                             value="exact",
                         )
                         log_level = gr.Radio(
                             label="Log-Level",
+                            info="Steuert die Detailtiefe der Protokollausgaben während der Verarbeitung.",
                             choices=["DEBUG", "INFO", "WARNING", "ERROR"],
                             value="INFO",
                         )
