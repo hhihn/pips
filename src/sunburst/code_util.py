@@ -48,7 +48,8 @@ class CodeUtil:
         # Data-driven rules: Now supports arbitrary-length tuples
         self.DATA_DRIVEN_COMBO_RULES: List[Tuple[Tuple[str, ...], str, int]] = []
         self.load_data_driven_rules(
-            cooccurrence_csv="out_paths_cooccurrence_same_window.csv", refresh=False
+            cooccurrence_csv="csv_analysen/cooccurrence/out_paths_cooccurrence_same_window.csv",
+            refresh=False,
         )
         # Combo rules
         self.COMBO_RULES = self._get_all_combo_rules()

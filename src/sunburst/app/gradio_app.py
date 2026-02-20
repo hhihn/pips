@@ -4,10 +4,12 @@
 from __future__ import annotations
 
 import html
+import json
 import os
 import subprocess
 import sys
 import tempfile
+from datetime import datetime
 from pathlib import Path
 
 import gradio as gr
@@ -20,6 +22,8 @@ DEFAULT_CSV = (SRC_DIR / "extracted_sequences.csv").resolve()
 LOGO_PATH = BASE_DIR / "PIPS_Logo_mit_Untertitel.png"
 
 CSS_PATH = BASE_DIR / "gradio_theme.css"
+CODE_UTIL_CONFIG_PATH = SUNBURST_DIR / "code_util_config.json"
+CODE_DESCRIPTIONS_PATH = BASE_DIR / "code_descriptions.json"
 
 
 def _load_theme_css() -> str:
@@ -47,6 +51,87 @@ def _build_iframe_from_html_file(html_path: Path) -> str:
         '<iframe style="width:100%;height:820px;border:1px solid #ddd;border-radius:8px;" '
         f'srcdoc="{escaped}"></iframe>'
     )
+
+
+def lade_code_util_config() -> tuple[str, str]:
+    if not CODE_UTIL_CONFIG_PATH.exists():
+        return "", f"Fehler: Datei nicht gefunden: {CODE_UTIL_CONFIG_PATH}"
+    try:
+        data = json.loads(CODE_UTIL_CONFIG_PATH.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        return "", f"Fehler beim Lesen der JSON-Datei: {exc}"
+    pretty = json.dumps(data, ensure_ascii=False, indent=2)
+    return pretty, f"Konfiguration geladen: {CODE_UTIL_CONFIG_PATH}"
+
+
+def speichere_code_util_config(config_text: str) -> str:
+    if not config_text or not config_text.strip():
+        return "Fehler: Leerer Inhalt. Bitte gültiges JSON eingeben."
+    try:
+        parsed = json.loads(config_text)
+    except json.JSONDecodeError as exc:
+        return f"Fehler: Ungültiges JSON: {exc}"
+
+    required_keys = {
+        "placeholder_other",
+        "prio_groups",
+        "label_map",
+        "predefined_combo_rules",
+        "acting_codes",
+    }
+    missing = [k for k in required_keys if k not in parsed]
+    if missing:
+        return f"Fehler: Pflichtfelder fehlen: {', '.join(sorted(missing))}"
+
+    try:
+        if CODE_UTIL_CONFIG_PATH.exists():
+            ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+            backup_path = CODE_UTIL_CONFIG_PATH.with_suffix(f".backup_{ts}.json")
+            backup_path.write_text(CODE_UTIL_CONFIG_PATH.read_text(encoding="utf-8"), encoding="utf-8")
+        CODE_UTIL_CONFIG_PATH.write_text(
+            json.dumps(parsed, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+    except Exception as exc:
+        return f"Fehler beim Speichern: {exc}"
+
+    return f"Konfiguration gespeichert: {CODE_UTIL_CONFIG_PATH}"
+
+
+def lade_code_descriptions() -> tuple[str, str]:
+    if not CODE_DESCRIPTIONS_PATH.exists():
+        return "", f"Fehler: Datei nicht gefunden: {CODE_DESCRIPTIONS_PATH}"
+    try:
+        data = json.loads(CODE_DESCRIPTIONS_PATH.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        return "", f"Fehler beim Lesen der JSON-Datei: {exc}"
+    pretty = json.dumps(data, ensure_ascii=False, indent=2)
+    return pretty, f"Beschreibungskonfiguration geladen: {CODE_DESCRIPTIONS_PATH}"
+
+
+def speichere_code_descriptions(config_text: str) -> str:
+    if not config_text or not config_text.strip():
+        return "Fehler: Leerer Inhalt. Bitte gültiges JSON eingeben."
+    try:
+        parsed = json.loads(config_text)
+    except json.JSONDecodeError as exc:
+        return f"Fehler: Ungültiges JSON: {exc}"
+
+    try:
+        if CODE_DESCRIPTIONS_PATH.exists():
+            ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+            backup_path = CODE_DESCRIPTIONS_PATH.with_suffix(f".backup_{ts}.json")
+            backup_path.write_text(
+                CODE_DESCRIPTIONS_PATH.read_text(encoding="utf-8"), encoding="utf-8"
+            )
+        CODE_DESCRIPTIONS_PATH.write_text(
+            json.dumps(parsed, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+    except Exception as exc:
+        return f"Fehler beim Speichern: {exc}"
+
+    return f"Beschreibungskonfiguration gespeichert: {CODE_DESCRIPTIONS_PATH}"
 
 
 def starte_sunburst(
@@ -197,63 +282,134 @@ def build_demo() -> gr.Blocks:
                     value="out_paths",
                 )
 
-                gr.Markdown("### Kern-Einstellungen")
-                max_depth = gr.Number(label="Maximale Sunburst-Tiefe", value=4, precision=0)
-                start_lookahead_n = gr.Number(label="Lookahead N", value=5, precision=0)
-                min_support = gr.Number(label="Mindest-Support", value=1, precision=0)
-                rare_label = gr.Textbox(label="Label für seltene Pfade", value="Andere (selten)")
-                drop_rare_paths = gr.Checkbox(label="Seltene Pfade verwerfen", value=False)
+                with gr.Tabs():
+                    with gr.Tab("Kern-Einstellungen"):
+                        max_depth = gr.Number(
+                            label="Maximale Sunburst-Tiefe", value=4, precision=0
+                        )
+                        start_lookahead_n = gr.Number(
+                            label="Lookahead N", value=5, precision=0
+                        )
+                        min_support = gr.Number(
+                            label="Mindest-Support", value=1, precision=0
+                        )
+                        rare_label = gr.Textbox(
+                            label="Label für seltene Pfade", value="Andere (selten)"
+                        )
+                        drop_rare_paths = gr.Checkbox(
+                            label="Seltene Pfade verwerfen", value=False
+                        )
 
-                gr.Markdown("### Co-Occurrence / Regeln")
-                cooccurrence_csv = gr.Textbox(
-                    label="Co-Occurrence CSV",
-                    value="out_paths_cooccurrence_same_window.csv",
-                )
-                min_window_count = gr.Number(label="Minimale Fensteranzahl", value=5, precision=0)
-                refresh_data_driven_rules = gr.Checkbox(
-                    label="Data-driven Regeln neu berechnen",
-                    value=False,
-                )
-
-                gr.Markdown("### Analyse-Schalter")
-                no_sunburst = gr.Checkbox(label="Sunburst nicht erzeugen (--no_sunburst)", value=False)
-                no_branching_analysis = gr.Checkbox(
-                    label="Branching-Analyse deaktivieren",
-                    value=False,
-                )
-                branching_max_depth = gr.Number(
-                    label="Branching max depth (leer = max_depth)",
-                    value=None,
-                    precision=0,
-                )
-                min_branch_parent_count = gr.Number(label="Min Branch Parent Count", value=3, precision=0)
-                min_branch_child_count = gr.Number(label="Min Branch Child Count", value=1, precision=0)
-                min_branch_children = gr.Number(label="Min Distinct Branch Children", value=2, precision=0)
-                all_codes_together = gr.Checkbox(label="Alle Codes zusammen", value=False)
-                combo_time_match_mode = gr.Radio(
-                    label="Combo-Zeitmodus",
-                    choices=["keine", "exact", "overlap"],
-                    value="exact",
-                )
-                log_level = gr.Radio(
-                    label="Log-Level",
-                    choices=["DEBUG", "INFO", "WARNING", "ERROR"],
-                    value="INFO",
-                )
+                    with gr.Tab("Erweiterte Einstellungen"):
+                        cooccurrence_csv = gr.Textbox(
+                            label="Co-Occurrence CSV",
+                            value="csv_analysen/cooccurrence/out_paths_cooccurrence_same_window.csv",
+                        )
+                        min_window_count = gr.Number(
+                            label="Minimale Fensteranzahl", value=5, precision=0
+                        )
+                        refresh_data_driven_rules = gr.Checkbox(
+                            label="Data-driven Regeln neu berechnen",
+                            value=False,
+                        )
+                        no_sunburst = gr.Checkbox(
+                            label="Sunburst nicht erzeugen (--no_sunburst)", value=False
+                        )
+                        no_branching_analysis = gr.Checkbox(
+                            label="Branching-Analyse deaktivieren",
+                            value=False,
+                        )
+                        branching_max_depth = gr.Number(
+                            label="Branching max depth (leer = max_depth)",
+                            value=None,
+                            precision=0,
+                        )
+                        min_branch_parent_count = gr.Number(
+                            label="Min Branch Parent Count", value=3, precision=0
+                        )
+                        min_branch_child_count = gr.Number(
+                            label="Min Branch Child Count", value=1, precision=0
+                        )
+                        min_branch_children = gr.Number(
+                            label="Min Distinct Branch Children", value=2, precision=0
+                        )
+                        all_codes_together = gr.Checkbox(
+                            label="Alle Codes zusammen", value=False
+                        )
+                        combo_time_match_mode = gr.Radio(
+                            label="Combo-Zeitmodus",
+                            choices=["keine", "exact", "overlap"],
+                            value="exact",
+                        )
+                        log_level = gr.Radio(
+                            label="Log-Level",
+                            choices=["DEBUG", "INFO", "WARNING", "ERROR"],
+                            value="INFO",
+                        )
 
                 run_btn = gr.Button(
                     "Sunburst starten", variant="primary", elem_classes=["pips-primary"]
                 )
 
             with gr.Column(scale=2, elem_classes=["pips-panel"]):
-                gr.Markdown("### Ergebnis")
-                sunburst_view = gr.HTML(label="Sunburst")
-                sunburst_file = gr.File(label="Sunburst HTML herunterladen")
-                protokoll = gr.Textbox(
-                    label="Protokoll",
-                    lines=20,
-                    max_lines=40,
-                )
+                with gr.Tabs():
+                    with gr.Tab("Ergebnis"):
+                        gr.Markdown("### Ergebnis")
+                        sunburst_view = gr.HTML(label="Sunburst")
+                        sunburst_file = gr.File(label="Sunburst HTML herunterladen")
+                        protokoll = gr.Textbox(
+                            label="Protokoll",
+                            lines=20,
+                            max_lines=40,
+                        )
+                    with gr.Tab("Code-Config Editor"):
+                        gr.Markdown(
+                            "### `code_util_config.json` bearbeiten\n"
+                            "Änderungen werden direkt in die Konfigurationsdatei geschrieben."
+                        )
+                        config_editor = gr.Code(
+                            label="JSON-Konfiguration",
+                            language="json",
+                            lines=28,
+                            value=lade_code_util_config()[0],
+                        )
+                        with gr.Row():
+                            laden_btn = gr.Button("Konfiguration laden")
+                            speichern_btn = gr.Button(
+                                "Konfiguration speichern",
+                                variant="primary",
+                                elem_classes=["pips-primary"],
+                            )
+                        config_status = gr.Textbox(
+                            label="Status",
+                            lines=3,
+                            max_lines=6,
+                            value=lade_code_util_config()[1],
+                        )
+                    with gr.Tab("Code-Descriptions Editor"):
+                        gr.Markdown(
+                            "### `app/code_descriptions.json` bearbeiten\n"
+                            "Änderungen werden direkt in die Konfigurationsdatei geschrieben."
+                        )
+                        code_desc_editor = gr.Code(
+                            label="JSON-Beschreibungen",
+                            language="json",
+                            lines=28,
+                            value=lade_code_descriptions()[0],
+                        )
+                        with gr.Row():
+                            laden_desc_btn = gr.Button("Beschreibungen laden")
+                            speichern_desc_btn = gr.Button(
+                                "Beschreibungen speichern",
+                                variant="primary",
+                                elem_classes=["pips-primary"],
+                            )
+                        code_desc_status = gr.Textbox(
+                            label="Status",
+                            lines=3,
+                            max_lines=6,
+                            value=lade_code_descriptions()[1],
+                        )
 
         run_btn.click(
             fn=starte_sunburst,
@@ -280,6 +436,27 @@ def build_demo() -> gr.Blocks:
                 log_level,
             ],
             outputs=[sunburst_view, sunburst_file, protokoll],
+        )
+
+        laden_btn.click(
+            fn=lade_code_util_config,
+            inputs=[],
+            outputs=[config_editor, config_status],
+        )
+        speichern_btn.click(
+            fn=speichere_code_util_config,
+            inputs=[config_editor],
+            outputs=[config_status],
+        )
+        laden_desc_btn.click(
+            fn=lade_code_descriptions,
+            inputs=[],
+            outputs=[code_desc_editor, code_desc_status],
+        )
+        speichern_desc_btn.click(
+            fn=speichere_code_descriptions,
+            inputs=[code_desc_editor],
+            outputs=[code_desc_status],
         )
 
     return demo

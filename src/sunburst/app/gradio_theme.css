@@ -11,7 +11,7 @@
   color: var(--pips-ink) !important;
   background:
     radial-gradient(circle at 8% 8%, rgba(255, 231, 0, 0.25), transparent 25%),
-    radial-gradient(circle at 92% 12%, rgba(175, 167, 255, 0.2), transparent 24%),
+    radial-gradient(circle at 92% 12%, rgba(175, 167, 255, 0.20), transparent 24%),
     radial-gradient(circle at 92% 92%, rgba(255, 88, 98, 0.15), transparent 28%),
     #fffdf7;
 }
@@ -20,7 +20,7 @@
 .gradio-container label, .gradio-container h1, .gradio-container h2,
 .gradio-container h3, .gradio-container h4, .gradio-container h5,
 .gradio-container .prose, .gradio-container .prose * {
-  color: var(--pips-ink) !important;
+  color: #fffdf7!important;
 }
 
 .gradio-container input,
@@ -28,7 +28,15 @@
 .gradio-container select,
 .gradio-container .wrap,
 .gradio-container .block {
-  color: var(--pips-ink) !important;
+  color: #fffdf7 !important;
+}
+
+
+.gradio-container input,
+.gradio-container textarea,
+.gradio-container select,
+.gradio-container .wrap-inner {
+  background-color: var(--pips-lavender) !important;
 }
 
 .gradio-container input::placeholder,
@@ -68,7 +76,26 @@
   filter: brightness(1.05);
 }
 
+
+
 .pips-logo img {
   max-height: 88px !important;
   width: auto !important;
+}
+
+/* Tab text color: non-selected tabs in black */
+.gradio-container .tab-nav button,
+.gradio-container [role="tab"]:not([aria-selected="true"]) {
+  color: #000000 !important;
+}
+
+/* Simple informational text blocks in lavender */
+.gradio-container .gr-markdown,
+.gradio-container .gr-markdown p,
+.gradio-container .gr-markdown li,
+.gradio-container .gr-markdown span,
+.gradio-container .gr-prose,
+.gradio-container .gr-prose p,
+.gradio-container .gr-prose li {
+  color: var(--pips-lavender) !important;
 }

@@ -1,5 +1,6 @@
 import pandas as pd
 import logging
+from pathlib import Path
 
 if not logging.getLogger().handlers:
     logging.basicConfig(
@@ -9,9 +10,13 @@ if not logging.getLogger().handlers:
 
 logger = logging.getLogger(__name__)
 
-input_file = "out_paths_cooccurrence_same_window.csv"
+ANALYSIS_ROOT = Path("csv_analysen")
+THEME_DIR = ANALYSIS_ROOT / "konsistenz"
+THEME_DIR.mkdir(parents=True, exist_ok=True)
 
-df = pd.read_csv(input_file)
+input_file = ANALYSIS_ROOT / "cooccurrence" / "out_paths_cooccurrence_same_window.csv"
+
+df = pd.read_csv(str(input_file))
 
 fk_term = "FK führt Hdlg. für Kind aus"
 
@@ -43,9 +48,11 @@ logger.info("B) FK führt Hdlg. OHNE Position (hinten/seite/vorne)")
 logger.info("==============================")
 logger.info("\n%s", df_B[["bundle_key", "bundle_label", "count"]])
 
-df_A.to_csv("filter_A_position_ohne_fk.csv", index=False)
-df_B.to_csv("filter_B_fk_ohne_position.csv", index=False)
+out_a = THEME_DIR / "filter_A_position_ohne_fk.csv"
+out_b = THEME_DIR / "filter_B_fk_ohne_position.csv"
+df_A.to_csv(str(out_a), index=False)
+df_B.to_csv(str(out_b), index=False)
 
 logger.info("Dateien gespeichert:")
-logger.info("- filter_A_position_ohne_fk.csv")
-logger.info("- filter_B_fk_ohne_position.csv")
+logger.info("- %s", out_a)
+logger.info("- %s", out_b)

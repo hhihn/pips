@@ -9,6 +9,7 @@ Neu: Toggle zwischen zwei Ansätzen:
 
 import argparse
 import logging
+from pathlib import Path
 from typing import List, Tuple
 import pandas as pd
 from src.sunburst.helper import (
@@ -34,6 +35,16 @@ except Exception:
     px = None
 
 logger = logging.getLogger(__name__)
+CSV_ANALYSIS_ROOT = "csv_analysen"
+
+
+def _csv_out_path(out_prefix: str, theme: str, suffix: str) -> Path:
+    """Route CSV outputs into themed analysis folders."""
+    out_prefix_path = Path(out_prefix)
+    filename = f"{out_prefix_path.name}_{suffix}.csv"
+    target_dir = out_prefix_path.parent / CSV_ANALYSIS_ROOT / theme
+    target_dir.mkdir(parents=True, exist_ok=True)
+    return target_dir / filename
 
 
 def build_sequences_parts_approach(
@@ -93,7 +104,7 @@ def main():
     )
     ap.add_argument(
         "--cooccurrence_csv",
-        default="out_paths_cooccurrence_same_window.csv",
+        default="csv_analysen/cooccurrence/out_paths_cooccurrence_same_window.csv",
         help="Path to cooccurrence CSV",
     )
     ap.add_argument("--min_window_count", type=int, default=5)
@@ -183,14 +194,16 @@ def main():
             start_lookahead_n=args.start_lookahead_n,
         )
 
-    per_path.to_csv(f"{args.out_prefix}_per_path_sequences.csv", index=False)
+    per_path_path = _csv_out_path(args.out_prefix, "pfade", "per_path_sequences")
+    per_path.to_csv(per_path_path, index=False)
     counts = (
         per_path.groupby(["start_group", "sequence_labels"])
         .size()
         .reset_index(name="count")
         .sort_values(["start_group", "count"], ascending=[True, False])
     )
-    counts.to_csv(f"{args.out_prefix}_path_counts.csv", index=False)
+    path_counts_path = _csv_out_path(args.out_prefix, "pfade", "path_counts")
+    counts.to_csv(path_counts_path, index=False)
 
     # === Branching Analysis ===
     if not args.no_branching_analysis:
@@ -207,12 +220,14 @@ def main():
             min_child_count=max(1, args.min_branch_child_count),
             min_distinct_children=max(2, args.min_branch_children),
         )
-        branching_codes.to_csv(f"{args.out_prefix}_branching_codes.csv", index=False)
-        branching_nodes.to_csv(f"{args.out_prefix}_branching_nodes.csv", index=False)
+        branching_codes_path = _csv_out_path(args.out_prefix, "branching", "branching_codes")
+        branching_nodes_path = _csv_out_path(args.out_prefix, "branching", "branching_nodes")
+        branching_codes.to_csv(branching_codes_path, index=False)
+        branching_nodes.to_csv(branching_nodes_path, index=False)
         logger.info(
-            "Wrote: %s_branching_codes.csv, %s_branching_nodes.csv",
-            args.out_prefix,
-            args.out_prefix,
+            "Wrote: %s, %s",
+            branching_codes_path,
+            branching_nodes_path,
         )
 
     # === Co-occurrence Analysis ===
@@ -220,13 +235,12 @@ def main():
     same_start_counts, same_window_counts, summary = CooccurrenceAnalyzerService(
         context=context
     ).analyze(df)
-    same_start_counts.to_csv(
-        f"{args.out_prefix}_cooccurrence_same_start.csv", index=False
-    )
-    same_window_counts.to_csv(
-        f"{args.out_prefix}_cooccurrence_same_window.csv", index=False
-    )
-    summary.to_csv(f"{args.out_prefix}_cooccurrence_summary.csv", index=False)
+    co_start_path = _csv_out_path(args.out_prefix, "cooccurrence", "cooccurrence_same_start")
+    co_window_path = _csv_out_path(args.out_prefix, "cooccurrence", "cooccurrence_same_window")
+    co_summary_path = _csv_out_path(args.out_prefix, "cooccurrence", "cooccurrence_summary")
+    same_start_counts.to_csv(co_start_path, index=False)
+    same_window_counts.to_csv(co_window_path, index=False)
+    summary.to_csv(co_summary_path, index=False)
 
     # === "Andere" Analysis ===
     if not args.all_codes_together:
@@ -239,10 +253,10 @@ def main():
             df,
             per_path,
         )
-        andere_by_ring.to_csv(f"{args.out_prefix}_andere_by_ring.csv", index=False)
-        codes_causing_andere.to_csv(
-            f"{args.out_prefix}_codes_in_andere_cases.csv", index=False
-        )
+        andere_by_ring_path = _csv_out_path(args.out_prefix, "andere", "andere_by_ring")
+        andere_codes_path = _csv_out_path(args.out_prefix, "andere", "codes_in_andere_cases")
+        andere_by_ring.to_csv(andere_by_ring_path, index=False)
+        codes_causing_andere.to_csv(andere_codes_path, index=False)
         print_andere_report(andere_summary)
 
     logger.info("Wrote output files with prefix: %s", args.out_prefix)
