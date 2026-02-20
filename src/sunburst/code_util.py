@@ -24,28 +24,10 @@ class CodeUtil:
             return
         self._initialized = True
 
-        # Initialize all variables
-        self.PLACEHOLDER_OTHER = "Andere"
-        self.PRIO_GROUPS: List[Tuple[str, List[str]]] = [
-            (
-                "innen",
-                ["2.1.2.3", "6.5.1", "2.2.3.14"],
-            ),  # ".", "2.2.3.14", "2.1.3.1", "2.2.3.4", "6.5.3"
-            (
-                "mitte",
-                ["6.4.2", "6.5.4", "2.2.3.14"],
-            ),  # , ".", "2.2.3.14", "2.1.3.1", "2.2.3.4", "2.1.2.3", "6.4.4"
-            (
-                "aussen",
-                ["2.1.3.1", "6.5.3", "6.4.3", "6.4.4", "6.4.5"],
-            ),  # , ".", "2.1.2.3", "6.4.2"
-            (
-                "aussenring",
-                ["2.1.3.5", "2.2.3.14", "2.2.3.4", "6.5.4"],
-            ),  # , ".", "6.5.4", "2.1.3.1", "2.2.3.14", "2.2.3.4"
-        ]
+        # Load static config from JSON file.
+        self._load_base_config()
 
-        # Build CODE_TO_PRIO
+        # Build CODE_TO_PRIO from configured prio groups
         self.CODE_TO_PRIO = {}
         for gi, (_gname, codes) in enumerate(self.PRIO_GROUPS):
             for ci, c in enumerate(codes):
@@ -55,34 +37,8 @@ class CodeUtil:
             name: set(codes) for name, codes in self.PRIO_GROUPS
         }
 
-        # Initialize labels
-        self.LABEL_MAP: Dict[str, str] = {
-            "2.1.2.3": "FK benennt Ziel",
-            "6.5.1": "Kindliches Signal",
-            "6.4.2": "Aufforderung Vorb.",
-            "6.5.4": "Verbale Begleitung",
-            "2.1.3.1": "FK führt Hdlg. aus",
-            "6.5.3": "K führt Hdlg aus",
-            "6.4.3": "FK von vorn",
-            "6.4.4": "FK von der Seite",
-            "6.4.5": "FK von hinten",
-            "2.1.3.5": "Unterstützung nur verbal",
-            "2.2.3.14": "KK Objektbezug",
-            "2.2.3.4": "KK Halten",
-        }
-
         # Load external labels (optional)
         self._load_external_labels()
-
-        # Predefined rules: Now supports arbitrary-length tuples
-        self.PREDEFINED_COMBO_RULES: List[Tuple[Tuple[str, ...], str]] = [
-            (("2.1.3.1", "6.4.3"), "2.1.3.1 & 6.4.3"),
-            (("2.1.3.1", "6.4.4"), "2.1.3.1 & 6.4.4"),
-            (("2.1.3.1", "6.4.5"), "2.1.3.1 & 6.4.5"),
-            (("2.1.3.1", "2.2.3.14"), "2.1.3.1 & 2.2.3.14"),
-            (("2.1.3.1", "2.2.3.4"), "2.1.3.1 & 2.2.3.4"),
-            (("2.2.3.4", "2.2.3.14"), "2.2.3.4 & 2.2.3.14"),
-        ]
 
         # Add labels for predefined rules
         for codes_tuple, combo in self.PREDEFINED_COMBO_RULES:
@@ -98,17 +54,87 @@ class CodeUtil:
         self.COMBO_RULES = self._get_all_combo_rules()
         self.ALLOWED_CODES = self._compute_allowed_codes()
 
-        self.ACTING_CODES = {
-            "2.1.3.1",
-            "6.5.3",
-            "2.1.3.1 & 6.4.3",
-            "2.1.3.1 & 6.4.4",
-            "2.1.3.1 & 6.4.5",
-            "2.1.3.1 & 2.2.3.4",
-            "2.2.3.4 & 2.2.3.14",
-            "2.1.3.1 & 2.2.3.14",
-        }
         logger.info("CodeUtil initialization done")
+
+    def _load_base_config(self):
+        """Load static code definitions from JSON config."""
+        base_dir = Path(__file__).resolve().parent
+        config_path = base_dir / "code_util_config.json"
+        try:
+            with config_path.open("r", encoding="utf-8") as f:
+                config = json.load(f)
+        except FileNotFoundError as exc:
+            raise FileNotFoundError(
+                f"Missing CodeUtil config file: {config_path}"
+            ) from exc
+
+        required = [
+            "placeholder_other",
+            "prio_groups",
+            "label_map",
+            "predefined_combo_rules",
+            "acting_codes",
+        ]
+        missing = [k for k in required if k not in config]
+        if missing:
+            raise ValueError(
+                f"Invalid code_util_config.json: missing keys {missing}"
+            )
+
+        self.PLACEHOLDER_OTHER = str(config["placeholder_other"])
+
+        raw_prio_groups = config["prio_groups"]
+        if not isinstance(raw_prio_groups, list):
+            raise ValueError("Invalid code_util_config.json: 'prio_groups' must be a list.")
+        self.PRIO_GROUPS = []
+        for item in raw_prio_groups:
+            if not isinstance(item, dict):
+                raise ValueError(
+                    "Invalid code_util_config.json: each prio_groups entry must be an object."
+                )
+            name = str(item.get("name", "")).strip()
+            codes = item.get("codes")
+            if not name or not isinstance(codes, list):
+                raise ValueError(
+                    "Invalid code_util_config.json: each prio group needs name and codes list."
+                )
+            self.PRIO_GROUPS.append((name, [str(c).strip() for c in codes if str(c).strip()]))
+
+        raw_label_map = config["label_map"]
+        if not isinstance(raw_label_map, dict):
+            raise ValueError("Invalid code_util_config.json: 'label_map' must be an object.")
+        self.LABEL_MAP = {str(k): str(v) for k, v in raw_label_map.items()}
+
+        raw_combo_rules = config["predefined_combo_rules"]
+        if not isinstance(raw_combo_rules, list):
+            raise ValueError(
+                "Invalid code_util_config.json: 'predefined_combo_rules' must be a list."
+            )
+        self.PREDEFINED_COMBO_RULES = []
+        for rule in raw_combo_rules:
+            if not isinstance(rule, dict):
+                raise ValueError(
+                    "Invalid code_util_config.json: each predefined combo rule must be an object."
+                )
+            codes = rule.get("codes")
+            label = rule.get("label")
+            if not isinstance(codes, list) or not label:
+                raise ValueError(
+                    "Invalid code_util_config.json: each predefined combo rule needs codes list and label."
+                )
+            codes_tuple = tuple(str(c).strip() for c in codes if str(c).strip())
+            if not codes_tuple:
+                raise ValueError(
+                    "Invalid code_util_config.json: predefined combo rule with empty codes."
+                )
+            self.PREDEFINED_COMBO_RULES.append((codes_tuple, str(label)))
+
+        raw_acting_codes = config["acting_codes"]
+        if not isinstance(raw_acting_codes, list):
+            raise ValueError(
+                "Invalid code_util_config.json: 'acting_codes' must be a list."
+            )
+        self.ACTING_CODES = {str(c).strip() for c in raw_acting_codes if str(c).strip()}
 
     def _load_external_labels(self):
         """Load labels from JSON file if available."""

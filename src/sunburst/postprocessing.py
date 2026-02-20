@@ -6,7 +6,9 @@ logger = logging.getLogger(__name__)
 
 
 def postprocess_sequence(
-    tokens: List[str], context: AnalysisContext | None = None
+    tokens: List[str],
+    context: AnalysisContext | None = None,
+    combo_time_match_mode: str = "exact",
 ) -> List[str]:
     """
     Postprocessing to merge co-occurring codes at arbitrary lengths.
@@ -21,6 +23,9 @@ def postprocess_sequence(
     for t in tokens:
         if not collapsed or collapsed[-1] != t:
             collapsed.append(t)
+
+    if combo_time_match_mode == "keine":
+        return collapsed
 
     # (2) Merge co-occurring sequences of arbitrary length
     merged: List[str] = []

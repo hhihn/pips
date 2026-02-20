@@ -1,0 +1,5 @@
+bundle_key,bundle_label,num_codes,avg_duration,min_duration,max_duration,count,source_filenames,source_files
+2.2.3.14 + 2.2.3.4 + 6.4.4,über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von der Seite durch,3,4.950000000000006,4.300000000000011,5.600000000000001,2,['5-P-2_transformed.xlsx'],5-P-2_transformed.xlsx
+2.2.3.14 + 6.4.4,über Gegenstand vermittelte Berührung + FK führt Pflegehandlung von der Seite durch,2,3.9000000000000057,3.9000000000000057,3.9000000000000057,1,['56-P-1_K1_transformed.xlsx'],56-P-1_K1_transformed.xlsx
+2.2.3.14 + 2.2.3.4 + 6.4.3 + 6.5.3,über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von vorne durch + K führt Pflegehandlung eigenständig durch,4,4.900000000000006,4.900000000000006,4.900000000000006,1,['15-P-1_transformed.xlsx'],15-P-1_transformed.xlsx
+2.2.3.14 + 6.4.5,über Gegenstand vermittelte Berührung + FK führt Pflegehandlung von hinten durch,2,11.4,11.4,11.4,1,['8-P-1_transformed.xlsx'],8-P-1_transformed.xlsx

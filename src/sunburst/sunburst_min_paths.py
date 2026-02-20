@@ -53,11 +53,16 @@ def build_sequences_all_together(
     df: pd.DataFrame,
     start_lookahead_n: int = 12,
     context: AnalysisContext | None = None,
+    combo_time_match_mode: str = "exact",
 ) -> Tuple[List[List[str]], pd.DataFrame]:
     """Build sequences via all-codes strategy using an injected analysis context."""
     ctx = context if context is not None else AnalysisContext.from_code_util(CodeUtil())
     builder = AllCodesSequenceBuilder(context=ctx)
-    return builder.build(df, start_lookahead_n=start_lookahead_n)
+    return builder.build(
+        df,
+        start_lookahead_n=start_lookahead_n,
+        combo_time_match_mode=combo_time_match_mode,
+    )
 
 
 def main():
@@ -129,9 +134,9 @@ def main():
     )
     ap.add_argument(
         "--combo_time_match_mode",
-        choices=["exact", "overlap"],
+        choices=["keine", "exact", "overlap"],
         default="exact",
-        help="How temporal combo bundles are detected in path building: exact (same start/end) or overlap (overlapping windows).",
+        help="Combo-Modus: keine (deaktiviert), exact (gleiches Start/Ende), overlap (überlappende Zeitfenster).",
     )
     ap.add_argument(
         "--log_level",
@@ -165,6 +170,7 @@ def main():
         seqs_labels, per_path = AllCodesSequenceBuilder(context=context).build(
             df,
             start_lookahead_n=args.start_lookahead_n,
+            combo_time_match_mode=args.combo_time_match_mode,
         )
     else:
         logger.info("Using PARTS_APPROACH (4 rings: innen/mitte/aussen/aussenring)")

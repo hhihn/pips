@@ -91,10 +91,11 @@ def apply_bundle_combos(
 
 def build_time_bundles(
     events: pd.DataFrame,
-    combo_time_match_mode: Literal["exact", "overlap"] = "exact",
+    combo_time_match_mode: Literal["keine", "exact", "overlap"] = "exact",
 ) -> List[pd.DataFrame]:
     """
     Build temporal bundles from events.
+    - keine: no bundling (each event is its own bundle)
     - exact: same (start_s, end_s)
     - overlap: overlapping time windows are merged into one bundle
     """
@@ -104,7 +105,7 @@ def build_time_bundles(
 def pick_group_token_from_first_n(
     first_n_events: pd.DataFrame,
     group_codes: set,
-    combo_time_match_mode: Literal["exact", "overlap"] = "exact",
+    combo_time_match_mode: Literal["keine", "exact", "overlap"] = "exact",
     context: AnalysisContext | None = None,
 ) -> List[str]:
     """

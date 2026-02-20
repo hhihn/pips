@@ -62,7 +62,7 @@ def analyze_codes_causing_andere(
     df: pd.DataFrame,
     per_path_df: pd.DataFrame,
     start_lookahead_n: int = 12,
-    combo_time_match_mode: Literal["exact", "overlap"] = "exact",
+    combo_time_match_mode: Literal["keine", "exact", "overlap"] = "exact",
     context: AnalysisContext | None = None,
 ) -> pd.DataFrame:
     """
