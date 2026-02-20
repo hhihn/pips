@@ -8,7 +8,6 @@ import json
 import os
 import subprocess
 import sys
-import tempfile
 from datetime import datetime
 from pathlib import Path
 
@@ -24,6 +23,7 @@ LOGO_PATH = BASE_DIR / "PIPS_Logo_mit_Untertitel.png"
 CSS_PATH = BASE_DIR / "gradio_theme.css"
 CODE_UTIL_CONFIG_PATH = SUNBURST_DIR / "code_util_config.json"
 CODE_DESCRIPTIONS_PATH = BASE_DIR / "code_descriptions.json"
+DATA_DRIVEN_COMBO_RULES_PATH = SUNBURST_DIR / "DATA_DRIVEN_COMBO_RULES.json"
 
 
 def _load_theme_css() -> str:
@@ -51,6 +51,19 @@ def _build_iframe_from_html_file(html_path: Path) -> str:
         '<iframe style="width:100%;height:820px;border:1px solid #ddd;border-radius:8px;" '
         f'srcdoc="{escaped}"></iframe>'
     )
+
+
+def refresh_sunburst_view(last_sunburst_path: str | None, existing_log: str) -> tuple[str, str | None, str]:
+    if not last_sunburst_path:
+        return "", None, (existing_log or "") + "\n\nKein Sunburst-Pfad vorhanden. Bitte zuerst einen Lauf starten."
+
+    html_path = Path(last_sunburst_path)
+    if not html_path.exists():
+        return "", None, (existing_log or "") + f"\n\nSunburst-Datei nicht gefunden: {html_path}"
+
+    iframe_html = _build_iframe_from_html_file(html_path)
+    log_msg = (existing_log or "") + f"\n\nSunburst-Ansicht neu geladen aus: {html_path}"
+    return iframe_html, str(html_path), log_msg
 
 
 def lade_code_util_config() -> tuple[str, str]:
@@ -134,6 +147,45 @@ def speichere_code_descriptions(config_text: str) -> str:
     return f"Beschreibungskonfiguration gespeichert: {CODE_DESCRIPTIONS_PATH}"
 
 
+def lade_data_driven_combo_rules() -> tuple[str, str]:
+    if not DATA_DRIVEN_COMBO_RULES_PATH.exists():
+        return "", f"Fehler: Datei nicht gefunden: {DATA_DRIVEN_COMBO_RULES_PATH}"
+    try:
+        data = json.loads(DATA_DRIVEN_COMBO_RULES_PATH.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        return "", f"Fehler beim Lesen der JSON-Datei: {exc}"
+    pretty = json.dumps(data, ensure_ascii=False, indent=2)
+    return pretty, f"Regeldatei geladen: {DATA_DRIVEN_COMBO_RULES_PATH}"
+
+
+def speichere_data_driven_combo_rules(config_text: str) -> str:
+    if not config_text or not config_text.strip():
+        return "Fehler: Leerer Inhalt. Bitte gültiges JSON eingeben."
+    try:
+        parsed = json.loads(config_text)
+    except json.JSONDecodeError as exc:
+        return f"Fehler: Ungültiges JSON: {exc}"
+
+    try:
+        if DATA_DRIVEN_COMBO_RULES_PATH.exists():
+            ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+            backup_path = DATA_DRIVEN_COMBO_RULES_PATH.with_suffix(
+                f".backup_{ts}.json"
+            )
+            backup_path.write_text(
+                DATA_DRIVEN_COMBO_RULES_PATH.read_text(encoding="utf-8"),
+                encoding="utf-8",
+            )
+        DATA_DRIVEN_COMBO_RULES_PATH.write_text(
+            json.dumps(parsed, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+    except Exception as exc:
+        return f"Fehler beim Speichern: {exc}"
+
+    return f"Regeldatei gespeichert: {DATA_DRIVEN_COMBO_RULES_PATH}"
+
+
 def starte_sunburst(
     csv_upload,
     csv_pfad,
@@ -164,17 +216,19 @@ def starte_sunburst(
         csv_input = Path(csv_pfad).expanduser().resolve() if csv_pfad else DEFAULT_CSV
 
     if not csv_input.exists():
-        return (
-            "",
-            None,
-            f"Fehler: CSV-Datei nicht gefunden: {csv_input}",
-        )
+        return ("", None, f"Fehler: CSV-Datei nicht gefunden: {csv_input}", None)
 
-    tmp_dir = Path(tempfile.mkdtemp(prefix="sunburst_gradio_"))
     if out_prefix and out_prefix.strip():
-        out_prefix_path = tmp_dir / out_prefix.strip()
+        raw_out_prefix = Path(out_prefix.strip()).expanduser()
     else:
-        out_prefix_path = tmp_dir / "out_paths"
+        raw_out_prefix = Path("out_paths")
+
+    if raw_out_prefix.is_absolute():
+        out_prefix_path = raw_out_prefix
+    else:
+        out_prefix_path = (SUNBURST_DIR / raw_out_prefix).resolve()
+
+    out_prefix_path.parent.mkdir(parents=True, exist_ok=True)
 
     cmd = [sys.executable, str(SUNBURST_DIR / "sunburst_min_paths.py")]
     _to_flag(cmd, "--csv", str(csv_input))
@@ -217,6 +271,7 @@ def starte_sunburst(
             "",
             None,
             f"Fehler beim Lauf. Details siehe Protokoll.\n\n{log_text}",
+            None,
         )
 
     sunburst_html_path = Path(f"{out_prefix_path}_sunburst.html")
@@ -226,27 +281,26 @@ def starte_sunburst(
             "Lauf erfolgreich, aber Sunburst wurde deaktiviert (--no_sunburst).\n"
             f"Ausgabepräfix: {out_prefix_path}\n\n{log_text}"
         )
-        return "", None, info
+        return "", None, info, None
 
     if not sunburst_html_path.exists():
         info = (
             "Lauf erfolgreich, aber Sunburst-HTML wurde nicht gefunden.\n"
             f"Erwarteter Pfad: {sunburst_html_path}\n\n{log_text}"
         )
-        return "", None, info
+        return "", None, info, None
 
     iframe_html = _build_iframe_from_html_file(sunburst_html_path)
     info = (
         f"Lauf erfolgreich.\nSunburst-Datei: {sunburst_html_path}\n"
-        f"Ausgabepräfix: {out_prefix_path}\n\n{log_text}"
+        f"Ausgabepräfix: {out_prefix_path}\n"
+        f"CSV-Ausgaben unter: {out_prefix_path.parent / 'csv_analysen'}\n\n{log_text}"
     )
-    return iframe_html, str(sunburst_html_path), info
+    return iframe_html, str(sunburst_html_path), info, str(sunburst_html_path)
 
 
 def build_demo() -> gr.Blocks:
-    with gr.Blocks(
-        title="Datengetriebene Sequenzanalyse", theme=gr.themes.Soft(), css=_load_theme_css()
-    ) as demo:
+    with gr.Blocks(title="Datengetriebene Sequenzanalyse") as demo:
         with gr.Row(elem_classes=["pips-header"]):
             with gr.Column(scale=1, min_width=220):
                 if LOGO_PATH.exists():
@@ -355,8 +409,13 @@ def build_demo() -> gr.Blocks:
                 with gr.Tabs():
                     with gr.Tab("Ergebnis"):
                         gr.Markdown("### Ergebnis")
+                        last_sunburst_path = gr.State(value=None)
                         sunburst_view = gr.HTML(label="Sunburst")
                         sunburst_file = gr.File(label="Sunburst HTML herunterladen")
+                        refresh_sunburst_btn = gr.Button(
+                            "Sunburst neu laden",
+                            elem_classes=["pips-primary"],
+                        )
                         protokoll = gr.Textbox(
                             label="Protokoll",
                             lines=20,
@@ -410,6 +469,31 @@ def build_demo() -> gr.Blocks:
                             max_lines=6,
                             value=lade_code_descriptions()[1],
                         )
+                    with gr.Tab("Data-Driven Combo Rules"):
+                        gr.Markdown(
+                            "### `DATA_DRIVEN_COMBO_RULES.json` bearbeiten\n"
+                            "Änderungen werden direkt in die Regeldatei geschrieben.",
+                            elem_classes=["pips-info"],
+                        )
+                        combo_rules_editor = gr.Code(
+                            label="JSON-Regeln",
+                            language="json",
+                            lines=28,
+                            value=lade_data_driven_combo_rules()[0],
+                        )
+                        with gr.Row():
+                            laden_rules_btn = gr.Button("Regeln laden")
+                            speichern_rules_btn = gr.Button(
+                                "Regeln speichern",
+                                variant="primary",
+                                elem_classes=["pips-primary"],
+                            )
+                        combo_rules_status = gr.Textbox(
+                            label="Status",
+                            lines=3,
+                            max_lines=6,
+                            value=lade_data_driven_combo_rules()[1],
+                        )
 
         run_btn.click(
             fn=starte_sunburst,
@@ -435,6 +519,11 @@ def build_demo() -> gr.Blocks:
                 combo_time_match_mode,
                 log_level,
             ],
+            outputs=[sunburst_view, sunburst_file, protokoll, last_sunburst_path],
+        )
+        refresh_sunburst_btn.click(
+            fn=refresh_sunburst_view,
+            inputs=[last_sunburst_path, protokoll],
             outputs=[sunburst_view, sunburst_file, protokoll],
         )
 
@@ -458,10 +547,24 @@ def build_demo() -> gr.Blocks:
             inputs=[code_desc_editor],
             outputs=[code_desc_status],
         )
+        laden_rules_btn.click(
+            fn=lade_data_driven_combo_rules,
+            inputs=[],
+            outputs=[combo_rules_editor, combo_rules_status],
+        )
+        speichern_rules_btn.click(
+            fn=speichere_data_driven_combo_rules,
+            inputs=[combo_rules_editor],
+            outputs=[combo_rules_status],
+        )
 
     return demo
 
 
 if __name__ == "__main__":
     demo = build_demo()
-    demo.launch()
+    demo.launch(
+        theme=gr.themes.Soft(),
+        css=_load_theme_css(),
+        allowed_paths=[str(SUNBURST_DIR), str(BASE_DIR)],
+    )

@@ -20,7 +20,7 @@
 .gradio-container label, .gradio-container h1, .gradio-container h2,
 .gradio-container h3, .gradio-container h4, .gradio-container h5,
 .gradio-container .prose, .gradio-container .prose * {
-  color: #fffdf7!important;
+  color: #fffdf7 !important;
 }
 
 .gradio-container input,
@@ -59,7 +59,7 @@
 }
 
 .pips-panel {
-  background: white;
+  background: #fffdf7;
   border: 2px solid var(--pips-lavender);
   border-radius: 12px;
   padding: 10px;
@@ -72,12 +72,6 @@
   font-weight: 700 !important;
 }
 
-.pips-primary button:hover {
-  filter: brightness(1.05);
-}
-
-
-
 .pips-logo img {
   max-height: 88px !important;
   width: auto !important;
@@ -87,6 +81,13 @@
 .gradio-container .tab-nav button,
 .gradio-container [role="tab"]:not([aria-selected="true"]) {
   color: #000000 !important;
+}
+
+/* Tab hover state: lavender background with white text */
+.gradio-container .tab-nav button:hover,
+.gradio-container [role="tab"]:hover {
+  background-color: var(--pips-lavender) !important;
+  color: #ffffff !important;
 }
 
 /* Simple informational text blocks in lavender */
