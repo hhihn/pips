@@ -24,6 +24,7 @@ CSS_PATH = BASE_DIR / "gradio_theme.css"
 CODE_UTIL_CONFIG_PATH = SUNBURST_DIR / "code_util_config.json"
 CODE_DESCRIPTIONS_PATH = BASE_DIR / "code_descriptions.json"
 DATA_DRIVEN_COMBO_RULES_PATH = SUNBURST_DIR / "DATA_DRIVEN_COMBO_RULES.json"
+PATTERN_PIPELINE_PATH = PROJECT_ROOT / "run_pipeline.py"
 
 
 def _load_theme_css() -> str:
@@ -299,6 +300,29 @@ def starte_sunburst(
     return iframe_html, str(sunburst_html_path), info, str(sunburst_html_path)
 
 
+def starte_pattern_pipeline(skip_count_analysis: bool):
+    if not PATTERN_PIPELINE_PATH.exists():
+        return f"Fehler: Pipeline-Skript nicht gefunden: {PATTERN_PIPELINE_PATH}"
+
+    cmd = [sys.executable, str(PATTERN_PIPELINE_PATH)]
+    if skip_count_analysis:
+        cmd.append("--skip-count-analysis")
+
+    proc = subprocess.run(
+        cmd,
+        cwd=str(PROJECT_ROOT),
+        text=True,
+        capture_output=True,
+        env={**os.environ, "PYTHONPATH": str(PROJECT_ROOT)},
+    )
+
+    return (
+        f"Befehl:\n{' '.join(cmd)}\n\n"
+        f"Rückgabecode: {proc.returncode}\n\n"
+        f"STDOUT:\n{proc.stdout}\n\nSTDERR:\n{proc.stderr}"
+    )
+
+
 def build_demo() -> gr.Blocks:
     with gr.Blocks(title="Datengetriebene Sequenzanalyse") as demo:
         with gr.Row(elem_classes=["pips-header"]):
@@ -441,6 +465,16 @@ def build_demo() -> gr.Blocks:
                 run_btn = gr.Button(
                     "Sunburst starten", variant="primary", elem_classes=["pips-primary"]
                 )
+                gr.Markdown("### Datenpipeline")
+                skip_count_analysis = gr.Checkbox(
+                    label="Count-Analyse überspringen",
+                    info="Überspringt src/count_analysis.py (Plot-Fenster), führt aber alle übrigen Pipeline-Schritte aus.",
+                    value=True,
+                )
+                run_pipeline_btn = gr.Button(
+                    "Pattern-Pipeline ausführen",
+                    elem_classes=["pips-primary"],
+                )
 
             with gr.Column(scale=2, elem_classes=["pips-panel"]):
                 with gr.Tabs():
@@ -455,6 +489,16 @@ def build_demo() -> gr.Blocks:
                         )
                         protokoll = gr.Textbox(
                             label="Protokoll",
+                            lines=20,
+                            max_lines=40,
+                        )
+                    with gr.Tab("Pipeline"):
+                        gr.Markdown(
+                            "### Pipeline-Lauf\n"
+                            "Führt den in `readme.md` beschriebenen Ablauf aus."
+                        )
+                        pipeline_protokoll = gr.Textbox(
+                            label="Pipeline-Protokoll",
                             lines=20,
                             max_lines=40,
                         )
@@ -563,6 +607,11 @@ def build_demo() -> gr.Blocks:
             inputs=[last_sunburst_path, protokoll],
             outputs=[sunburst_view, sunburst_file, protokoll],
         )
+        run_pipeline_btn.click(
+            fn=starte_pattern_pipeline,
+            inputs=[skip_count_analysis],
+            outputs=[pipeline_protokoll],
+        )
 
         laden_btn.click(
             fn=lade_code_util_config,
@@ -601,6 +650,7 @@ def build_demo() -> gr.Blocks:
 if __name__ == "__main__":
     demo = build_demo()
     demo.launch(
+        auth=("pips", "pflegesituation"),
         theme=gr.themes.Soft(),
         css=_load_theme_css(),
         allowed_paths=[str(SUNBURST_DIR), str(BASE_DIR)],

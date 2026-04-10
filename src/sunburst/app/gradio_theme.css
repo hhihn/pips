@@ -16,19 +16,22 @@
     #fffdf7;
 }
 
-.gradio-container, .gradio-container p, .gradio-container span,
-.gradio-container label, .gradio-container h1, .gradio-container h2,
-.gradio-container h3, .gradio-container h4, .gradio-container h5,
-.gradio-container .prose, .gradio-container .prose * {
-  color: #fffdf7 !important;
-}
-
+.gradio-container p,
+.gradio-container span,
+.gradio-container label,
+.gradio-container h1,
+.gradio-container h2,
+.gradio-container h3,
+.gradio-container h4,
+.gradio-container h5,
+.gradio-container .prose,
+.gradio-container .prose *,
 .gradio-container input,
 .gradio-container textarea,
 .gradio-container select,
 .gradio-container .wrap,
 .gradio-container .block {
-  color: #fffdf7 !important;
+  color: var(--pips-ink) !important;
 }
 
 
@@ -36,13 +39,35 @@
 .gradio-container textarea,
 .gradio-container select,
 .gradio-container .wrap-inner {
-  background-color: var(--pips-lavender) !important;
+  background-color: #f4efff !important;
 }
 
 .gradio-container input::placeholder,
 .gradio-container textarea::placeholder {
   color: #5a4f79 !important;
   opacity: 1;
+}
+
+/* Keep Gradio code editors readable on the lavender editor background. */
+.gradio-container .cm-editor,
+.gradio-container .cm-editor *,
+.gradio-container .cm-editor .cm-content,
+.gradio-container .cm-editor .cm-line,
+.gradio-container .cm-editor .cm-gutters,
+.gradio-container .cm-editor .cm-activeLine,
+.gradio-container .cm-editor .cm-activeLineGutter,
+.gradio-container .cm-editor .cm-scroller,
+.gradio-container .cm-editor .cm-selectionBackground,
+.gradio-container .cm-editor .cm-cursor,
+.gradio-container [data-testid="code"],
+.gradio-container [data-testid="code"] *,
+.gradio-container [data-testid="code"] textarea {
+  color: #000000 !important;
+}
+
+.gradio-container .cm-editor,
+.gradio-container .cm-editor .cm-gutters {
+  background-color: #f4efff !important;
 }
 
 .pips-header {
@@ -99,4 +124,20 @@
 .gradio-container .gr-prose p,
 .gradio-container .gr-prose li {
   color: var(--pips-lavender) !important;
+}
+
+/* Form labels and checkbox help text need dark text on light panels. */
+.gradio-container .gr-checkbox label,
+.gradio-container .gr-checkbox span,
+.gradio-container .gr-checkbox p,
+.gradio-container .gradio-checkbox label,
+.gradio-container .gradio-checkbox span,
+.gradio-container .gradio-checkbox p,
+.gradio-container label[data-testid="block-label"],
+.gradio-container .gr-block-label,
+.gradio-container .gr-form .gr-description,
+.gradio-container .gr-form .gr-description *,
+.gradio-container [data-testid="block-info"],
+.gradio-container [data-testid="block-info"] * {
+  color: #000000 !important;
 }
