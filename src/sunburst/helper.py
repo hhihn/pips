@@ -76,17 +76,31 @@ def apply_bundle_combos(
     Output: Liste aus Kombi-Tokens und ggf. Rest-atomaren Codes
     """
     ctx = _ctx(context)
-    s = set(codes)
+    available = set(codes)
     out: List[str] = []
 
-    for (a, b), combo in ctx.combo_rules:
-        if a in s and b in s:
-            out.append(combo)
-            s.remove(a)
-            s.remove(b)
+    def _rule_sort_key(rule: Tuple[Tuple[str, ...], str]):
+        combo_codes, _combo_label = rule
+        prios = [ctx.code_to_prio.get(c, (999, 999)) for c in combo_codes]
+        best_prio = min(prios) if prios else (999, 999)
+        return (-len(set(combo_codes)), best_prio[0], best_prio[1], tuple(combo_codes))
 
-    out.extend(sorted(s, key=lambda c: ctx.code_to_prio.get(c, (999, 999))))
-    return out
+    for combo_codes, _combo_label in sorted(ctx.combo_rules, key=_rule_sort_key):
+        combo_atoms = set(combo_codes)
+        if len(combo_atoms) < 2:
+            continue
+        if combo_atoms.issubset(available):
+            out.append(normalize_combo_key(list(combo_atoms), context=ctx))
+            available.difference_update(combo_atoms)
+
+    out.extend(sorted(available, key=lambda c: ctx.code_to_prio.get(c, (999, 999))))
+    return sorted(
+        out,
+        key=lambda tok: min(
+            ctx.code_to_prio.get(a, (999, 999))
+            for a in (atomic_codes(tok) if is_combo_token(tok) else [tok])
+        ),
+    )
 
 
 def build_time_bundles(
@@ -128,11 +142,11 @@ def pick_group_token_from_first_n(
     for bg in bundle_frames:
         bs = float(bg["start_s"].min())
         be = float(bg["end_s"].max())
-        tokens = sorted(
+        atom_codes = sorted(
             set(bg["code"].tolist()),
             key=lambda c: ctx.code_to_prio.get(c, (999, 999)),
         )
-        #  tokens = atom_codes # apply_bundle_combos(atom_codes)
+        tokens = apply_bundle_combos(atom_codes, context=ctx)
 
         for tok in tokens:
             atoms = atomic_codes(tok) if is_combo_token(tok) else [tok]

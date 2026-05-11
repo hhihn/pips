@@ -650,7 +650,6 @@ def build_demo() -> gr.Blocks:
 if __name__ == "__main__":
     demo = build_demo()
     demo.launch(
-        auth=("pips", "pflegesituation"),
         theme=gr.themes.Soft(),
         css=_load_theme_css(),
         allowed_paths=[str(SUNBURST_DIR), str(BASE_DIR)],
