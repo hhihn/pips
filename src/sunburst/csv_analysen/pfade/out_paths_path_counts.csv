@@ -1,43 +1,39 @@
 start_group,sequence_labels,count
-Andere,Andere -> FK führt Pflegehandlung von der Seite durch -> Andere,1
+Andere,Andere -> FK führt Hdlg. für Kind aus + FK führt Pflegehandlung von der Seite durch -> Andere,1
 Andere,Andere -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> K führt Pflegehandlung eigenständig durch -> K führt Pflege-Vor/Nachbereitung eigenständig durch,1
-FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> K führt Pflegehandlung eigenständig durch -> K führt Pflege-Vor/Nachbereitung eigenständig durch,5
-FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> über Gegenstand vermittelte Berührung -> FK führt Pflegehandlung von der Seite durch -> halten,5
-FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> Andere -> K führt Pflege-Vor/Nachbereitung eigenständig durch,2
-FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> FK führt Hdlg. für Kind aus -> K führt Pflege-Vor/Nachbereitung eigenständig durch,2
-FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> über Gegenstand vermittelte Berührung -> FK führt Hdlg. für Kind aus -> halten,2
-FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> über Gegenstand vermittelte Berührung -> FK führt Hdlg. für Kind aus -> über Gegenstand vermittelte Berührung,2
-FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> über Gegenstand vermittelte Berührung -> FK führt Pflegehandlung von der Seite durch -> über Gegenstand vermittelte Berührung,2
-FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> über Gegenstand vermittelte Berührung -> FK führt Pflegehandlung von hinten durch -> halten,2
-FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> über Gegenstand vermittelte Berührung -> FK führt Pflegehandlung von vorne durch -> über Gegenstand vermittelte Berührung,2
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von der Seite durch,7
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung,6
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von hinten durch,3
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> K führt Pflegehandlung eigenständig durch -> K führt Pflege-Vor/Nachbereitung eigenständig durch,3
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von der Seite durch,2
 FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> über Gegenstand vermittelte Berührung -> K führt Pflegehandlung eigenständig durch -> über Gegenstand vermittelte Berührung,2
-FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> Andere -> FK führt Hdlg. für Kind aus -> Andere,1
-FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> Andere -> halten,1
-FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> FK führt Hdlg. für Kind aus -> Andere,1
-FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> FK führt Pflegehandlung von vorne durch -> über Gegenstand vermittelte Berührung,1
-FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> K führt Pflegehandlung eigenständig durch -> Andere,1
-FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> K führt Pflegehandlung eigenständig durch -> K führt Pflege-Vor/Nachbereitung eigenständig durch,1
-FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> FK führt Pflegehandlung von der Seite durch -> über Gegenstand vermittelte Berührung,1
-FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> über Gegenstand vermittelte Berührung -> FK führt Pflegehandlung von vorne durch -> halten,1
-K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> Andere -> FK führt Hdlg. für Kind aus -> Andere,2
-K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> K führt Pflegehandlung eigenständig durch -> K führt Pflege-Vor/Nachbereitung eigenständig durch,2
-K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> FK führt Hdlg. für Kind aus -> K führt Pflege-Vor/Nachbereitung eigenständig durch,1
-K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> FK führt Pflegehandlung von vorne durch -> über Gegenstand vermittelte Berührung,1
-K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> über Gegenstand vermittelte Berührung -> FK führt Hdlg. für Kind aus -> halten,1
-K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> über Gegenstand vermittelte Berührung -> FK führt Hdlg. für Kind aus -> über Gegenstand vermittelte Berührung,1
-K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> über Gegenstand vermittelte Berührung -> FK führt Pflegehandlung von der Seite durch -> über Gegenstand vermittelte Berührung,1
-K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> über Gegenstand vermittelte Berührung -> FK führt Pflegehandlung von hinten durch -> halten,1
-K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> über Gegenstand vermittelte Berührung -> FK führt Pflegehandlung von vorne durch -> halten,1
-K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> über Gegenstand vermittelte Berührung -> FK führt Pflegehandlung von vorne durch -> über Gegenstand vermittelte Berührung,1
-über Gegenstand vermittelte Berührung,über Gegenstand vermittelte Berührung -> FK führt Pflegehandlung von der Seite durch -> halten,11
-über Gegenstand vermittelte Berührung,über Gegenstand vermittelte Berührung -> FK führt Pflegehandlung von hinten durch -> halten,8
-über Gegenstand vermittelte Berührung,über Gegenstand vermittelte Berührung -> FK führt Pflegehandlung von hinten durch -> über Gegenstand vermittelte Berührung,4
-über Gegenstand vermittelte Berührung,über Gegenstand vermittelte Berührung -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> FK führt Hdlg. für Kind aus -> über Gegenstand vermittelte Berührung,2
-über Gegenstand vermittelte Berührung,über Gegenstand vermittelte Berührung -> FK führt Hdlg. für Kind aus -> über Gegenstand vermittelte Berührung,2
-über Gegenstand vermittelte Berührung,über Gegenstand vermittelte Berührung -> FK führt Pflegehandlung von vorne durch -> halten,2
-über Gegenstand vermittelte Berührung,über Gegenstand vermittelte Berührung -> FK führt Pflegehandlung von vorne durch -> über Gegenstand vermittelte Berührung,2
-über Gegenstand vermittelte Berührung,über Gegenstand vermittelte Berührung -> K führt Pflegehandlung eigenständig durch -> über Gegenstand vermittelte Berührung,2
-über Gegenstand vermittelte Berührung,über Gegenstand vermittelte Berührung -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> FK führt Hdlg. für Kind aus -> halten,1
-über Gegenstand vermittelte Berührung,über Gegenstand vermittelte Berührung -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> FK führt Pflegehandlung von hinten durch -> über Gegenstand vermittelte Berührung,1
-über Gegenstand vermittelte Berührung,über Gegenstand vermittelte Berührung -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> Andere -> halten,1
-über Gegenstand vermittelte Berührung,über Gegenstand vermittelte Berührung -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> FK führt Pflegehandlung von vorne durch -> über Gegenstand vermittelte Berührung,1
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel + FK fordert K zu Pflege-Vor/Nachbereitung auf -> FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von der Seite durch,1
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel + FK fordert K zu Pflege-Vor/Nachbereitung auf -> K führt Pflegehandlung eigenständig durch -> Andere,1
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel + FK fordert K zu Pflege-Vor/Nachbereitung auf -> K führt Pflegehandlung eigenständig durch -> K führt Pflege-Vor/Nachbereitung eigenständig durch,1
+FK benennt oder zeigt Ziel,FK benennt oder zeigt Ziel -> über Gegenstand vermittelte Berührung + halten -> FK führt Pflegehandlung von der Seite durch -> über Gegenstand vermittelte Berührung + halten,1
+FK benennt oder zeigt Ziel + FK fordert K zu Pflege-Vor/Nachbereitung auf,FK benennt oder zeigt Ziel + FK fordert K zu Pflege-Vor/Nachbereitung auf -> FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung,2
+FK benennt oder zeigt Ziel + FK fordert K zu Pflege-Vor/Nachbereitung auf,FK benennt oder zeigt Ziel + FK fordert K zu Pflege-Vor/Nachbereitung auf -> Andere -> halten,1
+FK benennt oder zeigt Ziel + FK fordert K zu Pflege-Vor/Nachbereitung auf,FK benennt oder zeigt Ziel + FK fordert K zu Pflege-Vor/Nachbereitung auf -> FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von der Seite durch -> K führt Pflege-Vor/Nachbereitung eigenständig durch,1
+FK benennt oder zeigt Ziel + FK fordert K zu Pflege-Vor/Nachbereitung auf,FK benennt oder zeigt Ziel + FK fordert K zu Pflege-Vor/Nachbereitung auf -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> K führt Pflegehandlung eigenständig durch -> K führt Pflege-Vor/Nachbereitung eigenständig durch,1
+FK benennt oder zeigt Ziel + FK fordert K zu Pflege-Vor/Nachbereitung auf,FK benennt oder zeigt Ziel + FK fordert K zu Pflege-Vor/Nachbereitung auf -> K führt Pflegehandlung eigenständig durch -> FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von der Seite durch,1
+FK benennt oder zeigt Ziel + FK fordert K zu Pflege-Vor/Nachbereitung auf,FK benennt oder zeigt Ziel + FK fordert K zu Pflege-Vor/Nachbereitung auf -> K führt Pflegehandlung eigenständig durch -> K führt Pflege-Vor/Nachbereitung eigenständig durch,1
+FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung,FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung,7
+FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung,FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung,2
+FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung,FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung -> FK führt Pflegehandlung von hinten durch -> FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung,2
+FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung,FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung -> FK führt Pflegehandlung von der Seite durch -> FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung,1
+FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung,FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung -> K führt Pflegehandlung eigenständig durch -> FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung,1
+FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von der Seite durch,FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von der Seite durch,10
+FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von hinten durch,FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von hinten durch,8
+FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von hinten durch,FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von hinten durch -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von hinten durch,1
+K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung,4
+K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von hinten durch,2
+K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung,1
+K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von der Seite durch,1
+K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung -> K führt Pflege-Vor/Nachbereitung eigenständig durch,1
+K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung,1
+K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> K führt Pflegehandlung eigenständig durch -> K führt Pflege-Vor/Nachbereitung eigenständig durch,1
+K signalisiert Pflegeanlass,K signalisiert Pflegeanlass -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> K führt Pflegehandlung eigenständig durch -> über Gegenstand vermittelte Berührung + halten,1
+über Gegenstand vermittelte Berührung,über Gegenstand vermittelte Berührung -> K führt Pflegehandlung eigenständig durch -> über Gegenstand vermittelte Berührung + halten,2
+über Gegenstand vermittelte Berührung,über Gegenstand vermittelte Berührung -> FK fordert K zu Pflege-Vor/Nachbereitung auf -> FK führt Hdlg. für Kind aus + FK führt Pflegehandlung von vorne durch -> über Gegenstand vermittelte Berührung,1
+über Gegenstand vermittelte Berührung + halten,über Gegenstand vermittelte Berührung + halten -> FK führt Pflegehandlung von der Seite durch -> über Gegenstand vermittelte Berührung + halten,1
+über Gegenstand vermittelte Berührung + halten,über Gegenstand vermittelte Berührung + halten -> K führt Pflege-Vor/Nachbereitung eigenständig durch -> FK führt Hdlg. für Kind aus + über Gegenstand vermittelte Berührung + halten + FK führt Pflegehandlung von der Seite durch,1

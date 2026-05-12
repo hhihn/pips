@@ -1,14 +1,7 @@
 Ring,Code,Label,Count
-aussen,2.1.2.3,FK benennt oder zeigt Ziel,2
-aussen,2.2.3.14,über Gegenstand vermittelte Berührung,1
+aussen,2.1.2.3,FK benennt oder zeigt Ziel,1
 aussen,6.4.2,FK fordert K zu Pflege-Vor/Nachbereitung auf,1
-aussenring,6.4.5,FK führt Pflegehandlung von hinten durch,2
-aussenring,2.1.3.1,FK führt Hdlg. für Kind aus,1
-aussenring,6.4.4,FK führt Pflegehandlung von der Seite durch,1
 aussenring,6.5.3,K führt Pflegehandlung eigenständig durch,1
 innen,2.1.3.1,FK führt Hdlg. für Kind aus,1
+innen,6.4.4,FK führt Pflegehandlung von der Seite durch,1
 innen,6.5.3,K führt Pflegehandlung eigenständig durch,1
-mitte,2.1.2.3,FK benennt oder zeigt Ziel,1
-mitte,2.1.3.1,FK führt Hdlg. für Kind aus,1
-mitte,6.4.4,FK führt Pflegehandlung von der Seite durch,1
-mitte,6.5.1,K signalisiert Pflegeanlass,1
