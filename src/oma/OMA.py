@@ -42,12 +42,20 @@ if __name__ == "__main__":
 
     config = OMAConfig(
         input_path=Path("../extracted_sequences.csv"),
-        output_dir=Path("../oma_output"),
+        output_dir=Path("./oma_output"),
         # 1 second is a useful baseline.
         # For very short care routines, 0.5 seconds may be more sensitive.
         time_step_seconds=1.0,
-        # Recommended first baseline:
-        overlap_strategy="combine",
+        # Use "sts" to preserve duration or "dss" to keep only state-change order.
+        sequence_representation="dss",
+        # "combine", "priority", or "split".
+        overlap_strategy="split",
+        # Ignore empty time bins in matching and outputs.
+        include_empty_state=False,
+        # Optional: codes to ignore for matching.
+        excluded_codes=["6.1.1 PK", "6.2.1 PK", "6.2.2 PK"],
+        # Optional: map codes to display names in output files.
+        code_name_mapping_path=Path("output.json"),
         # OMA costs:
         default_substitution_cost=2.0,
         indel_cost=1.0,
@@ -55,7 +63,7 @@ if __name__ == "__main__":
         # Do not use Ward directly on a precomputed distance matrix.
         clustering_method="average",
         min_clusters=2,
-        max_clusters=8,
+        max_clusters=10,
     )
 
     # Optional: theory-informed substitution costs.

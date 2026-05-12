@@ -1,5 +1,7 @@
 import logging
-from typing import Dict, Tuple, Optional
+from typing import Dict, List, Tuple, Optional
+
+import pandas as pd
 
 from OMAConfig import OMAConfig
 from MAXQDALoader import MaxQDALoader
@@ -9,6 +11,7 @@ from SequenceInterpreter import SequenceInterpreter
 from SequenceVisualizer import SequenceVisualizer
 from CostScheme import CostScheme
 from OptimalMatcher import OptimalMatcher
+from CodeNameMapper import CodeNameMapper
 
 # ---------------------------------------------------------------------
 # Pipeline
@@ -29,6 +32,7 @@ class OMAPipeline:
         self.clusterer = SequenceClusterer(config)
         self.interpreter = SequenceInterpreter(config)
         self.visualizer = SequenceVisualizer(config)
+        self.code_name_mapper = CodeNameMapper(config)
 
     def run(self) -> None:
         self.config.output_dir.mkdir(parents=True, exist_ok=True)
@@ -38,6 +42,10 @@ class OMAPipeline:
 
         logging.info("Building discrete sequences...")
         sequences = self.sequence_builder.build_sequences(df)
+        logging.info(
+            "Using %s sequence representation.",
+            self.config.sequence_representation.upper(),
+        )
 
         if len(sequences) < 2:
             raise ValueError("At least two sequences are required for OMA.")
@@ -81,8 +89,16 @@ class OMAPipeline:
             header=True,
         )
 
+        logging.info("Creating cluster-ordered OMA distance heatmap...")
+        self.visualizer.create_distance_heatmap(
+            distance_matrix,
+            labels,
+            output_path=self.config.output_dir / "oma_distance_heatmap.html",
+        )
+
         logging.info("Interpreting clusters...")
         state_dist = self.interpreter.state_distribution(sequences, labels)
+        state_dist = self._rename_state_columns(state_dist, ["state"])
         state_dist.to_csv(
             self.config.output_dir / "cluster_state_distribution.csv",
             index=False,
@@ -95,16 +111,27 @@ class OMAPipeline:
         )
 
         transitions = self.interpreter.transition_table(sequences, labels)
+        transitions = self._rename_state_columns(
+            transitions,
+            ["from_state", "to_state"],
+        )
         transitions.to_csv(
             self.config.output_dir / "cluster_transition_table.csv",
             index=False,
         )
 
-        logging.info("Creating sunburst visualization...")
-        self.visualizer.create_sunburst(
-            transitions,
-            output_path=self.config.output_dir / "transition_sunburst.html",
-            min_transition_count=1,
-        )
-
         logging.info("Done. Results written to: %s", self.config.output_dir)
+
+    def _rename_state_columns(
+        self,
+        df: pd.DataFrame,
+        columns: List[str],
+    ) -> pd.DataFrame:
+        renamed = df.copy()
+        for column in columns:
+            if column in renamed.columns:
+                renamed[column] = renamed[column].map(
+                    self.code_name_mapper.rename_state
+                )
+
+        return renamed

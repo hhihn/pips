@@ -14,33 +14,86 @@ class SequenceVisualizer:
     def __init__(self, config: OMAConfig):
         self.config = config
 
-    def create_sunburst(
+    def create_distance_heatmap(
         self,
-        transition_table: pd.DataFrame,
+        distance_matrix: pd.DataFrame,
+        labels: pd.Series,
         output_path: Path,
-        min_transition_count: int = 1,
     ) -> None:
         """
-        Creates a simple cluster-level transition sunburst.
+        Creates a cluster-ordered heatmap of the OMA distance matrix.
 
-        The hierarchy is:
-        cluster -> from_state -> to_state
+        Rows and columns are ordered by cluster label, making low-distance
+        blocks visible as emerging sequence clusters.
         """
-        if transition_table.empty:
-            logging.warning("Transition table is empty. No sunburst created.")
+        if distance_matrix.empty:
+            logging.warning("Distance matrix is empty. No heatmap created.")
             return
 
-        plot_df = transition_table[
-            transition_table["size"] >= min_transition_count
-        ].copy()
+        labels = labels.reindex(distance_matrix.index)
+        if labels.isna().any():
+            missing = labels[labels.isna()].index.tolist()
+            raise ValueError(f"Missing cluster labels for sequences: {missing}")
 
-        plot_df["cluster_label"] = "Cluster " + plot_df["cluster"].astype(str)
+        order_df = pd.DataFrame(
+            {
+                "sequence_id": distance_matrix.index,
+                "cluster": labels.astype(int).values,
+            },
+            index=distance_matrix.index,
+        ).sort_values(["cluster", "sequence_id"])
 
-        fig = px.sunburst(
-            plot_df,
-            path=["cluster_label", "from_state", "to_state"],
-            values="size",
-            title="Common Behavioral Transitions by Cluster",
+        ordered_ids = order_df.index.tolist()
+        ordered_matrix = distance_matrix.loc[ordered_ids, ordered_ids]
+        tick_labels = [
+            f"C{cluster} | {sequence_id}"
+            for sequence_id, cluster in zip(
+                order_df["sequence_id"],
+                order_df["cluster"],
+            )
+        ]
+
+        fig = px.imshow(
+            ordered_matrix.values,
+            x=tick_labels,
+            y=tick_labels,
+            color_continuous_scale="Viridis",
+            origin="upper",
+            labels={
+                "x": "Sequence",
+                "y": "Sequence",
+                "color": "OMA distance",
+            },
+            title="OMA Distance Matrix Ordered by Cluster",
+        )
+
+        cluster_sizes = order_df["cluster"].value_counts(sort=False).tolist()
+        boundary = 0
+        for size in cluster_sizes[:-1]:
+            boundary += size
+            line_at = boundary - 0.5
+            fig.add_shape(
+                type="line",
+                x0=line_at,
+                x1=line_at,
+                y0=-0.5,
+                y1=len(ordered_ids) - 0.5,
+                line={"color": "white", "width": 2},
+            )
+            fig.add_shape(
+                type="line",
+                x0=-0.5,
+                x1=len(ordered_ids) - 0.5,
+                y0=line_at,
+                y1=line_at,
+                line={"color": "white", "width": 2},
+            )
+
+        fig.update_layout(
+            width=max(800, min(1800, 24 * len(ordered_ids))),
+            height=max(800, min(1800, 24 * len(ordered_ids))),
+            xaxis={"tickangle": 90},
+            yaxis={"autorange": "reversed"},
         )
 
         fig.write_html(output_path)

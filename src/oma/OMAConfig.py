@@ -18,15 +18,30 @@ class OMAConfig:
 
     time_step_seconds: float = 1.0
 
+    # Sequence representation used for OMA:
+    # "sts" = state sequence, preserving repeated states and duration
+    # "dss" = distinct successive states, preserving only state-change order
+    sequence_representation: str = "sts"
+
     # How to handle overlapping codes per time bin:
     # "combine" = create compound states from all active codes
     # "priority" = select first active code based on code_priority
+    # "split" = append each active code as its own state in canonical code order
     overlap_strategy: str = "combine"
 
     # Used only if overlap_strategy == "priority"
     code_priority: Optional[List[str]] = None
 
+    # Codes listed here are ignored when constructing states for matching.
+    # They still contribute to the sequence time span, but never appear in
+    # simple or compound states.
+    excluded_codes: Optional[List[str]] = None
+
+    # Optional JSON file mapping code numbers to display names.
+    code_name_mapping_path: Optional[Path] = Path("output.json")
+
     empty_state: str = "EMPTY"
+    include_empty_state: bool = False
 
     # OMA costs
     default_substitution_cost: float = 2.0

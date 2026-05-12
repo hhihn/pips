@@ -1,6 +1,7 @@
 import pandas as pd
 import logging
 
+from CodeNormalizer import normalize_code_for_lookup
 from OMAConfig import OMAConfig
 # ---------------------------------------------------------------------
 # Data loading and preprocessing
@@ -39,6 +40,24 @@ class MaxQDALoader:
 
         df[self.config.code_col] = df[self.config.code_col].astype(str).str.strip()
         df[self.config.id_col] = df[self.config.id_col].astype(str).str.strip()
+
+        excluded_codes = {
+            normalize_code_for_lookup(code)
+            for code in (self.config.excluded_codes or [])
+        }
+        if excluded_codes:
+            n_before = len(df)
+            df = df[
+                ~df[self.config.code_col]
+                .map(normalize_code_for_lookup)
+                .isin(excluded_codes)
+            ].copy()
+            n_removed = n_before - len(df)
+            if n_removed:
+                logging.info(
+                    "Removed %s rows with excluded codes before sequence building.",
+                    n_removed,
+                )
 
         return df
 
