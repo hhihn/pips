@@ -25,15 +25,27 @@ class OptimalMatcher:
         dp = np.zeros((n + 1, m + 1), dtype=float)
 
         for i in range(1, n + 1):
-            dp[i, 0] = i * self.cost_scheme.indel_cost
+            dp[i, 0] = (
+                dp[i - 1, 0]
+                + self.cost_scheme.indel_cost(seq_a[i - 1])
+            )
 
         for j in range(1, m + 1):
-            dp[0, j] = j * self.cost_scheme.indel_cost
+            dp[0, j] = (
+                dp[0, j - 1]
+                + self.cost_scheme.indel_cost(seq_b[j - 1])
+            )
 
         for i in range(1, n + 1):
             for j in range(1, m + 1):
-                delete_cost = dp[i - 1, j] + self.cost_scheme.indel_cost
-                insert_cost = dp[i, j - 1] + self.cost_scheme.indel_cost
+                delete_cost = (
+                    dp[i - 1, j]
+                    + self.cost_scheme.indel_cost(seq_a[i - 1])
+                )
+                insert_cost = (
+                    dp[i, j - 1]
+                    + self.cost_scheme.indel_cost(seq_b[j - 1])
+                )
                 substitute_cost = dp[i - 1, j - 1] + self.cost_scheme.substitution_cost(
                     seq_a[i - 1], seq_b[j - 1]
                 )

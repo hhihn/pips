@@ -23,9 +23,11 @@ class OMAPipeline:
         self,
         config: OMAConfig,
         custom_substitution_costs: Optional[Dict[Tuple[str, str], float]] = None,
+        custom_indel_costs: Optional[Dict[str, float]] = None,
     ):
         self.config = config
         self.custom_substitution_costs = custom_substitution_costs or {}
+        self.custom_indel_costs = custom_indel_costs or {}
 
         self.loader = MaxQDALoader(config)
         self.sequence_builder = SequenceBuilder(config)
@@ -52,11 +54,22 @@ class OMAPipeline:
 
         alphabet = sorted({state for seq in sequences.values() for state in seq})
 
-        cost_scheme = CostScheme(
+        custom_substitution_costs = dict(
+            self.config.custom_substitution_costs or {}
+        )
+        custom_substitution_costs.update(self.custom_substitution_costs)
+        custom_indel_costs = dict(self.config.custom_indel_costs or {})
+        custom_indel_costs.update(self.custom_indel_costs)
+
+        cost_scheme = CostScheme.from_files(
             alphabet=alphabet,
             default_substitution_cost=self.config.default_substitution_cost,
             indel_cost=self.config.indel_cost,
-            custom_substitution_costs=self.custom_substitution_costs,
+            custom_substitution_costs=custom_substitution_costs,
+            custom_indel_costs=custom_indel_costs,
+            substitution_costs_path=self.config.substitution_costs_path,
+            indel_costs_path=self.config.indel_costs_path,
+            compound_cost_strategy=self.config.compound_cost_strategy,
         )
 
         matcher = OptimalMatcher(cost_scheme)
@@ -68,16 +81,31 @@ class OMAPipeline:
             self.config.output_dir / "oma_distance_matrix.csv",
             index=True,
         )
+        cost_scheme.substitution_cost_dataframe().to_csv(
+            self.config.output_dir / "oma_substitution_cost_matrix.csv",
+            index=True,
+        )
+        cost_scheme.indel_cost_dataframe().to_csv(
+            self.config.output_dir / "oma_indel_costs.csv",
+            index=False,
+        )
 
         logging.info("Choosing number of clusters...")
         cluster_scores = self.clusterer.choose_number_of_clusters(distance_matrix)
         cluster_scores.to_csv(
+            self.config.output_dir / "cluster_scores.csv",
+            index=False,
+        )
+        cluster_scores[["n_clusters", "silhouette_score"]].sort_values(
+            "silhouette_score",
+            ascending=False,
+        ).to_csv(
             self.config.output_dir / "cluster_silhouette_scores.csv",
             index=False,
         )
 
         best_k = int(cluster_scores.iloc[0]["n_clusters"])
-        logging.info("Best k according to silhouette score: %s", best_k)
+        logging.info("Best k according to pseudo-F score: %s", best_k)
 
         labels = self.clusterer.cluster_with_precomputed_distance(
             distance_matrix,
@@ -87,6 +115,16 @@ class OMAPipeline:
         labels.to_csv(
             self.config.output_dir / "cluster_labels.csv",
             header=True,
+        )
+
+        logging.info("Running pairwise PERMANOVA-style cluster comparisons...")
+        pairwise_permanova = self.clusterer.pairwise_permanova(
+            distance_matrix,
+            labels,
+        )
+        pairwise_permanova.to_csv(
+            self.config.output_dir / "cluster_pair_permanova.csv",
+            index=False,
         )
 
         logging.info("Creating cluster-ordered OMA distance heatmap...")

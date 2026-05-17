@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Optional
+from typing import Dict, List, Optional, Tuple
 
 # ---------------------------------------------------------------------
 # Configuration
@@ -46,11 +46,19 @@ class OMAConfig:
     # OMA costs
     default_substitution_cost: float = 2.0
     indel_cost: Optional[float] = None
+    custom_substitution_costs: Optional[Dict[Tuple[str, str], float]] = None
+    custom_indel_costs: Optional[Dict[str, float]] = None
+    substitution_costs_path: Optional[Path] = None
+    indel_costs_path: Optional[Path] = None
+    compound_cost_strategy: str = "average_components"
 
     # Clustering
     min_clusters: int = 2
     max_clusters: int = 8
     clustering_method: str = "average"
+    pseudo_f_permutations: int = 1000
+    pairwise_permanova_permutations: Optional[int] = None
+    pairwise_permanova_alpha: float = 0.05
     random_state: int = 42
 
     # Output

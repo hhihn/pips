@@ -59,11 +59,20 @@ if __name__ == "__main__":
         # OMA costs:
         default_substitution_cost=2.0,
         indel_cost=1.0,
+        # Optional: provide custom costs directly or via CSV/JSON files.
+        custom_substitution_costs=None,
+        custom_indel_costs=None,
+        substitution_costs_path=None,
+        indel_costs_path=None,
+        compound_cost_strategy="average_components",
         # Use average or complete with precomputed OMA distances.
         # Do not use Ward directly on a precomputed distance matrix.
         clustering_method="average",
         min_clusters=2,
         max_clusters=10,
+        pseudo_f_permutations=10000,
+        pairwise_permanova_permutations=None,
+        pairwise_permanova_alpha=0.05,
     )
 
     # Optional: theory-informed substitution costs.
@@ -73,13 +82,23 @@ if __name__ == "__main__":
     #     ("2.1.2.3 PK", "2.1.3.1 PK"): 1.0,
     #     ("6.1.1 PK", "6.2.1 PK"): 0.5,
     # }
+    # custom_indel_costs = {
+    #     "2.1.2.3 PK": 2.0,
+    # }
     #
     # For the first baseline, leave this empty.
     custom_costs = {}
+    custom_indel_costs = {
+        "2.2.3.4 PK": 2, # halten
+        "6.4.3 PK": 1, # von vorne
+        "6.4.4 PK": 2, # von der Seite
+        "6.4.5 PK": 3 # von hinten
+    }
 
     pipeline = OMAPipeline(
         config=config,
         custom_substitution_costs=custom_costs,
+        custom_indel_costs=custom_indel_costs,
     )
 
     pipeline.run()
