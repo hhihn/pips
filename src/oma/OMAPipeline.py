@@ -12,6 +12,7 @@ from SequenceVisualizer import SequenceVisualizer
 from CostScheme import CostScheme
 from OptimalMatcher import OptimalMatcher
 from CodeNameMapper import CodeNameMapper
+from CareTypeAnalyzer import CareTypeAnalyzer
 
 # ---------------------------------------------------------------------
 # Pipeline
@@ -35,6 +36,7 @@ class OMAPipeline:
         self.interpreter = SequenceInterpreter(config)
         self.visualizer = SequenceVisualizer(config)
         self.code_name_mapper = CodeNameMapper(config)
+        self.care_type_analyzer = CareTypeAnalyzer(config)
 
     def run(self) -> None:
         self.config.output_dir.mkdir(parents=True, exist_ok=True)
@@ -117,6 +119,44 @@ class OMAPipeline:
             header=True,
         )
 
+        self._write_care_type_analysis(df, distance_matrix, labels)
+
+        logging.info("Finding prototypical sequences per cluster...")
+        sequence_filenames = self._sequence_filename_lookup(df)
+
+        prototypes = self.interpreter.prototypical_sequences(
+            sequences=sequences,
+            labels=labels,
+            distance_matrix=distance_matrix,
+            filenames=sequence_filenames,
+            code_name_mapper=self.code_name_mapper,
+        )
+        prototypes.to_csv(
+            self.config.output_dir / "cluster_prototypes.csv",
+            index=False,
+        )
+
+        prototype_steps = self.interpreter.prototypical_sequence_steps(
+            prototypes=prototypes,
+            sequences=sequences,
+            code_name_mapper=self.code_name_mapper,
+        )
+        prototype_steps.to_csv(
+            self.config.output_dir / "cluster_prototype_steps.csv",
+            index=False,
+        )
+
+        distances_to_prototypes = self.interpreter.distances_to_prototypes(
+            labels=labels,
+            distance_matrix=distance_matrix,
+            prototypes=prototypes,
+            filenames=sequence_filenames,
+        )
+        distances_to_prototypes.to_csv(
+            self.config.output_dir / "cluster_distances_to_prototypes.csv",
+            index=False,
+        )
+
         logging.info("Running pairwise PERMANOVA-style cluster comparisons...")
         pairwise_permanova = self.clusterer.pairwise_permanova(
             distance_matrix,
@@ -148,6 +188,26 @@ class OMAPipeline:
             index=False,
         )
 
+        code_frequencies = self.interpreter.cluster_code_frequencies(
+            sequences,
+            labels,
+            code_name_mapper=self.code_name_mapper,
+        )
+        code_frequencies.to_csv(
+            self.config.output_dir / "cluster_code_frequencies.csv",
+            index=False,
+        )
+
+        raw_code_frequencies = self.interpreter.raw_cluster_code_frequencies(
+            df,
+            labels,
+            code_name_mapper=self.code_name_mapper,
+        )
+        raw_code_frequencies.to_csv(
+            self.config.output_dir / "raw_cluster_code_frequencies.csv",
+            index=False,
+        )
+
         transitions = self.interpreter.transition_table(sequences, labels)
         transitions = self._rename_state_columns(
             transitions,
@@ -159,6 +219,70 @@ class OMAPipeline:
         )
 
         logging.info("Done. Results written to: %s", self.config.output_dir)
+
+    def _write_care_type_analysis(
+        self,
+        df: pd.DataFrame,
+        distance_matrix: pd.DataFrame,
+        labels: pd.Series,
+    ) -> None:
+        if not self.config.care_type_codes:
+            return
+
+        logging.info("Analyzing care-type differences...")
+        care_types = self.care_type_analyzer.sequence_care_types(df)
+        care_types.to_csv(
+            self.config.output_dir / "care_type_by_sequence.csv",
+            index=False,
+        )
+
+        distance_group_comparison = (
+            self.care_type_analyzer.distance_group_comparison(
+                distance_matrix,
+                care_types,
+                self.clusterer,
+            )
+        )
+        distance_group_comparison.to_csv(
+            self.config.output_dir / "care_type_distance_permanova.csv",
+            index=False,
+        )
+
+        distance_summary = self.care_type_analyzer.distance_summary(
+            distance_matrix,
+            care_types,
+        )
+        distance_summary.to_csv(
+            self.config.output_dir / "care_type_distance_summary.csv",
+            index=False,
+        )
+
+        cluster_crosstab = self.care_type_analyzer.cluster_crosstab(
+            care_types,
+            labels,
+        )
+        cluster_crosstab.to_csv(
+            self.config.output_dir / "care_type_cluster_crosstab.csv",
+            index=False,
+        )
+
+        cluster_association = self.care_type_analyzer.cluster_association(
+            care_types,
+            labels,
+        )
+        cluster_association.to_csv(
+            self.config.output_dir / "care_type_cluster_association.csv",
+            index=False,
+        )
+
+        recommendation = self.care_type_analyzer.recommendation(
+            distance_group_comparison,
+            cluster_association,
+        )
+        recommendation.to_csv(
+            self.config.output_dir / "care_type_recommendation.csv",
+            index=False,
+        )
 
     def _rename_state_columns(
         self,
@@ -173,3 +297,21 @@ class OMAPipeline:
                 )
 
         return renamed
+
+    def _sequence_filename_lookup(self, df: pd.DataFrame) -> Dict[str, str]:
+        if self.config.filename_col not in df.columns:
+            return {}
+
+        filenames = {}
+        for sequence_id, group in df.groupby(self.config.id_col):
+            unique_filenames = (
+                group[self.config.filename_col]
+                .dropna()
+                .astype(str)
+                .str.strip()
+                .unique()
+                .tolist()
+            )
+            filenames[str(sequence_id)] = " | ".join(unique_filenames)
+
+        return filenames

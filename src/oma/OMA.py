@@ -54,6 +54,12 @@ if __name__ == "__main__":
         include_empty_state=False,
         # Optional: codes to ignore for matching.
         excluded_codes=["6.1.1 PK", "6.2.1 PK", "6.2.2 PK"],
+        # Optional: compare sequence groups after OMA without matching on
+        # the care-type marker codes themselves.
+        care_type_codes={
+            "6.2.1": "nase_putzen",
+            "6.2.2": "gesicht_abwischen",
+        },
         # Optional: map codes to display names in output files.
         code_name_mapping_path=Path("output.json"),
         # OMA costs:
@@ -89,10 +95,10 @@ if __name__ == "__main__":
     # For the first baseline, leave this empty.
     custom_costs = {}
     custom_indel_costs = {
-        "2.2.3.4 PK": 2, # halten
-        "6.4.3 PK": 1, # von vorne
-        "6.4.4 PK": 2, # von der Seite
-        "6.4.5 PK": 3 # von hinten
+      #  "2.2.3.4 PK": 2, # halten
+      #  "6.4.3 PK": 1, # von vorne
+      #  "6.4.4 PK": 2, # von der Seite
+      #  "6.4.5 PK": 3 # von hinten
     }
 
     pipeline = OMAPipeline(

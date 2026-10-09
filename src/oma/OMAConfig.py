@@ -37,6 +37,18 @@ class OMAConfig:
     # simple or compound states.
     excluded_codes: Optional[List[str]] = None
 
+    # Optional sequence-level grouping codes for comparing OMA results.
+    # When set, each sequence must contain exactly one of these code groups
+    # for confirmatory group tests; sequences containing several are reported
+    # as mixed and excluded from the clean two-group comparison.
+    care_type_codes: Optional[Dict[str, str]] = None
+    care_type_mixed_label: str = "mixed"
+    care_type_missing_label: str = "missing"
+    care_type_permutations: Optional[int] = None
+    care_type_alpha: float = 0.05
+    care_type_min_r_squared: float = 0.05
+    care_type_min_cramers_v: float = 0.30
+
     # Optional JSON file mapping code numbers to display names.
     code_name_mapping_path: Optional[Path] = Path("output.json")
 
