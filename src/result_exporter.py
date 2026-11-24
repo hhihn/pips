@@ -230,24 +230,31 @@ class ResultExporter:
             df_detailed.to_csv(
                 self.output_dir / "detailed_analysis.csv", index=False, encoding="utf-8"
             )
+        print("No Detailed Data")
 
         if matched_pairs_data:
             df_matched_6_2 = pd.DataFrame(matched_pairs_data)
             df_matched_6_2.to_csv(
                 self.output_dir / "matched_6_2_pairs.csv", index=False, encoding="utf-8"
             )
+        else:
+            print("No Matched Pairs Data")
 
         if five_five_analysis_data:
             df_matched_5_5 = pd.DataFrame(five_five_analysis_data)
             df_matched_5_5.to_csv(
                 self.output_dir / "matched_5_5_pairs.csv", index=False, encoding="utf-8"
             )
+        else:
+            print("No Five Analysis Data")
 
         if sequence_analysis_data:
             df_sequence = pd.DataFrame(sequence_analysis_data)
             df_sequence.to_csv(
                 self.output_dir / "sequence_analysis.csv", index=False, encoding="utf-8"
             )
+        else:
+            print("No Sequence Analysis Data")
 
     def export_externa_code_results(self, f, child_code: dict) -> None:
         """

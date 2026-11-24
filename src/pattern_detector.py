@@ -11,7 +11,8 @@ pd.set_option("display.max_columns", None)
 class PatternDetector:
     """Main class for detecting temporal patterns in coded educational data."""
 
-    def __init__(self, time_tolerance: float = 0.1):
+    def __init__(self, time_tolerance: float = 0.1, sequence_scope: str = "legacy",
+                 strict_codes=None, extraction_exclusions=None):
         """
         Initialize the pattern detector.
 
@@ -21,6 +22,11 @@ class PatternDetector:
         self.time_converter = TimeConverter()
         self.time_tolerance = time_tolerance
         self.sequence_analyzer = SequenceAnalyzer()
+        if sequence_scope not in {"legacy", "care-overlap"}:
+            raise ValueError(f"Unknown sequence scope: {sequence_scope}")
+        self.sequence_scope = sequence_scope
+        self.strict_codes = strict_codes
+        self.extraction_exclusions = extraction_exclusions
 
     def _are_timeframes_equal(self, tf1: TimeFrame, tf2: TimeFrame) -> bool:
         """
@@ -146,6 +152,9 @@ class PatternDetector:
         Returns:
             List[PatternResult]: List of detected patterns
         """
+        if self.sequence_scope == "care-overlap":
+            from care_overlap import extract_care_patterns
+            return extract_care_patterns(df, filename, self.strict_codes, self.extraction_exclusions)
         results = []
         # Filter relevant code types
         df_5_4 = self._filter_codes_by_pattern(df, "5.4.")  # setting

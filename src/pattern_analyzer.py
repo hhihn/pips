@@ -11,7 +11,8 @@ class PatternAnalyzer:
     """Main analyzer class that orchestrates the entire analysis pipeline."""
 
     def __init__(
-        self, input_dir: str, output_dir: str = None, time_tolerance: float = 0.1
+        self, input_dir: str, output_dir: str = None, time_tolerance: float = 0.1,
+        sequence_scope: str = "legacy",
     ):
         """
         Initialize the pattern analyzer.
@@ -25,7 +26,7 @@ class PatternAnalyzer:
         self.output_dir = (
             Path(output_dir) if output_dir else self.input_dir / "analysis_results"
         )
-        self.detector = PatternDetector(time_tolerance=time_tolerance)
+        self.detector = PatternDetector(time_tolerance=time_tolerance, sequence_scope=sequence_scope)
         self.exporter = ResultExporter(self.output_dir)
 
         # Validate input directory
@@ -45,6 +46,7 @@ class PatternAnalyzer:
             for f in self.input_dir.iterdir()
             if (
                 f.is_file()
+                and not f.name.startswith("~$")
                 and f.suffix.lower() in excel_extensions
                 and "analysis_results" not in str(f)
             )
@@ -64,6 +66,8 @@ class PatternAnalyzer:
             df = pd.read_excel(file_path)
             return self.detector.detect_patterns(df, file_path.name)
         except Exception as e:
+            if self.detector.sequence_scope == "care-overlap":
+                raise
             print(f"Error analyzing {file_path.name}: {str(e)}")
             return []
 
@@ -147,6 +151,10 @@ class PatternAnalyzer:
         Args:
             results (List[PatternResult]): Results to export
         """
+        if self.detector.sequence_scope == "care-overlap":
+            from care_overlap import export_care_sequences
+            export_care_sequences(results, self.output_dir / "sequence_analysis.csv")
+            return
         self.exporter.export_to_csv(results, "summary_results.csv")
         self.exporter.export_detailed_results(results)
         self.exporter.export_summary_report(results)

@@ -340,7 +340,7 @@ def plot_situation_comparison(
     situations: Mapping[str, str] = SITUATIONS,
     code_groups: Mapping[str, Mapping[str, CodeCategory | str | Iterable[str]]] = CODE_GROUPS,
 ) -> Path:
-    """Vergleicht alle übergebenen Situationen innerhalb jeder Gruppe."""
+    """Vergleicht alle Situationen und speichert die Diagrammwerte auch als CSV."""
     categories = _categories(code_groups)
     group_order = list(code_groups)
     situation_labels = list(_normalise_situations(situations).values())
@@ -400,6 +400,9 @@ def plot_situation_comparison(
     ax.grid(axis="x", visible=False)
     fig.tight_layout()
     output_path = output_dir / "stacked_bar_nase_und_gesicht.png"
+    counts.rename("Häufigkeit").to_csv(
+        output_path.with_suffix(".csv"), encoding="utf-8-sig"
+    )
     fig.savefig(output_path, dpi=300, bbox_inches="tight")
     plt.show()
     plt.close(fig)

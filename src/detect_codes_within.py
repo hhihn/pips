@@ -6,6 +6,7 @@ to identify specific temporal relationships between coded events.
 
 """
 
+import argparse
 from pattern_analyzer import PatternAnalyzer
 
 
@@ -13,11 +14,17 @@ def main():
     """Main function to run the pattern analysis."""
 
     # Configuration
-    input_directory = "../data/transformed"  # Change to your input directory
+    input_directory = "../data/interrater_data_raw/transformed"  # Change to your input directory
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--input-dir", default=input_directory)
+    parser.add_argument("--output-dir")
+    parser.add_argument("--sequence-scope", choices=["legacy", "care-overlap"], default="legacy")
+    args = parser.parse_args()
 
     try:
         # Initialize analyzer
-        analyzer = PatternAnalyzer(input_dir=input_directory)
+        analyzer = PatternAnalyzer(input_dir=args.input_dir, output_dir=args.output_dir,
+                                   sequence_scope=args.sequence_scope)
 
         # Run analysis
         results = analyzer.run_analysis()
@@ -52,6 +59,8 @@ def main():
                 for child_code in result.child_codes:
                     for match_6_2 in child_code.get("matching_6_2_codes", []):
                         total_sequences += match_6_2.get("sequence_count", 0)
+                    if child_code.get("sequence_scope") == "care-overlap":
+                        total_sequences += len(child_code["sequence_events"])
 
             print("\nFINAL SUMMARY:")
             print(f"Files processed: {len(set(r.filename for r in results))}")
@@ -64,7 +73,7 @@ def main():
             print("No patterns were detected.")
 
     except Exception as e:
-        print(f"Error running analysis: {str(e)}")
+        parser.exit(1, f"Error running analysis: {e}\n")
 
 
 if __name__ == "__main__":

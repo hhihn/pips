@@ -16,6 +16,8 @@ Additional sources must have one row per ID, or specify --wide name=column.
 
 import argparse
 import csv
+import os
+import tempfile
 from collections import defaultdict
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
@@ -92,6 +94,25 @@ EXPORT_COLUMNS = {
 SITUATION_TYPES = {"6.2.1": "Nose Blowing", "6.2.2": "Face Cleaning"}
 
 
+def write_csv_atomic(output: Path, fields: list[str], rows: list[dict]) -> None:
+    """Keep an existing export intact if writing the replacement fails."""
+    output.parent.mkdir(parents=True, exist_ok=True)
+    temporary_path = None
+    try:
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8-sig", newline="", dir=output.parent,
+                                         prefix=f".{output.name}.", delete=False) as handle:
+            temporary_path = Path(handle.name)
+            writer = csv.DictWriter(handle, fieldnames=fields)
+            writer.writeheader()
+            writer.writerows(rows)
+        if output.exists():
+            os.chmod(temporary_path, output.stat().st_mode & 0o777)
+        os.replace(temporary_path, output)
+    finally:
+        if temporary_path is not None and temporary_path.exists():
+            temporary_path.unlink()
+
+
 def add_proportions(rows: list[dict], fields: list[str]) -> list[str]:
     """Add configured ratios before writing the final overview merge."""
     for output_column, (numerator, denominator) in PROPORTION_COLUMNS.items():
@@ -105,10 +126,20 @@ def add_proportions(rows: list[dict], fields: list[str]) -> list[str]:
             if not row[numerator] or not row[denominator]:
                 row[output_column] = ""
                 continue
-            talking = Decimal(row[numerator])
-            window = Decimal(row[denominator])
+            try:
+                talking = Decimal(row[numerator])
+                window = Decimal(row[denominator])
+            except InvalidOperation as error:
+                raise ValueError(f"Invalid duration for ID {row['id']!r} in {output_column}.") from error
             if not talking.is_finite() or not window.is_finite() or talking < 0 or window < 0:
                 raise ValueError(f"Invalid duration for ID {row['id']!r} in {output_column}.")
+            if talking > window:
+                raise ValueError(f"Speech exceeds its phase duration for ID {row['id']!r} "
+                                 f"in {output_column}: {talking} > {window}.")
+            total_column = "5_3_1_Duration_Talking_PK_within_6_1_1"
+            if numerator != total_column and talking > Decimal(row[total_column]):
+                raise ValueError(f"Phase speech exceeds total speech for ID {row['id']!r} "
+                                 f"in {output_column}.")
             row[output_column] = format(talking / window, "f") if window else ""
         fields.append(output_column)
     return fields
@@ -186,11 +217,7 @@ def merge_overview(merged_path: Path, overview_path: Path, output: Path,
     fields = list(EXPORT_COLUMNS.values()) + extra_fields
     for row, exported in zip(result, export_rows):
         exported.update({column: row[column] for column in extra_fields})
-    output.parent.mkdir(parents=True, exist_ok=True)
-    with output.open("w", newline="", encoding="utf-8-sig") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fields)
-        writer.writeheader()
-        writer.writerows(export_rows)
+    write_csv_atomic(output, fields, export_rows)
     return len(result)
 
 
@@ -326,11 +353,7 @@ def consolidate(sources: list[tuple[str, Path]], output: Path, key: str = "id",
                              "No output written.")
         fields = list(dict.fromkeys([key, *retain_columns]))
         merged = [{column: row[column] for column in fields} for row in merged]
-    output.parent.mkdir(parents=True, exist_ok=True)
-    with output.open("w", newline="", encoding="utf-8-sig") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fields)
-        writer.writeheader()
-        writer.writerows(merged)
+    write_csv_atomic(output, fields, merged)
     return report
 
 
