@@ -82,7 +82,7 @@ def process_folder(folder_path):
 if __name__ == "__main__":
     # Specify your folder path here
     folder_path = (
-        "./data/interrater_data_raw/"  # Current directory, change this to your desired folder path
+        "./data/"  # Current directory, change this to your desired folder path
     )
 
     process_folder(folder_path)
