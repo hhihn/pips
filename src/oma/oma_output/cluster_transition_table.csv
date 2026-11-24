@@ -1,0 +1,86 @@
+cluster,from_state,to_state,size
+1,halten,über Gegenstand vermittelte Berührung,364
+1,FK führt Hdlg. für Kind aus,halten,296
+1,über Gegenstand vermittelte Berührung,FK führt Pflegehandlung von der Seite durch,196
+1,FK führt Pflegehandlung von der Seite durch,FK führt Hdlg. für Kind aus,130
+1,über Gegenstand vermittelte Berührung,FK führt Pflegehandlung von vorne durch,95
+1,über Gegenstand vermittelte Berührung,FK führt Pflegehandlung von hinten durch,92
+1,FK führt Hdlg. für Kind aus,über Gegenstand vermittelte Berührung,76
+1,über Gegenstand vermittelte Berührung,K führt Pflegehandlung eigenständig durch,73
+1,FK führt Pflegehandlung von vorne durch,FK führt Hdlg. für Kind aus,68
+1,FK führt Pflegehandlung von hinten durch,FK führt Hdlg. für Kind aus,68
+1,FK benennt oder zeigt Ziel,FK führt Hdlg. für Kind aus,49
+1,FK benennt oder zeigt Ziel,FK fordert K zu Pflege-Vor/Nachbereitung auf,38
+1,K führt Pflegehandlung eigenständig durch,über Gegenstand vermittelte Berührung,38
+1,K führt Pflegehandlung eigenständig durch,halten,37
+1,FK fordert K zu Pflege-Vor/Nachbereitung auf,FK benennt oder zeigt Ziel,28
+1,K führt Pflege-Vor/Nachbereitung eigenständig durch,FK benennt oder zeigt Ziel,27
+1,FK führt Pflegehandlung von der Seite durch,FK benennt oder zeigt Ziel,20
+1,FK führt Pflegehandlung von der Seite durch,halten,20
+1,FK benennt oder zeigt Ziel,K führt Pflege-Vor/Nachbereitung eigenständig durch,19
+1,FK fordert K zu Pflege-Vor/Nachbereitung auf,K führt Pflege-Vor/Nachbereitung eigenständig durch,17
+1,über Gegenstand vermittelte Berührung,FK fordert K zu Pflege-Vor/Nachbereitung auf,16
+1,über Gegenstand vermittelte Berührung,FK führt Hdlg. für Kind aus,12
+1,FK benennt oder zeigt Ziel,über Gegenstand vermittelte Berührung,11
+1,FK fordert K zu Pflege-Vor/Nachbereitung auf,FK führt Hdlg. für Kind aus,9
+1,K führt Pflegehandlung eigenständig durch,FK benennt oder zeigt Ziel,9
+1,FK führt Pflegehandlung von vorne durch,K führt Pflegehandlung eigenständig durch,8
+1,über Gegenstand vermittelte Berührung,halten,7
+1,K führt Pflegehandlung eigenständig durch,FK führt Hdlg. für Kind aus,7
+1,K führt Pflege-Vor/Nachbereitung eigenständig durch,K signalisiert Pflegeanlass,7
+1,FK führt Pflegehandlung von vorne durch,FK benennt oder zeigt Ziel,6
+1,FK führt Pflegehandlung von hinten durch,über Gegenstand vermittelte Berührung,6
+1,K signalisiert Pflegeanlass,K führt Pflege-Vor/Nachbereitung eigenständig durch,6
+1,K führt Pflege-Vor/Nachbereitung eigenständig durch,FK führt Hdlg. für Kind aus,6
+1,FK fordert K zu Pflege-Vor/Nachbereitung auf,FK führt Pflegehandlung von der Seite durch,5
+1,K signalisiert Pflegeanlass,FK führt Hdlg. für Kind aus,5
+1,K führt Pflege-Vor/Nachbereitung eigenständig durch,K führt Pflegehandlung eigenständig durch,5
+1,FK benennt oder zeigt Ziel,halten,4
+1,FK benennt oder zeigt Ziel,K führt Pflegehandlung eigenständig durch,4
+1,FK führt Hdlg. für Kind aus,FK benennt oder zeigt Ziel,4
+1,FK führt Hdlg. für Kind aus,FK führt Pflegehandlung von der Seite durch,4
+1,FK führt Pflegehandlung von der Seite durch,K führt Pflegehandlung eigenständig durch,4
+1,K führt Pflegehandlung eigenständig durch,K führt Pflege-Vor/Nachbereitung eigenständig durch,4
+1,FK führt Hdlg. für Kind aus,FK führt Pflegehandlung von vorne durch,3
+1,über Gegenstand vermittelte Berührung,FK benennt oder zeigt Ziel,3
+1,FK führt Pflegehandlung von vorne durch,K führt Pflege-Vor/Nachbereitung eigenständig durch,3
+1,FK führt Pflegehandlung von der Seite durch,über Gegenstand vermittelte Berührung,3
+1,K führt Pflegehandlung eigenständig durch,FK fordert K zu Pflege-Vor/Nachbereitung auf,3
+1,K führt Pflege-Vor/Nachbereitung eigenständig durch,FK fordert K zu Pflege-Vor/Nachbereitung auf,3
+1,FK benennt oder zeigt Ziel,FK führt Pflegehandlung von der Seite durch,2
+1,halten,FK fordert K zu Pflege-Vor/Nachbereitung auf,2
+1,FK fordert K zu Pflege-Vor/Nachbereitung auf,FK führt Pflegehandlung von vorne durch,2
+1,FK fordert K zu Pflege-Vor/Nachbereitung auf,K führt Pflegehandlung eigenständig durch,2
+1,FK führt Pflegehandlung von der Seite durch,FK führt Pflegehandlung von hinten durch,2
+1,FK führt Pflegehandlung von hinten durch,FK benennt oder zeigt Ziel,2
+1,K signalisiert Pflegeanlass,FK fordert K zu Pflege-Vor/Nachbereitung auf,2
+1,K signalisiert Pflegeanlass,FK benennt oder zeigt Ziel,2
+1,FK führt Hdlg. für Kind aus,K führt Pflegehandlung eigenständig durch,1
+1,FK fordert K zu Pflege-Vor/Nachbereitung auf,über Gegenstand vermittelte Berührung,1
+1,FK fordert K zu Pflege-Vor/Nachbereitung auf,K signalisiert Pflegeanlass,1
+1,FK führt Pflegehandlung von vorne durch,FK fordert K zu Pflege-Vor/Nachbereitung auf,1
+1,FK führt Pflegehandlung von vorne durch,FK führt Pflegehandlung von der Seite durch,1
+1,FK führt Pflegehandlung von vorne durch,FK führt Pflegehandlung von hinten durch,1
+1,FK führt Pflegehandlung von der Seite durch,K führt Pflege-Vor/Nachbereitung eigenständig durch,1
+1,K signalisiert Pflegeanlass,K führt Pflegehandlung eigenständig durch,1
+1,K führt Pflege-Vor/Nachbereitung eigenständig durch,halten,1
+2,FK fordert K zu Pflege-Vor/Nachbereitung auf,K führt Pflege-Vor/Nachbereitung eigenständig durch,33
+2,K führt Pflege-Vor/Nachbereitung eigenständig durch,FK fordert K zu Pflege-Vor/Nachbereitung auf,28
+2,K führt Pflegehandlung eigenständig durch,K führt Pflege-Vor/Nachbereitung eigenständig durch,27
+2,K führt Pflege-Vor/Nachbereitung eigenständig durch,K führt Pflegehandlung eigenständig durch,21
+2,FK fordert K zu Pflege-Vor/Nachbereitung auf,K führt Pflegehandlung eigenständig durch,10
+2,FK benennt oder zeigt Ziel,FK fordert K zu Pflege-Vor/Nachbereitung auf,8
+2,K führt Pflegehandlung eigenständig durch,FK fordert K zu Pflege-Vor/Nachbereitung auf,6
+2,FK führt Hdlg. für Kind aus,über Gegenstand vermittelte Berührung,4
+2,über Gegenstand vermittelte Berührung,FK fordert K zu Pflege-Vor/Nachbereitung auf,4
+2,FK fordert K zu Pflege-Vor/Nachbereitung auf,FK führt Hdlg. für Kind aus,4
+2,K signalisiert Pflegeanlass,FK fordert K zu Pflege-Vor/Nachbereitung auf,3
+2,K führt Pflege-Vor/Nachbereitung eigenständig durch,FK benennt oder zeigt Ziel,3
+2,FK benennt oder zeigt Ziel,K führt Pflegehandlung eigenständig durch,2
+2,FK fordert K zu Pflege-Vor/Nachbereitung auf,FK benennt oder zeigt Ziel,2
+2,FK benennt oder zeigt Ziel,K führt Pflege-Vor/Nachbereitung eigenständig durch,1
+2,FK führt Hdlg. für Kind aus,FK fordert K zu Pflege-Vor/Nachbereitung auf,1
+2,FK fordert K zu Pflege-Vor/Nachbereitung auf,K signalisiert Pflegeanlass,1
+2,K führt Pflegehandlung eigenständig durch,FK benennt oder zeigt Ziel,1
+2,K führt Pflege-Vor/Nachbereitung eigenständig durch,FK führt Hdlg. für Kind aus,1
+2,K führt Pflege-Vor/Nachbereitung eigenständig durch,über Gegenstand vermittelte Berührung,1

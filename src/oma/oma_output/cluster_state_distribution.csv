@@ -1,0 +1,20 @@
+cluster,state,proportion
+1,über Gegenstand vermittelte Berührung,0.2525024543105306
+1,FK führt Pflegehandlung von hinten durch,0.24005081456488106
+1,FK führt Hdlg. für Kind aus,0.23653557603198144
+1,FK führt Pflegehandlung von der Seite durch,0.2283191030616151
+1,halten,0.22611898763307509
+1,FK führt Pflegehandlung von vorne durch,0.2163329145425123
+1,K führt Pflegehandlung eigenständig durch,0.1498508320769936
+1,FK benennt oder zeigt Ziel,0.09847440103497868
+1,FK fordert K zu Pflege-Vor/Nachbereitung auf,0.09797105001765122
+1,K führt Pflege-Vor/Nachbereitung eigenständig durch,0.09587892882226276
+1,K signalisiert Pflegeanlass,0.07955871289204623
+1,K signalisiert Pflegeanlass,0.07692307692307693
+2,K führt Pflege-Vor/Nachbereitung eigenständig durch,0.3865549631516443
+2,FK fordert K zu Pflege-Vor/Nachbereitung auf,0.28849360148281333
+2,K führt Pflegehandlung eigenständig durch,0.25767444006037804
+2,FK führt Hdlg. für Kind aus,0.18518518518518517
+2,über Gegenstand vermittelte Berührung,0.18518518518518517
+2,FK benennt oder zeigt Ziel,0.15185046448906203
+2,K signalisiert Pflegeanlass,0.13703703703703704

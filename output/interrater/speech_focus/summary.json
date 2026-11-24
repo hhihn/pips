@@ -1,0 +1,282 @@
+{
+  "recipient_counts": {
+    "old_focus_only": 50,
+    "old_other_recipients": 14,
+    "new_unlinked": 1,
+    "new_focus_only": 27
+  },
+  "totals": {
+    "common_observation_seconds": 200.9,
+    "old_all_events": 64,
+    "old_focus_events": 50,
+    "old_other_events": 14,
+    "old_unlinked_events": 0,
+    "old_all_events_in_common_window": 60,
+    "old_focus_events_in_common_window": 50,
+    "old_other_events_in_common_window": 10,
+    "old_all_seconds_common": 76.3,
+    "old_focus_seconds_common": 65.2,
+    "old_other_seconds_common": 11.1,
+    "new_all_events": 28,
+    "new_focus_events": 27,
+    "new_other_events": 0,
+    "new_unlinked_events": 1,
+    "new_all_events_in_common_window": 26,
+    "new_focus_events_in_common_window": 25,
+    "new_other_events_in_common_window": 0,
+    "new_all_seconds_common": 92.10000000000001,
+    "new_focus_seconds_common": 84.0,
+    "new_other_seconds_common": 0.0,
+    "overlap_old_all_new_all_seconds_common": 63.7,
+    "overlap_old_focus_new_all_seconds_common": 62.50000000000001,
+    "overlap_old_other_new_all_seconds_common": 1.2
+  },
+  "grouping_examples": [
+    {
+      "video": "23-P-2",
+      "new_start": 23.1,
+      "new_end": 28.4,
+      "old_focus_intervals": [
+        [
+          23.2,
+          24.3
+        ],
+        [
+          25.6,
+          28.4
+        ]
+      ]
+    },
+    {
+      "video": "23-P-2",
+      "new_start": 34.9,
+      "new_end": 40.8,
+      "old_focus_intervals": [
+        [
+          35.2,
+          36.1
+        ],
+        [
+          37.5,
+          38.3
+        ]
+      ]
+    },
+    {
+      "video": "24-P-1",
+      "new_start": 30.9,
+      "new_end": 35.7,
+      "old_focus_intervals": [
+        [
+          30.6,
+          32.9
+        ],
+        [
+          34.5,
+          35.7
+        ]
+      ]
+    },
+    {
+      "video": "24-P-1",
+      "new_start": 39.2,
+      "new_end": 43.0,
+      "old_focus_intervals": [
+        [
+          39.7,
+          41.0
+        ],
+        [
+          41.3,
+          42.8
+        ]
+      ]
+    },
+    {
+      "video": "24-P-1",
+      "new_start": 48.7,
+      "new_end": 52.4,
+      "old_focus_intervals": [
+        [
+          49.3,
+          50.7
+        ],
+        [
+          50.8,
+          51.8
+        ]
+      ]
+    },
+    {
+      "video": "33-P-1",
+      "new_start": 52.1,
+      "new_end": 58.0,
+      "old_focus_intervals": [
+        [
+          52.5,
+          52.9
+        ],
+        [
+          53.1,
+          53.7
+        ],
+        [
+          55.3,
+          58.0
+        ]
+      ]
+    },
+    {
+      "video": "33-P-1",
+      "new_start": 133.2,
+      "new_end": 142.0,
+      "old_focus_intervals": [
+        [
+          133.2,
+          136.4
+        ],
+        [
+          137.6,
+          140.0
+        ],
+        [
+          140.3,
+          142.0
+        ]
+      ]
+    },
+    {
+      "video": "33-P-1",
+      "new_start": 143.0,
+      "new_end": 147.2,
+      "old_focus_intervals": [
+        [
+          143.0,
+          143.7
+        ],
+        [
+          143.9,
+          145.3
+        ],
+        [
+          145.5,
+          146.3
+        ],
+        [
+          146.6,
+          148.0
+        ]
+      ]
+    },
+    {
+      "video": "33-P-2",
+      "new_start": 34.4,
+      "new_end": 42.0,
+      "old_focus_intervals": [
+        [
+          34.6,
+          35.3
+        ],
+        [
+          35.7,
+          36.9
+        ],
+        [
+          38.2,
+          38.7
+        ],
+        [
+          40.0,
+          40.5
+        ],
+        [
+          40.6,
+          42.2
+        ]
+      ]
+    },
+    {
+      "video": "33-P-2",
+      "new_start": 46.2,
+      "new_end": 50.8,
+      "old_focus_intervals": [
+        [
+          46.5,
+          46.9
+        ],
+        [
+          49.7,
+          50.5
+        ]
+      ]
+    },
+    {
+      "video": "5-P-3",
+      "new_start": 150.7,
+      "new_end": 154.6,
+      "old_focus_intervals": [
+        [
+          150.8,
+          151.9
+        ],
+        [
+          152.6,
+          154.5
+        ]
+      ]
+    },
+    {
+      "video": "61-P-4",
+      "new_start": 58.0,
+      "new_end": 66.0,
+      "old_focus_intervals": [
+        [
+          60.0,
+          61.5
+        ],
+        [
+          61.7,
+          62.6
+        ],
+        [
+          64.2,
+          66.3
+        ]
+      ]
+    },
+    {
+      "video": "61-P-4",
+      "new_start": 72.6,
+      "new_end": 74.9,
+      "old_focus_intervals": [
+        [
+          72.6,
+          73.1
+        ],
+        [
+          73.7,
+          74.0
+        ],
+        [
+          74.1,
+          74.7
+        ]
+      ]
+    }
+  ],
+  "method": "Raw annotations; exact 5.5 interval matching; Pflegekind independently identified for each rater by exact care-window match; union durations clipped to shared care observation windows; exploratory descriptive audit.",
+  "duration_metrics_common_windows": {
+    "old_focus_covered_by_new": 0.9585889570552147,
+    "old_other_covered_by_new": 0.10810810810810811,
+    "focus_vs_new_duration_dice": 0.7946598855689765,
+    "focus_coverage_bootstrap_ci_95": [
+      0.9404299157089321,
+      0.983194158166411
+    ],
+    "duration_dice_bootstrap_ci_95": [
+      0.7316145628239985,
+      0.857914998210516
+    ],
+    "bootstrap": "2000 whole-video cluster resamples; seed42; exploratory descriptive comparison"
+  }
+}

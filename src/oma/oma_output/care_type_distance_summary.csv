@@ -1,0 +1,4 @@
+comparison,care_type_a,care_type_b,n_sequences_a,n_sequences_b,n_pairs,mean_distance,median_distance,sd_distance,min_distance,max_distance
+within,gesicht_abwischen,gesicht_abwischen,32,32,496,0.8343160094303452,0.8571428571428571,0.3049392635307055,0.0,2.0
+within,nase_putzen,nase_putzen,52,52,1326,0.8463767007109281,0.8399715504978662,0.284670041786291,0.0,1.803921568627451
+between,gesicht_abwischen,nase_putzen,32,52,1664,0.8503813209255219,0.8571428571428571,0.280521174091536,0.0,2.0

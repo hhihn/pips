@@ -1,0 +1,2 @@
+cluster_a,cluster_b,n_a,n_b,n_total,pseudo_f_score,sst,ssw,ssb,p_value,p_value_adjusted,p_adjust_method,significant,permutations
+1,2,77,8,85,20.556889360847805,33.32241726925378,26.70764495166197,6.6147723175918145,9.999000099990002e-05,9.999000099990002e-05,bonferroni,True,10000

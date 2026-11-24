@@ -1,0 +1,2 @@
+comparison,n_total,n_groups,groups,n_mixed_excluded,pseudo_f_score,sst,ssw,ssb,r_squared,p_value,permutations,n_gesicht_abwischen,n_nase_putzen
+care_type_permanova,84,2,gesicht_abwischen | nase_putzen,1,1.4308102145600565,33.12772708233632,32.55959775250401,0.5681293298323098,0.017149662227664147,0.21057894210578942,10000,32,52

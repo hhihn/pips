@@ -1,0 +1,23 @@
+Filename,Parent_Code,Parent_Start,Parent_End,Child_Code,Child_Start,Child_End,Child Duration,Has_Matching_6_2,Matching_6_2_Count,Has_Matching_5_5,Matching_5_5_Count
+33-P-1_transformed_IR.xlsx,Talking,,,Talking,"0:00:30,2","0:02:27,2",117000,False,False,False,False
+33-P-1_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:30,2","0:00:58,0",27800,True,1,True,6
+33-P-1_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:02:01,3","0:02:27,2",25900,True,1,True,6
+33-P-2_transformed_IR.xlsx,Talking,,,Talking,"0:00:30,7","0:00:50,8",20100,False,False,False,False
+33-P-2_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:28,1","0:00:52,3",24200,True,1,True,7
+24-P-1_transformed_IR.xlsx,Talking,,,Talking,"0:00:30,9","0:01:02,2",31300,False,False,False,False
+24-P-1_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:30,9","0:01:04,0",33100,True,1,True,8
+23-P-2_transformed_IR.xlsx,Talking,,,Talking,"0:00:23,1","0:00:40,8",17700,False,False,False,False
+23-P-2_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:21,8","0:00:42,5",20700,True,1,True,6
+61-P-4_transformed_IR.xlsx,Talking,,,Talking,"0:00:58,0","0:01:14,9",16900,False,False,False,False
+61-P-4_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:58,0","0:01:21,1",23100,True,1,True,7
+44-PS-2_transformed_IR.xlsx,Talking,,,Talking,"0:00:47,7","0:00:56,8",9100,False,False,False,False
+44-PS-2_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:21,0","0:00:38,0",17000,True,1,True,3
+44-PS-2_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:47,7","0:00:59,1",11400,True,1,True,5
+32-P-2_transformed_IR.xlsx,Talking,,,Talking,"0:00:29,3","0:00:39,6",10300,False,False,False,False
+32-P-2_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:29,3","0:00:46,6",17300,True,1,True,5
+5-P-3_transformed_IR.xlsx,Talking,,,Talking,"0:01:23,2","0:01:25,0",1800,False,False,False,False
+5-P-3_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:01:23,2","0:01:25,0",1800,True,1,True,3
+57-P-1_transformed_IR.xlsx,Talking,,,Talking,"0:01:05,9","0:01:08,0",2100,False,False,False,False
+57-P-1_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:01:00,7","0:01:13,4",12700,True,1,True,4
+2-P-1_transformed_IR.xlsx,Talking,,,Talking,"0:00:31,8","0:00:43,9",12100,False,False,False,False
+2-P-1_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:31,8","0:00:50,0",18200,True,1,True,4

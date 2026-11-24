@@ -1,0 +1,2 @@
+test,n_total,n_rows,n_columns,min_expected_count,chi_square,degrees_of_freedom,p_value,odds_ratio,cramers_v,n_mixed_excluded
+fisher_exact,84,2,2,3.0476190476190474,0.6429655870445343,1,0.7043055729174081,1.9565217391304348,0.08748915490916943,1

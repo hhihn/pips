@@ -1,0 +1,185 @@
+Evaluation at the best threshold (keep scores strictly above 0.9995262622833251)
+Distinct sentences evaluated: 580
+Sentences with all true labels found: 1/580 (0.2%)
+Sentences with an exact label-set match: 1/580 (0.2%)
+True sentence-label pairs found: 20/1830 (1.1%)
+Sentences with no retained labels: 531
+Average lowest retained score: 0.9997 across 49 sentences with predictions
+
+Correct predicted labels per sentence
+At least 1 correct: 20/580 (3.4%)
+At least 2 correct: 0/580 (0.0%)
+At least 3 correct: 0/580 (0.0%)
+At least 4 correct: 0/580 (0.0%)
+At least 5 correct: 0/580 (0.0%)
+At least 6 correct: 0/580 (0.0%)
+At least 7 correct: 0/580 (0.0%)
+At least 8 correct: 0/580 (0.0%)
+At least 9 correct: 0/580 (0.0%)
+At least 10 correct: 0/580 (0.0%)
+
+Threshold optimized for sentences with an exact label-set match
+Best threshold (keep scores strictly above it): 0.9995262622833251
+Micro-F1: 2.10%
+Micro-precision: 27.03%
+Micro-recall: 1.09%
+The sweep uses the scores available in the predictions CSV.
+
+Possible label confusions
+Counts include every missing true label and unexpected predicted label on the same sentence.
+A sentence with several errors may contribute several pairs, so counts do not establish one-to-one substitutions.
+Missing true label	Unexpected predicted label	Sentences	Share of sentences missing the true label
+Organisatorisch	Fachkraft benennt Körperteil fachsprachlich	14	4.4%
+Handlung: Kinder	Fachkraft benennt Körperteil fachsprachlich	11	3.9%
+Frage	Fachkraft benennt Körperteil fachsprachlich	10	8.3%
+Aussage	Fachkraft greift angemessen ein	6	2.8%
+Organisatorisch	Fachkraft nutzt die Situation als Lerngelegenheit	6	1.9%
+Handlung: Kinder	Fachkraft benutzt Kosenamen/Diminuitive für Körperteil	5	1.8%
+Handlung: Kinder	Fachkraft nutzt die Situation als Lerngelegenheit	5	1.8%
+Imperativ	Fachkraft nutzt die Situation als Lerngelegenheit	5	3.5%
+Aussage	Fachkraft benutzt Kosenamen/Diminuitive für Körperteil	4	1.9%
+Deskriptiv	Fachkraft benennt Körperpflegegenstand	4	3.4%
+Handlung: Kinder	Fachkraft greift angemessen ein	4	1.4%
+Organisatorisch	Fachkraft benutzt Kosenamen/Diminuitive für Körperteil	4	1.2%
+Organisatorisch	Fachkraft greift angemessen ein	4	1.2%
+Aussage	Fachkraft benennt Körperteil fachsprachlich	3	1.4%
+Deskriptiv	Fachkraft benennt Körperteil fachsprachlich	3	2.6%
+Deskriptiv	Fachkraft benutzt Kosenamen/Diminuitive für Körperteil	3	2.6%
+Fachkraft benennt Körperteil fachsprachlich	Fachkraft benutzt Kosenamen/Diminuitive für Körperteil	3	5.6%
+Frage	Fachkraft benennt Körperpflegegenstand	3	2.5%
+Imperativ	Fachkraft benennt Körperteil fachsprachlich	3	2.1%
+Organisatorisch	Fachkraft leitet Ausscheidungsprozess an	3	0.9%
+Aussage	Fachkraft benennt Körperpflegegenstand	2	0.9%
+Fachkraft benennt Pflegeanlass/Ausscheidungsprozess	Fachkraft benennt Körperpflegegenstand	2	2.9%
+Fachkraft benennt Pflegeanlass/Ausscheidungsprozess	Fachkraft benennt Körperteil fachsprachlich	2	2.9%
+Handlung eigene (Fachkraft)	Fachkraft benennt Körperteil fachsprachlich	2	3.1%
+Handlung: Kinder	Fachkraft benennt Ekel	2	0.7%
+Handlung: Kinder	Fachkraft leitet Ausscheidungsprozess an	2	0.7%
+Handlung: Wir	Fachkraft greift angemessen ein	2	7.1%
+Imperativ	Fachkraft benennt Ekel	2	1.4%
+Imperativ	Fachkraft leitet Ausscheidungsprozess an	2	1.4%
+Normativ	Fachkraft greift angemessen ein	2	5.7%
+Organisatorisch	Fachkraft benennt Ekel	2	0.6%
+Organisatorisch	Fachkraft benennt Körperpflegegenstand	2	0.6%
+Partikel: "ne, gä"	Fachkraft benennt Körperteil fachsprachlich	2	15.4%
+Pauschales Lob	Fachkraft greift angemessen ein	2	8.7%
+State	Fachkraft benennt Körperpflegegenstand	2	4.7%
+State	Fachkraft benennt Körperteil fachsprachlich	2	4.7%
+Wahrnehmungs- und physiologische Zustände: Kind	Fachkraft benutzt Kosenamen/Diminuitive für Körperteil	2	6.2%
+Aussage	Einzelnen Handlungsvorschlag machen	1	0.5%
+Aussage	Fachkraft leitet Ausscheidungsprozess an	1	0.5%
+Aussage	Fachkraft nutzt die Situation als Lerngelegenheit	1	0.5%
+Aussage	Partikel: "ne, gä"	1	0.5%
+Corrective Feedback	Fachkraft benennt Körperteil fachsprachlich	1	33.3%
+Deskriptiv	Partikel: "ne, gä"	1	0.9%
+Fachkraft benennt Körperteil fachsprachlich	Fachkraft greift angemessen ein	1	1.9%
+Fachkraft benennt Pflegeanlass/Ausscheidungsprozess	Fachkraft benutzt Kosenamen/Diminuitive für Körperteil	1	1.4%
+Fachkraft leitet Ausscheidungsprozess an	Fachkraft benennt Ekel	1	11.1%
+Fachkraft leitet Ausscheidungsprozess an	Fachkraft benennt Körperteil fachsprachlich	1	11.1%
+Fachkraft leitet Ausscheidungsprozess an	Fachkraft greift angemessen ein	1	11.1%
+Fachkraft leitet Ausscheidungsprozess an	Fachkraft nutzt die Situation als Lerngelegenheit	1	11.1%
+Fachkraft singt “fertiges” Lied	Fachkraft greift angemessen ein	1	33.3%
+Fachkraft verwendet Personalpronomina falsch	Fachkraft benennt Körperpflegegenstand	1	20.0%
+Frage	Fachkraft benutzt Kosenamen/Diminuitive für Körperteil	1	0.8%
+Handlung Dritter	Fachkraft benennt Körperpflegegenstand	1	10.0%
+Handlung Dritter	Partikel: "ne, gä"	1	10.0%
+Handlung eigene (Fachkraft)	Einzelnen Handlungsvorschlag machen	1	1.5%
+Handlung eigene (Fachkraft)	Fachkraft benennt Körperpflegegenstand	1	1.5%
+Handlung: Kinder	Fachkraft benennt Körperpflegegenstand	1	0.4%
+Handlung: Kinder	Fachkraft benennt Pflegeanlass/Ausscheidungsprozess	1	0.4%
+Handlung: Wir	Fachkraft benennt Körperteil fachsprachlich	1	3.6%
+Handlung: Wir	Fachkraft leitet Ausscheidungsprozess an	1	3.6%
+Handlung: Wir	Fachkraft nutzt die Situation als Lerngelegenheit	1	3.6%
+Imperativ	Fachkraft benennt Körperpflegegenstand	1	0.7%
+Imperativ	Fachkraft benennt Pflegeanlass/Ausscheidungsprozess	1	0.7%
+Imperativ	Fachkraft benutzt Kosenamen/Diminuitive für Körperteil	1	0.7%
+K1	Fachkraft benutzt Kosenamen/Diminuitive für Körperteil	1	20.0%
+K1	Fachkraft leitet Ausscheidungsprozess an	1	20.0%
+Organisatorisch	Einzelnen Handlungsvorschlag machen	1	0.3%
+Organisatorisch	Fachkraft benennt Pflegeanlass/Ausscheidungsprozess	1	0.3%
+Partikel: "ne, gä"	Fachkraft benennt Ekel	1	7.7%
+Partikel: "ne, gä"	Fachkraft benennt Körperpflegegenstand	1	7.7%
+Partikel: "ne, gä"	Fachkraft benennt Pflegeanlass/Ausscheidungsprozess	1	7.7%
+Partikel: "ne, gä"	Fachkraft benutzt Kosenamen/Diminuitive für Körperteil	1	7.7%
+Partikel: "ne, gä"	Fachkraft leitet Ausscheidungsprozess an	1	7.7%
+Phatische Kommunikation (Hörersignal)	Fachkraft greift angemessen ein	1	1.1%
+Phatische Kommunikation (Hörersignal)	Wahrnehmungs- und physiologische Zustände: Dritte	1	1.1%
+Phatische Kommunikation (Hörersignal)	Wahrnehmungs- und physiologische Zustände: Eigene	1	1.1%
+Wahrnehmungs- und physiologische Zustände: Kind	Fachkraft benennt Körperpflegegenstand	1	3.1%
+Wahrnehmungs- und physiologische Zustände: Kind	Fachkraft benennt Körperteil fachsprachlich	1	3.1%
+Wdh. Richtiger Äußerung	Fachkraft benennt Körperpflegegenstand	1	25.0%
+Wdh. Richtiger Äußerung	Fachkraft benennt Körperteil fachsprachlich	1	25.0%
+
+Missing true label	Sentences
+Organisatorisch	321
+Handlung: Kinder	285
+Aussage	213
+Imperativ	144
+Frage	120
+Deskriptiv	116
+Phatische Kommunikation (Hörersignal)	89
+Fachkraft benennt Pflegeanlass/Ausscheidungsprozess	70
+Handlung eigene (Fachkraft)	65
+Fachkraft benennt Körperteil fachsprachlich	54
+State	43
+Normativ	35
+Wahrnehmungs- und physiologische Zustände: Kind	32
+Handlung: Wir	28
+Fachkraft benennt Körperpflegegenstand	23
+Pauschales Lob	23
+Partikel: "ne, gä"	13
+Handlung Dritter	10
+Match	10
+Fachkraft leitet Ausscheidungsprozess an	9
+Handlung direktiv, unmittelbar unterbinden	7
+Intention: Kind	7
+Explikativ	6
+Fachkraft nutzt Etikettierende/ stereotypisierende Kosenamen	6
+Was	6
+Fachkraft verwendet Personalpronomina falsch	5
+K1	5
+Fachkraft benutzt Kosenamen/Diminuitive für Körperteil	4
+Fachkraft ist parteiisch (bevorzugt einzelnes Kind/benachteiligt einzelnes Kind)	4
+Wahrnehmungs- und physiologische Zustände: Kind Negativ	4
+Wdh. Richtiger Äußerung	4
+Wie	4
+Corrective Feedback	3
+Fachkraft benennt Ekel	3
+Fachkraft singt “fertiges” Lied	3
+K2	3
+Konditionale Begründung	3
+Pauschale Kritik	3
+Abwertende Äußerung Kind	2
+Adultismus	2
+Benennen einer Regel	2
+Expansion	2
+Fachkraft setzt epistemische Adverbien ein	2
+K4	2
+Pseudo Begründung	2
+Einzelnen Handlungsvorschlag machen	1
+Emotion: Eigene	1
+Emotion: Eigene Negativ	1
+Ethische Grundregel	1
+Extension	1
+Fachkraft greift angemessen ein	1
+Fachkraft nutzt die Situation als Lerngelegenheit	1
+K3	1
+Kognition: Eigene (s. Rationalität anderer)	1
+Reminiscing	1
+Sexismus	1
+Wahrnehmungs- und physiologische Zustände: Dritte	1
+Wahrnehmungs- und physiologische Zustände: Eigene	1
+
+Unexpected predicted label	Sentences
+Fachkraft benennt Körperteil fachsprachlich	17
+Fachkraft greift angemessen ein	8
+Fachkraft benutzt Kosenamen/Diminuitive für Körperteil	7
+Fachkraft benennt Körperpflegegenstand	6
+Fachkraft nutzt die Situation als Lerngelegenheit	6
+Fachkraft leitet Ausscheidungsprozess an	3
+Fachkraft benennt Ekel	2
+Einzelnen Handlungsvorschlag machen	1
+Fachkraft benennt Pflegeanlass/Ausscheidungsprozess	1
+Partikel: "ne, gä"	1
+Wahrnehmungs- und physiologische Zustände: Dritte	1
+Wahrnehmungs- und physiologische Zustände: Eigene	1

@@ -1,0 +1,13 @@
+Filename,Parent_Code,Parent_Start,Parent_End,Child_Code,Child_Start,Child_End,Child Duration,Has_Matching_6_2,Has_Matching_5_5,Matched_Code_Type,Matched_Code,Matched_Start,Matched_End,Matched Duration,Additional_Info
+33-P-1_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:30,2","0:00:58,0",27800,True,True,6.2.*,6.2.1 Nase putzen,"0:00:30,2","0:00:58,0",27800,Sequence Events: 17
+33-P-1_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:02:01,3","0:02:27,2",25900,True,True,6.2.*,6.2.1 Nase putzen,"0:02:01,3","0:02:27,2",25900,Sequence Events: 17
+33-P-2_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:28,1","0:00:52,3",24200,True,True,6.2.*,6.2.1 Nase putzen,"0:00:28,1","0:00:52,3",24200,Sequence Events: 19
+24-P-1_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:30,9","0:01:04,0",33100,True,True,6.2.*,6.2.1 Nase putzen,"0:00:30,9","0:01:04,0",33100,Sequence Events: 21
+23-P-2_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:21,8","0:00:42,5",20700,True,True,6.2.*,6.2.1 Nase putzen,"0:00:21,8","0:00:42,5",20700,Sequence Events: 17
+61-P-4_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:58,0","0:01:21,1",23100,True,True,6.2.*,6.2.1 Nase putzen,"0:00:58,0","0:01:21,1",23100,Sequence Events: 20
+44-PS-2_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:21,0","0:00:38,0",17000,True,True,6.2.*,6.2.2 Gesicht abwischen,"0:00:21,0","0:00:38,0",17000,Sequence Events: 10
+44-PS-2_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:47,7","0:00:59,1",11400,True,True,6.2.*,6.2.2 Gesicht abwischen,"0:00:47,7","0:00:59,1",11400,Sequence Events: 14
+32-P-2_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:29,3","0:00:46,6",17300,True,True,6.2.*,6.2.1 Nase putzen,"0:00:29,3","0:00:46,6",17300,Sequence Events: 15
+5-P-3_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:01:23,2","0:01:25,0",1800,True,True,6.2.*,6.2.2 Gesicht abwischen,"0:01:23,2","0:01:25,0",1800,Sequence Events: 10
+57-P-1_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:01:00,7","0:01:13,4",12700,True,True,6.2.*,6.2.1 Nase putzen,"0:01:00,7","0:01:13,4",12700,Sequence Events: 13
+2-P-1_transformed_IR.xlsx,6.1.1 (no 5.4 parent found),,,6.1.1 Pflegesituation,"0:00:31,8","0:00:50,0",18200,True,True,6.2.*,6.2.1 Nase putzen,"0:00:31,8","0:00:50,0",18200,Sequence Events: 13

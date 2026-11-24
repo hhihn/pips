@@ -1,0 +1,2 @@
+recommendation,separate_oma_recommended,distance_p_value,distance_r_squared,cluster_association_p_value,cluster_association_cramers_v,alpha,min_r_squared_for_separate_analysis,min_cramers_v_for_separate_analysis
+keep_pooled_oma_as_primary_analysis,False,0.21057894210578942,0.017149662227664147,0.7043055729174081,0.08748915490916943,0.05,0.05,0.3

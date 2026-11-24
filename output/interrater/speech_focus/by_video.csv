@@ -1,0 +1,11 @@
+video,common_observation_seconds,old_all_events,old_focus_events,old_other_events,old_unlinked_events,old_all_events_in_common_window,old_focus_events_in_common_window,old_other_events_in_common_window,old_all_seconds_common,old_focus_seconds_common,old_other_seconds_common,new_all_events,new_focus_events,new_other_events,new_unlinked_events,new_all_events_in_common_window,new_focus_events_in_common_window,new_other_events_in_common_window,new_all_seconds_common,new_focus_seconds_common,new_other_seconds_common,overlap_old_all_new_all_seconds_common,overlap_old_focus_new_all_seconds_common,overlap_old_other_new_all_seconds_common
+2-P-1,8.1,2,1,1,0,2,1,1,7.3,6.1,1.2,1,0,0,1,1,0,0,8.1,0.0,0.0,7.3,6.1,1.2
+23-P-2,16.8,5,5,0,0,5,5,0,6.6,6.6,0.0,3,3,0,0,3,3,0,13.2,13.2,0.0,6.6,6.6,0.0
+24-P-1,32.5,12,9,3,0,12,9,3,14.8,11.2,3.6,5,5,0,0,5,5,0,15.2,15.2,0.0,10.4,10.4,0.0
+32-P-2,16.5,3,2,1,0,3,2,1,4.6,2.7,1.9,2,2,0,0,2,2,0,2.5,2.5,0.0,2.4,2.4,0.0
+33-P-1,49.7,18,12,6,0,14,12,2,19.6,17.2,2.4,5,5,0,0,4,4,0,20.5,20.5,0.0,16.1,16.1,0.0
+33-P-2,23.8,9,9,0,0,9,9,0,7.4,7.4,0.0,4,4,0,0,4,4,0,14.7,14.7,0.0,7.2,7.2,0.0
+44-PS-2,11.8,4,1,3,0,4,1,3,2.5,0.5,2.0,2,2,0,0,1,1,0,0.5,0.5,0.0,0.5,0.5,0.0
+5-P-3,8.3,4,4,0,0,4,4,0,6.0,6.0,0.0,3,3,0,0,3,3,0,6.9,6.9,0.0,6.0,6.0,0.0
+57-P-1,12.7,1,1,0,0,1,1,0,1.6,1.6,0.0,1,1,0,0,1,1,0,2.1,2.1,0.0,1.6,1.6,0.0
+61-P-4,20.7,6,6,0,0,6,6,0,5.9,5.9,0.0,2,2,0,0,2,2,0,8.4,8.4,0.0,5.6,5.6,0.0

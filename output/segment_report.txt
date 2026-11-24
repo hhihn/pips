@@ -1,0 +1,137 @@
+Workbooks scanned: 68
+Workbooks with at least one Segment: 61
+Unique Segment values overall: 580
+Rows with a Segment: 2626
+Rows with both Segment and Code: 2626
+Distinct codes on rows with a Segment: 59 of 167
+
+File	Unique Segment values	Rows with Segment	Distinct codes on those rows
+1-P-1_transformed.xlsx	1	5	5
+11-P-4_transformed.xlsx	8	19	8
+11-P-5_transformed.xlsx	4	16	10
+12-P-3_K1_transformed.xlsx	17	55	15
+12-P-3_K2_transformed.xlsx	17	55	15
+12-P-5_transformed.xlsx	4	11	9
+15-P-1_transformed.xlsx	10	34	16
+16-P-2_transformed.xlsx	18	41	10
+16-P-4_transformed.xlsx	10	35	15
+17-P-2_transformed.xlsx	27	71	11
+17-P-3_K1_transformed.xlsx	66	211	23
+17-P-3_K2_transformed.xlsx	66	211	23
+18-P-1_transformed.xlsx	5	17	9
+18-P-3_K1_transformed.xlsx	30	89	16
+18-P-3_K2_transformed.xlsx	30	89	16
+18-P-4_transformed.xlsx	15	49	12
+2-P-1_transformed.xlsx	15	51	19
+2-P-3_transformed.xlsx	17	56	14
+21-P-3_transformed.xlsx	4	13	10
+23-P-2_transformed.xlsx	3	11	9
+24-P-1_transformed.xlsx	15	51	15
+26-P-2_transformed.xlsx	0	0	0
+29-P-1_transformed.xlsx	11	33	9
+29-P-4_transformed.xlsx	13	36	13
+29-PS-1_transformed.xlsx	7	21	11
+3-P-3_transformed.xlsx	18	46	16
+30-P-2_transformed.xlsx	26	99	22
+30-P-4_transformed.xlsx	7	19	12
+32-P-2_transformed.xlsx	5	17	9
+32-P-7_transformed.xlsx	15	50	18
+33-P-1_transformed.xlsx	28	73	21
+33-P-2_transformed.xlsx	8	20	9
+37-P-1_transformed.xlsx	2	4	4
+38-P-1_transformed.xlsx	0	0	0
+38-P-3_transformed.xlsx	1	2	2
+4-P-1_transformed.xlsx	3	9	9
+40-P-1_transformed.xlsx	13	32	13
+43-P-1_K1_transformed.xlsx	19	66	18
+43-P-1_K2_transformed.xlsx	19	66	18
+44-P-1_K1_transformed.xlsx	20	58	14
+44-P-1_K2_transformed.xlsx	20	58	14
+44-PS-1_transformed.xlsx	9	21	9
+44-PS-2_transformed.xlsx	1	3	3
+48-P-1_transformed.xlsx	12	34	14
+48-P-2_transformed.xlsx	0	0	0
+49-P-2_transformed.xlsx	2	8	7
+49-P-3_transformed.xlsx	0	0	0
+5-P-2_transformed.xlsx	10	37	17
+5-P-3_transformed.xlsx	4	15	11
+50-P-1_transformed.xlsx	23	75	13
+50-P-2_transformed.xlsx	0	0	0
+56-P-1_K1_transformed.xlsx	8	28	13
+56-P-1_K2_transformed.xlsx	34	129	14
+56-P-1_K3_transformed.xlsx	34	129	14
+57-P-1_transformed.xlsx	1	5	5
+58-P-2_transformed.xlsx	0	0	0
+61-P-3_transformed.xlsx	4	18	8
+61-P-4_transformed.xlsx	9	33	9
+61-P-5_transformed.xlsx	3	9	4
+62-P-4_transformed.xlsx	17	58	15
+63-P-3_transformed.xlsx	7	23	14
+63-P-4_transformed.xlsx	6	27	14
+66-P-1_transformed.xlsx	3	9	3
+7-P-1_transformed.xlsx	1	1	1
+7-P-3_transformed.xlsx	5	11	6
+8-P-1_transformed.xlsx	9	24	8
+8-P-2_transformed.xlsx	0	0	0
+9-P-2_transformed.xlsx	9	30	16
+
+Code	Occurrences on rows with Segment
+2 I & S > 2.3 Individualität verbal anerkennen > 2.3.1 Dem Kindfokus folgen > 2.3.1.1 Match	10
+2 I & S > 2.3 Individualität verbal anerkennen > 2.3.2 Feedback und Bewertung > 2.3.2.4 Pauschales Lob	44
+2 I & S > 2.3 Individualität verbal anerkennen > 2.3.2 Feedback und Bewertung > 2.3.2.5 Pauschale Kritik	3
+2 I & S > 2.3 Individualität verbal anerkennen > 2.3.2 Feedback und Bewertung > 2.3.2.6 Abwertende Äußerung Kind	2
+2 I & S > 2.3 Individualität verbal anerkennen > 2.3.3 Umgang mit Ausgrenzung > 2.3.3.11 Adultismus	2
+2 I & S > 2.3 Individualität verbal anerkennen > 2.3.3 Umgang mit Ausgrenzung > 2.3.3.2 FK greift angemessen ein	1
+2 I & S > 2.3 Individualität verbal anerkennen > 2.3.3 Umgang mit Ausgrenzung > 2.3.3.5 FK nutzt Etikettierende/ stereotypisierende Kosenamen	7
+2 I & S > 2.3 Individualität verbal anerkennen > 2.3.3 Umgang mit Ausgrenzung > 2.3.3.7 FK ist parteiisch (bevorzugt einzelnes Kind/benachteiligt einzelnes Kind)	4
+2 I & S > 2.3 Individualität verbal anerkennen > 2.3.3 Umgang mit Ausgrenzung > 2.3.3.9 Sexismus	1
+2 I & S > 2.4 Entscheidungsmöglichkeiten explizit verbal eröffnen > 2.4.1 Ausmaß der verbalen Eröffnung des Entscheidungs- und Handlungsspielraums > 2.4.1.2 Konkrete Wahlmöglichkeiten vorschlagen	3
+2 I & S > 2.4 Entscheidungsmöglichkeiten explizit verbal eröffnen > 2.4.1 Ausmaß der verbalen Eröffnung des Entscheidungs- und Handlungsspielraums > 2.4.1.3 Einzelnen Handlungsvorschlag machen	1
+2 I & S > 2.4 Entscheidungsmöglichkeiten explizit verbal eröffnen > 2.4.1 Ausmaß der verbalen Eröffnung des Entscheidungs- und Handlungsspielraums > 2.4.1.5 Handlung direktiv, unmittelbar unterbinden	12
+2 I & S > 2.4 Entscheidungsmöglichkeiten explizit verbal eröffnen > 2.4.2 Domäne des Entscheidungsspielraums > 2.4.2.5 Was	9
+2 I & S > 2.4 Entscheidungsmöglichkeiten explizit verbal eröffnen > 2.4.2 Domäne des Entscheidungsspielraums > 2.4.2.6 Wie	7
+3 Autonomie anderer erlebbar machen > 3.1 Handlung und mentale Zustände Anderer aufgreifen > 3.1.1 Handlung Dritter > 3.1.1.1 Handlung Dritter	17
+3 Autonomie anderer erlebbar machen > 3.1 Handlung und mentale Zustände Anderer aufgreifen > 3.1.2 Mental-State Talk Dritte > 3.1.2.7 Wahrnehmungs- und physiologische Zustände: Dritte	1
+3 Autonomie anderer erlebbar machen > 3.3 Mit Regeln partizipationsorientiert umgehen > 3.3.1 Regelart > 3.3.1.1 Ethische Grundregel	1
+3 Autonomie anderer erlebbar machen > 3.3 Mit Regeln partizipationsorientiert umgehen > 3.3.2 Umgang mit Regeln > 3.3.2.1 Benennen einer Regel	2
+4 Rationalität zuschreiben > 4.1 Kognitiv anregende Sprache verwenden > 4.1.1 Sprachpragmatische Dimensionen > 4.1.1.1 Organisatorisch	477
+4 Rationalität zuschreiben > 4.1 Kognitiv anregende Sprache verwenden > 4.1.1 Sprachpragmatische Dimensionen > 4.1.1.2 Normativ	56
+4 Rationalität zuschreiben > 4.1 Kognitiv anregende Sprache verwenden > 4.1.1 Sprachpragmatische Dimensionen > 4.1.1.3 Deskriptiv	144
+4 Rationalität zuschreiben > 4.1 Kognitiv anregende Sprache verwenden > 4.1.1 Sprachpragmatische Dimensionen > 4.1.1.4 Explikativ	7
+4 Rationalität zuschreiben > 4.1 Kognitiv anregende Sprache verwenden > 4.1.1 Sprachpragmatische Dimensionen > 4.1.1.5 Phatische Kommunikation (Hörersignal)	155
+4 Rationalität zuschreiben > 4.1 Kognitiv anregende Sprache verwenden > 4.1.2 Begründungstyp > 4.1.2.2 Konditionale Begründung	3
+4 Rationalität zuschreiben > 4.1 Kognitiv anregende Sprache verwenden > 4.1.2 Begründungstyp > 4.1.2.6 Pseudo Begründung	2
+4 Rationalität zuschreiben > 4.1 Kognitiv anregende Sprache verwenden > 4.1.3 Satzart > 4.1.3.1 Aussage	293
+4 Rationalität zuschreiben > 4.1 Kognitiv anregende Sprache verwenden > 4.1.3 Satzart > 4.1.3.2 Frage	166
+4 Rationalität zuschreiben > 4.1 Kognitiv anregende Sprache verwenden > 4.1.3 Satzart > 4.1.3.3 Imperativ	222
+4 Rationalität zuschreiben > 4.2 Unterschiedliche Inhalte thematisieren > 4.2.1 Handlung > 4.2.1.1 Handlung eigene (FK)	83
+4 Rationalität zuschreiben > 4.2 Unterschiedliche Inhalte thematisieren > 4.2.1 Handlung > 4.2.1.2 Handlung: Kinder	437
+4 Rationalität zuschreiben > 4.2 Unterschiedliche Inhalte thematisieren > 4.2.1 Handlung > 4.2.1.3 Handlung: Wir	37
+4 Rationalität zuschreiben > 4.2 Unterschiedliche Inhalte thematisieren > 4.2.2 State > 4.2.2.1 State	49
+4 Rationalität zuschreiben > 4.2 Unterschiedliche Inhalte thematisieren > 4.2.3 Mental-State Talk (eigene, Kind, wir, ihr) > 4.2.3.1 Kognition: Eigene (s. Rationalität anderer)	1
+4 Rationalität zuschreiben > 4.2 Unterschiedliche Inhalte thematisieren > 4.2.3 Mental-State Talk (eigene, Kind, wir, ihr) > 4.2.3.11 Intention: Kind	11
+4 Rationalität zuschreiben > 4.2 Unterschiedliche Inhalte thematisieren > 4.2.3 Mental-State Talk (eigene, Kind, wir, ihr) > 4.2.3.17 Emotion: Eigene	1
+4 Rationalität zuschreiben > 4.2 Unterschiedliche Inhalte thematisieren > 4.2.3 Mental-State Talk (eigene, Kind, wir, ihr) > 4.2.3.18 Emotion: Eigene Negativ	1
+4 Rationalität zuschreiben > 4.2 Unterschiedliche Inhalte thematisieren > 4.2.3 Mental-State Talk (eigene, Kind, wir, ihr) > 4.2.3.25 Wahrnehmungs- und physiologische Zustände: Eigene	1
+4 Rationalität zuschreiben > 4.2 Unterschiedliche Inhalte thematisieren > 4.2.3 Mental-State Talk (eigene, Kind, wir, ihr) > 4.2.3.27 Wahrnehmungs- und physiologische Zustände: Kind	41
+4 Rationalität zuschreiben > 4.2 Unterschiedliche Inhalte thematisieren > 4.2.3 Mental-State Talk (eigene, Kind, wir, ihr) > 4.2.3.28 Wahrnehmungs- und physiologische Zustände: Kind Negativ	5
+4 Rationalität zuschreiben > 4.3 Partizipationsförderliche sprachliche Elemente nutzen > 4.3.1 Unsicherheitsmarker > 4.3.1.1 FK setzt epistemische Adverbien ein	2
+4 Rationalität zuschreiben > 4.3 Partizipationsförderliche sprachliche Elemente nutzen > 4.3.1 Unsicherheitsmarker > 4.3.1.5 Partikel: "ne, gä"	17
+4 Rationalität zuschreiben > 4.3 Partizipationsförderliche sprachliche Elemente nutzen > 4.3.2 Modellierungsstrategien > 4.3.2.1 Corrective Feedback	3
+4 Rationalität zuschreiben > 4.3 Partizipationsförderliche sprachliche Elemente nutzen > 4.3.2 Modellierungsstrategien > 4.3.2.2 Expansion	2
+4 Rationalität zuschreiben > 4.3 Partizipationsförderliche sprachliche Elemente nutzen > 4.3.2 Modellierungsstrategien > 4.3.2.3 Extension	1
+4 Rationalität zuschreiben > 4.3 Partizipationsförderliche sprachliche Elemente nutzen > 4.3.2 Modellierungsstrategien > 4.3.2.4 Wdh. Richtiger Äußerung	4
+4 Rationalität zuschreiben > 4.3 Partizipationsförderliche sprachliche Elemente nutzen > 4.3.2 Modellierungsstrategien > 4.3.2.7 FK nutzt die Situation als Lerngelegenheit	1
+4 Rationalität zuschreiben > 4.3 Partizipationsförderliche sprachliche Elemente nutzen > 4.3.3 Infantilisierende Sprache > 4.3.3.2 FK verwendet Personalpronomina falsch	9
+4 Rationalität zuschreiben > 4.3 Partizipationsförderliche sprachliche Elemente nutzen > 4.3.4 Musik und Rhythmus > 4.3.4.1 FK singt “fertiges” Lied	3
+4 Rationalität zuschreiben > 4.4 Erfahrungen verknüpfen > 4.4.2 Zeitlicher Bezug > 4.4.2.1 Reminiscing	1
+5 Kontextfaktoren > 5.5 Kindbezug > 5.5.1 K1	5
+5 Kontextfaktoren > 5.5 Kindbezug > 5.5.2 K2	3
+5 Kontextfaktoren > 5.5 Kindbezug > 5.5.3 K3	1
+5 Kontextfaktoren > 5.5 Kindbezug > 5.5.4 K4	2
+6 Pflege > 6.3 Pflege-Inhalt > 6.3.1 FK benennt Pflegeanlass/Ausscheidungsprozess	94
+6 Pflege > 6.3 Pflege-Inhalt > 6.3.10 FK benennt Ekel	3
+6 Pflege > 6.3 Pflege-Inhalt > 6.3.3 FK benennt Körperpflegegenstand	49
+6 Pflege > 6.3 Pflege-Inhalt > 6.3.4 FK leitet Ausscheidungsprozess an	14
+6 Pflege > 6.3 Pflege-Inhalt > 6.3.5 FK benennt Körperteil fachsprachlich	89
+6 Pflege > 6.3 Pflege-Inhalt > 6.3.7 FK benutzt Kosenamen/Diminuitive für Körperteil	4

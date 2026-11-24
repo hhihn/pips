@@ -1,0 +1,11 @@
+video,old_input,new_input,old_situations,new_situations,matched_situations,old_only_situations,new_only_situations,old_duplicate_export_rows,new_duplicate_export_rows
+2-P-1,/Users/heinke.hihn/PycharmProjects/pips/data/2-P-1_transformed.xlsx,/Users/heinke.hihn/PycharmProjects/pips/data/interrater_data_raw/2-P-1_transformed_IR.xlsx,1,1,1,0,0,0,0
+23-P-2,/Users/heinke.hihn/PycharmProjects/pips/data/23-P-2_transformed.xlsx,/Users/heinke.hihn/PycharmProjects/pips/data/interrater_data_raw/23-P-2_transformed_IR.xlsx,1,1,1,0,0,0,0
+24-P-1,/Users/heinke.hihn/PycharmProjects/pips/data/24-P-1_transformed.xlsx,/Users/heinke.hihn/PycharmProjects/pips/data/interrater_data_raw/24-P-1_transformed_IR.xlsx,1,1,1,0,0,0,0
+32-P-2,/Users/heinke.hihn/PycharmProjects/pips/data/32-P-2_transformed.xlsx,/Users/heinke.hihn/PycharmProjects/pips/data/interrater_data_raw/32-P-2_transformed_IR.xlsx,1,1,1,0,0,0,0
+33-P-1,/Users/heinke.hihn/PycharmProjects/pips/data/33-P-1_transformed.xlsx,/Users/heinke.hihn/PycharmProjects/pips/data/interrater_data_raw/33-P-1_transformed_IR.xlsx,2,2,2,0,0,73,0
+33-P-2,/Users/heinke.hihn/PycharmProjects/pips/data/33-P-2_transformed.xlsx,/Users/heinke.hihn/PycharmProjects/pips/data/interrater_data_raw/33-P-2_transformed_IR.xlsx,1,1,1,0,0,0,0
+44-PS-2,/Users/heinke.hihn/PycharmProjects/pips/data/44-PS-2_transformed.xlsx,/Users/heinke.hihn/PycharmProjects/pips/data/interrater_data_raw/44-PS-2_transformed_IR.xlsx,2,2,2,0,0,0,0
+5-P-3,/Users/heinke.hihn/PycharmProjects/pips/data/5-P-3_transformed.xlsx,/Users/heinke.hihn/PycharmProjects/pips/data/interrater_data_raw/5-P-3_transformed_IR.xlsx,2,1,1,1,0,43,0
+57-P-1,/Users/heinke.hihn/PycharmProjects/pips/data/57-P-1_transformed.xlsx,/Users/heinke.hihn/PycharmProjects/pips/data/interrater_data_raw/57-P-1_transformed_IR.xlsx,1,1,1,0,0,0,0
+61-P-4,/Users/heinke.hihn/PycharmProjects/pips/data/61-P-4_transformed.xlsx,/Users/heinke.hihn/PycharmProjects/pips/data/interrater_data_raw/61-P-4_transformed_IR.xlsx,1,1,1,0,0,0,0

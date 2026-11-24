@@ -1,0 +1,20 @@
+﻿cluster;code;long_name;occurrence_count;occurrence_relative_within_cluster;occurrence_percent_within_cluster;sequence_count_with_code;sequence_relative_with_code;sequence_percent_with_code;n_sequences_in_cluster;total_code_occurrences_in_cluster
+1;2.2.3.14 PK;über Gegenstand vermittelte Berührung;500;0,247525;24,752475;76;0,987013;98,701299;77;2020
+1;2.1.3.1 PK;FK führt Hdlg. für Kind aus;384;0,190099;19,009901;73;0,948052;94,805195;77;2020
+1;2.2.3.4 PK;halten;366;0,181188;18,118812;63;0,818182;81,818182;77;2020
+1;6.4.4 PK;FK führt Pflegehandlung von der Seite durch;208;0,102970;10,297030;35;0,454545;45,454545;77;2020
+1;2.1.2.3 PK;FK benennt oder zeigt Ziel;128;0,063366;6,336634;32;0,415584;41,558442;77;2020
+1;6.4.3 PK;FK führt Pflegehandlung von vorne durch;100;0,049505;4,950495;20;0,259740;25,974026;77;2020
+1;6.5.3 PK;K führt Pflegehandlung eigenständig durch;99;0,049010;4,900990;11;0,142857;14,285714;77;2020
+1;6.4.5 PK;FK führt Pflegehandlung von hinten durch;95;0,047030;4,702970;22;0,285714;28,571429;77;2020
+1;6.4.2 PK;FK fordert K zu Pflege-Vor/Nachbereitung auf;69;0,034158;3,415842;18;0,233766;23,376623;77;2020
+1;6.5.4 PK;K führt Pflege-Vor/Nachbereitung eigenständig durch;55;0,027228;2,722772;14;0,181818;18,181818;77;2020
+1;6.5.1 PK;K signalisiert Pflegeanlass;14;0,006931;0,693069;9;0,116883;11,688312;77;2020
+1;6.5.1 AK;K signalisiert Pflegeanlass;2;0,000990;0,099010;1;0,012987;1,298701;77;2020
+2;6.5.4 PK;K führt Pflege-Vor/Nachbereitung eigenständig durch;61;0,360947;36,094675;8;1,000000;100,000000;8;169
+2;6.4.2 PK;FK fordert K zu Pflege-Vor/Nachbereitung auf;50;0,295858;29,585799;5;0,625000;62,500000;8;169
+2;6.5.3 PK;K führt Pflegehandlung eigenständig durch;34;0,201183;20,118343;8;1,000000;100,000000;8;169
+2;2.1.2.3 PK;FK benennt oder zeigt Ziel;11;0,065089;6,508876;5;0,625000;62,500000;8;169
+2;2.1.3.1 PK;FK führt Hdlg. für Kind aus;5;0,029586;2,958580;1;0,125000;12,500000;8;169
+2;2.2.3.14 PK;über Gegenstand vermittelte Berührung;5;0,029586;2,958580;1;0,125000;12,500000;8;169
+2;6.5.1 PK;K signalisiert Pflegeanlass;3;0,017751;1,775148;2;0,250000;25,000000;8;169
