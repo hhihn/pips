@@ -1,6 +1,6 @@
 # Files outside the main workflows
 
-This inventory covers tracked and non-ignored untracked files present in the working tree. It uses the entry points and file paths in source and documentation. Custom command-line inputs and files in ignored environments or caches are outside the audit. Tests are listed because they run separately from the workflows. Files listed here may still support other analyses, applications, or historical results.
+This inventory covers tracked and non-ignored untracked files present in the working tree. It excludes this inventory itself and uses the entry points and file paths in source and documentation. Custom command-line inputs and files in ignored environments or caches are outside the audit. Tests are listed because they run separately from the workflows. Files listed here may still support other analyses, applications, or historical results.
 
 The audit includes:
 
@@ -10,134 +10,17 @@ The audit includes:
 
 Current inputs, intermediate files, generated deliverables and workflow documentation are treated as in scope. `src/oma_output/` is a separate result directory from the configured `src/oma/oma_output/`. The inventory is a static review.
 
-## Standalone scripts and other workflows (128)
+## Standalone scripts and other workflows (11)
 
-- `src/clustering.py`
-- `src/clustering/__init__.py`
-- `src/clustering/cluster_by_sequence.py`
-- `src/clustering/two_level_clustering.py`
-- `src/count_codes.py`
-- `src/count_segments.py`
-- `src/count_starts.py`
-- `src/extract_codes_from_codelist.py`
-- `src/extract_prefix.py`
-- `src/get_codes_in_frame.py`
-- `src/heatmap_codes.py`
 - `src/oma/export_cluster_code_presence.py`
 - `src/oma/export_jasp_oma_dataset.py`
 - `src/parallel_codes.py`
 - `src/quant_report.py`
-- `src/sunburst/DATA_DRIVEN_COMBO_RULES.json`
-- `src/sunburst/__init__.py`
-- `src/sunburst/analysis_pipeline.py`
-- `src/sunburst/andere_analysis.py`
-- `src/sunburst/app/Farbcodes .png`
-- `src/sunburst/app/PIPS_Logo_mit_Untertitel.png`
-- `src/sunburst/app/__init__.py`
-- `src/sunburst/app/code_descriptions.json`
-- `src/sunburst/app/gradio_app.py`
-- `src/sunburst/app/gradio_theme.css`
-- `src/sunburst/branching_analysis.py`
-- `src/sunburst/bundling.py`
-- `src/sunburst/check_inconsistencies.py`
-- `src/sunburst/code_merging.py`
-- `src/sunburst/code_util.py`
-- `src/sunburst/code_util_config.json`
-- `src/sunburst/context.py`
-- `src/sunburst/cooccurrrence.py`
-- `src/sunburst/csv_analysen/andere/out_paths_andere_by_ring.csv`
-- `src/sunburst/csv_analysen/andere/out_paths_codes_in_andere_cases.csv`
-- `src/sunburst/csv_analysen/branching/out_paths_branching_codes.csv`
-- `src/sunburst/csv_analysen/branching/out_paths_branching_nodes.csv`
-- `src/sunburst/csv_analysen/cooccurrence/out_paths_cooccurrence_same_start.csv`
-- `src/sunburst/csv_analysen/cooccurrence/out_paths_cooccurrence_same_window.csv`
-- `src/sunburst/csv_analysen/cooccurrence/out_paths_cooccurrence_summary.csv`
-- `src/sunburst/csv_analysen/pfade/out_paths_path_counts.csv`
-- `src/sunburst/csv_analysen/pfade/out_paths_per_path_sequences.csv`
-- `src/sunburst/filter_A_position_ohne_fk.csv`
-- `src/sunburst/filter_B_fk_ohne_position.csv`
-- `src/sunburst/helper.py`
-- `src/sunburst/merge_rules.json`
-- `src/sunburst/out_paths_andere_by_ring.csv`
-- `src/sunburst/out_paths_branching_codes.csv`
-- `src/sunburst/out_paths_branching_nodes.csv`
-- `src/sunburst/out_paths_code_merge_map.csv`
-- `src/sunburst/out_paths_codes_in_andere_cases.csv`
-- `src/sunburst/out_paths_cooccurrence_same_start.csv`
-- `src/sunburst/out_paths_cooccurrence_same_window.csv`
-- `src/sunburst/out_paths_cooccurrence_summary.csv`
-- `src/sunburst/out_paths_path_counts.csv`
-- `src/sunburst/out_paths_per_path_sequences.csv`
-- `src/sunburst/out_paths_sunburst.html`
-- `src/sunburst/postprocessing.py`
-- `src/sunburst/probleme_codes.txt`
-- `src/sunburst/quant_metrics.py`
-- `src/sunburst/rules_repo.py`
-- `src/sunburst/sequence_builders.py`
-- `src/sunburst/services.py`
-- `src/sunburst/sunburst_min_paths.py`
-- `src/sunburst/time_series_loader.py`
-- `src/sunburst/time_series_model.py`
 - `src/time_analysis.py`
-- `src/transition_graphs.py`
 - `src/zero_shot_classification/create_dataset.py`
 - `src/zero_shot_classification/evaluate.py`
 - `src/zero_shot_classification/plot_sentence_embeddings.py`
 - `src/zero_shot_classification/predict.py`
-- `sunburst_gradio_space/.gitignore`
-- `sunburst_gradio_space/README.md`
-- `sunburst_gradio_space/app.py`
-- `sunburst_gradio_space/data/.gitkeep`
-- `sunburst_gradio_space/requirements.txt`
-- `sunburst_gradio_space/run_pipeline.py`
-- `sunburst_gradio_space/src/__init__.py`
-- `sunburst_gradio_space/src/analyse_order.py`
-- `sunburst_gradio_space/src/data_classes.py`
-- `sunburst_gradio_space/src/detect_codes_within.py`
-- `sunburst_gradio_space/src/extracted_sequences.csv`
-- `sunburst_gradio_space/src/output.json`
-- `sunburst_gradio_space/src/pattern_analyzer.py`
-- `sunburst_gradio_space/src/pattern_detector.py`
-- `sunburst_gradio_space/src/result_exporter.py`
-- `sunburst_gradio_space/src/sequence_analyzer.py`
-- `sunburst_gradio_space/src/sunburst/DATA_DRIVEN_COMBO_RULES.json`
-- `sunburst_gradio_space/src/sunburst/__init__.py`
-- `sunburst_gradio_space/src/sunburst/analysis_pipeline.py`
-- `sunburst_gradio_space/src/sunburst/andere_analysis.py`
-- `sunburst_gradio_space/src/sunburst/app/PIPS_Logo_mit_Untertitel.png`
-- `sunburst_gradio_space/src/sunburst/app/__init__.py`
-- `sunburst_gradio_space/src/sunburst/app/code_descriptions.json`
-- `sunburst_gradio_space/src/sunburst/app/gradio_app.py`
-- `sunburst_gradio_space/src/sunburst/app/gradio_theme.css`
-- `sunburst_gradio_space/src/sunburst/branching_analysis.py`
-- `sunburst_gradio_space/src/sunburst/bundling.py`
-- `sunburst_gradio_space/src/sunburst/check_inconsistencies.py`
-- `sunburst_gradio_space/src/sunburst/code_merging.py`
-- `sunburst_gradio_space/src/sunburst/code_util.py`
-- `sunburst_gradio_space/src/sunburst/code_util_config.json`
-- `sunburst_gradio_space/src/sunburst/context.py`
-- `sunburst_gradio_space/src/sunburst/cooccurrrence.py`
-- `sunburst_gradio_space/src/sunburst/csv_analysen/andere/out_paths_andere_by_ring.csv`
-- `sunburst_gradio_space/src/sunburst/csv_analysen/andere/out_paths_codes_in_andere_cases.csv`
-- `sunburst_gradio_space/src/sunburst/csv_analysen/branching/out_paths_branching_codes.csv`
-- `sunburst_gradio_space/src/sunburst/csv_analysen/branching/out_paths_branching_nodes.csv`
-- `sunburst_gradio_space/src/sunburst/csv_analysen/cooccurrence/out_paths_cooccurrence_same_start.csv`
-- `sunburst_gradio_space/src/sunburst/csv_analysen/cooccurrence/out_paths_cooccurrence_same_window.csv`
-- `sunburst_gradio_space/src/sunburst/csv_analysen/cooccurrence/out_paths_cooccurrence_summary.csv`
-- `sunburst_gradio_space/src/sunburst/csv_analysen/pfade/out_paths_path_counts.csv`
-- `sunburst_gradio_space/src/sunburst/csv_analysen/pfade/out_paths_per_path_sequences.csv`
-- `sunburst_gradio_space/src/sunburst/helper.py`
-- `sunburst_gradio_space/src/sunburst/out_paths_sunburst.html`
-- `sunburst_gradio_space/src/sunburst/postprocessing.py`
-- `sunburst_gradio_space/src/sunburst/quant_metrics.py`
-- `sunburst_gradio_space/src/sunburst/rules_repo.py`
-- `sunburst_gradio_space/src/sunburst/sequence_builders.py`
-- `sunburst_gradio_space/src/sunburst/services.py`
-- `sunburst_gradio_space/src/sunburst/sunburst_min_paths.py`
-- `sunburst_gradio_space/src/sunburst/time_series_loader.py`
-- `sunburst_gradio_space/src/sunburst/time_series_model.py`
-- `sunburst_gradio_space/src/time_converter.py`
-- `sunburst_gradio_space/transform_data.py`
 - `tmp/pdfs/generate_app_summary_pdf.py`
 - `tmp/pdfs/generate_simple_summary_pdf.py`
 
@@ -158,7 +41,7 @@ Current inputs, intermediate files, generated deliverables and workflow document
 - `src/tests/test_speech_durations.py`
 - `src/tests/test_sunburst_fk_direction_combos.py`
 
-## Data and analysis artifacts (135)
+## Data and analysis artifacts (112)
 
 - `analyse_körperkontakt_und_haltung.png`
 - `data/processed/codes.xlsx`
@@ -199,7 +82,6 @@ Current inputs, intermediate files, generated deliverables and workflow document
 - `src/analysis_reports_split/report_files_with_6.2.2/cooccurrence_temporal.png`
 - `src/analysis_reports_split/report_files_with_6.2.2/duration_analysis.png`
 - `src/analysis_reports_split/report_files_with_6.2.2/fachkraft_comparison.png`
-- `src/clustering/avg_relative_len_levelNone.png`
 - `src/consolidated_with_overview.csv`
 - `src/extracted_sequences_test.csv`
 - `src/fk_typing_reports/files_with_6.2.1/cluster_profiles.csv`
@@ -237,16 +119,12 @@ Current inputs, intermediate files, generated deliverables and workflow document
 - `src/fk_typing_reports_two_level/files_with_6.2.2/sub_main1/sub_main1_profiles.csv`
 - `src/fk_typing_reports_two_level/files_with_6.2.2/tree_hierarchy.txt`
 - `src/fk_typing_reports_two_level/types_description`
-- `src/fold_45_subject_44_training_progress.csv`
-- `src/gantt_0_0.png`
-- `src/gantt_22_2.png`
 - `src/grouped_by_start_code/transition_graph_start_2_2_3_14_PK.png`
 - `src/grouped_by_start_code/transition_graph_start_2_2_3_4_PK.png`
 - `src/grouped_by_start_code/transition_graph_start_2_2_4_2_PK.png`
 - `src/grouped_by_start_code/transition_graph_start_6_4_2_PK.png`
 - `src/grouped_by_start_code/transition_graph_start_6_4_3_PK.png`
 - `src/grouped_by_start_code/transition_graph_start_6_4_4_PK.png`
-- `src/heatmap_codes.png`
 - `src/oma/oma_output/excel/anzahl_codes_per_cluster_per_sequenz.csv`
 - `src/oma/oma_output/excel/code_presence_percent_by_cluster.csv`
 - `src/oma/oma_output/excel/excel_analysis_summary.csv`
@@ -276,27 +154,9 @@ Current inputs, intermediate files, generated deliverables and workflow document
 - `src/oma_output/sequence_lengths_by_cluster.csv`
 - `src/oma_output/transition_sunburst.html`
 - `src/output.json`
-- `src/plan.md`
-- `src/relative_len_distribution_levelNone_median_sorted.png`
-- `src/sequence_typing_reports/files_with_6.2.1/cluster_profiles.csv`
-- `src/sequence_typing_reports/files_with_6.2.1/dendrogram.png`
-- `src/sequence_typing_reports/files_with_6.2.1/file_clusters.csv`
-- `src/sequence_typing_reports/files_with_6.2.1/heatmap_files_topcodes.png`
-- `src/sequence_typing_reports/files_with_6.2.1/heatmap_seq_topcodes.png`
-- `src/sequence_typing_reports/files_with_6.2.1/seq_clusters.csv`
-- `src/sequence_typing_reports/files_with_6.2.2/cluster_profiles.csv`
-- `src/sequence_typing_reports/files_with_6.2.2/dendrogram.png`
-- `src/sequence_typing_reports/files_with_6.2.2/file_clusters.csv`
-- `src/sequence_typing_reports/files_with_6.2.2/heatmap_files_topcodes.png`
-- `src/sequence_typing_reports/files_with_6.2.2/heatmap_seq_topcodes.png`
-- `src/sequence_typing_reports/files_with_6.2.2/seq_clusters.csv`
-- `src/touch_counts.csv`
-- `src/transition_graph_auto.png`
-- `src/transition_graph_bended_edges.png`
-- `src/transition_graph_first3.png`
 - `thwildau.html`
 
-## Editor files and caches (96)
+## Editor files and caches (68)
 
 - `.DS_Store`
 - `.idea/.gitignore`
@@ -360,34 +220,6 @@ Current inputs, intermediate files, generated deliverables and workflow document
 - `src/oma/__pycache__/test_jasp_export.cpython-313-pytest-9.0.2.pyc`
 - `src/oma/__pycache__/test_sequence_frequencies.cpython-313-pytest-9.0.2.pyc`
 - `src/oma/oma_output/.DS_Store`
-- `src/sequence_typing_reports/.DS_Store`
-- `src/sunburst/.idea/modules.xml`
-- `src/sunburst/.idea/sunburst.iml`
-- `src/sunburst/.idea/vcs.xml`
-- `src/sunburst/.idea/workspace.xml`
-- `src/sunburst/__pycache__/__init__.cpython-313.pyc`
-- `src/sunburst/__pycache__/__init__.cpython-314.pyc`
-- `src/sunburst/__pycache__/analysis_pipeline.cpython-313.pyc`
-- `src/sunburst/__pycache__/analysis_pipeline.cpython-314.pyc`
-- `src/sunburst/__pycache__/andere_analysis.cpython-313.pyc`
-- `src/sunburst/__pycache__/branching_analysis.cpython-313.pyc`
-- `src/sunburst/__pycache__/bundling.cpython-313.pyc`
-- `src/sunburst/__pycache__/check_inconsistencies.cpython-313.pyc`
-- `src/sunburst/__pycache__/code_merging.cpython-313.pyc`
-- `src/sunburst/__pycache__/code_util.cpython-313.pyc`
-- `src/sunburst/__pycache__/context.cpython-313.pyc`
-- `src/sunburst/__pycache__/cooccurrrence.cpython-313.pyc`
-- `src/sunburst/__pycache__/gradio_app.cpython-313.pyc`
-- `src/sunburst/__pycache__/helper.cpython-313.pyc`
-- `src/sunburst/__pycache__/postprocessing.cpython-313.pyc`
-- `src/sunburst/__pycache__/quant_metrics.cpython-313.pyc`
-- `src/sunburst/__pycache__/rules_repo.cpython-313.pyc`
-- `src/sunburst/__pycache__/sequence_builders.cpython-313.pyc`
-- `src/sunburst/__pycache__/services.cpython-313.pyc`
-- `src/sunburst/__pycache__/sunburst_min_paths.cpython-313.pyc`
-- `src/sunburst/__pycache__/time_series_loader.cpython-313.pyc`
-- `src/sunburst/__pycache__/time_series_model.cpython-313.pyc`
-- `src/sunburst/app/__pycache__/gradio_app.cpython-313.pyc`
 - `src/tests/__pycache__/test_consolidated_csv.cpython-313-pytest-9.0.2.pyc`
 - `src/tests/__pycache__/test_interrater_check.cpython-313-pytest-9.0.2.pyc`
 - `src/tests/__pycache__/test_interrater_speech.cpython-313-pytest-9.0.2.pyc`
