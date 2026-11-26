@@ -1,6 +1,6 @@
 # Analysis of care situations within PIPS
 
-This repository contains code used to study care situations within the PIPS research project. The workflow extracts coded care situations from MAXQDA Excel exports and uses the resulting sequences for optimal matching analysis (OMA). The interrater agreement analysis reads both raters’ Excel exports directly.
+This repository contains code used to study care situations within the PIPS research project. The workflow extracts coded care situations from MAXQDA Excel exports and uses the resulting sequences for optimal matching analysis (OMA). Additionally, we implemented an interrater agreement analysis that reads both raters’ Excel exports directly.
 
 ## Requirements
 
@@ -16,7 +16,7 @@ Install `xlrd` as well if you use older `.xls` files.
 
 ## 1. Extract data
 
-Place the first rater’s Excel files directly in `data/`. The first worksheet must contain at least the `Code`, `Anfang`, and `Ende` columns. The transformation keeps the last entry of each MAXQDA code path.
+Place the first/main rater’s Excel files directly in `data/`. The first worksheet must contain at least the `Code`, `Anfang`, and `Ende` columns. The transformation keeps the last entry of each MAXQDA code path.
 
 ```sh
 .venv/bin/python -B transform_data.py
