@@ -1,10 +1,10 @@
-# PIPS – Analyse von Pflegesituationen
+# Analysis of care situations within PIPS
 
-PIPS extrahiert codierte Pflegesituationen aus MAXQDA-Excel-Exporten. Die extrahierten Sequenzen dienen als Grundlage für die Optimal-Matching-Analyse (OMA). Die Interrater-Analyse liest die Excel-Exporte beider Personen direkt ein.
+This repository contains code used to study care situations within the PIPS research project. The workflow extracts coded care situations from MAXQDA Excel exports and uses the resulting sequences for optimal matching analysis (OMA). The interrater agreement analysis reads both raters’ Excel exports directly.
 
-## Voraussetzungen
+## Requirements
 
-Die Beispiele setzen Python 3.10 oder neuer und eine virtuelle Umgebung unter `.venv/` voraus. Die Befehlsblöcke werden vom Projektverzeichnis aus gestartet.
+The examples assume Python 3.10 or later and a virtual environment at `.venv/`. Run the commands from the repository root.
 
 ```sh
 python3 -m venv .venv
@@ -12,11 +12,11 @@ python3 -m venv .venv
   matplotlib seaborn plotly statsmodels pytest
 ```
 
-Für ältere `.xls`-Dateien zusätzlich `xlrd` installieren.
+Install `xlrd` as well if you use older `.xls` files.
 
-## 1. Daten extrahieren
+## 1. Extract data
 
-Die Excel-Dateien der ersten kodierenden Person liegen direkt in `data/`. Das erste Tabellenblatt enthält mindestens die Spalten `Code`, `Anfang` und `Ende`. Beim Transformieren bleibt jeweils der letzte Eintrag des MAXQDA-Codepfads erhalten.
+Place the first rater’s Excel files directly in `data/`. The first worksheet must contain at least the `Code`, `Anfang`, and `Ende` columns. The transformation keeps the last entry of each MAXQDA code path.
 
 ```sh
 .venv/bin/python -B transform_data.py
@@ -29,19 +29,19 @@ Die Excel-Dateien der ersten kodierenden Person liegen direkt in `data/`. Das er
 )
 ```
 
-Der explizite Eingabepfad ist wichtig. `detect_codes_within.py` verwendet ohne `--input-dir` derzeit `data/interrater_data_raw/transformed/`. Der vorhandene [Pipeline-Runner](run_pipeline.py) übernimmt diesen Standardpfad, während die anschließende Sequenzordnung aus `data/transformed/analysis_results/` liest. Die Häufigkeitsanalyse öffnet Diagrammfenster, die vor dem nächsten Schritt geschlossen werden müssen.
+Pass the input directory explicitly. By default, `detect_codes_within.py` reads from `data/interrater_data_raw/transformed/`. The [pipeline runner](run_pipeline.py) uses that default, while the subsequent sequence ordering step reads from `data/transformed/analysis_results/`. Close the chart windows opened by the frequency analysis to continue to the next step.
 
-| Schritt | Ausgabe |
+| Step | Output |
 | --- | --- |
-| Transformation | Excel-Dateien unter `data/transformed/` |
-| Sequenzextraktion | `sequence_analysis.csv` und `analysis_summary.txt` unter `data/transformed/analysis_results/` |
-| Sequenzordnung | `src/extracted_sequences.csv` für OMA und Häufigkeitsanalyse |
-| Häufigkeitsanalyse | `src/count_analysis_situation_counts.csv`, Rohdaten und Diagramme unter `src/` |
-| Tabellenansicht | `src/übersicht_situationen_länge_pro_datei.csv` und die entsprechende Excel-Datei |
+| Transformation | Excel files in `data/transformed/` |
+| Sequence extraction | `sequence_analysis.csv` and `analysis_summary.txt` in `data/transformed/analysis_results/` |
+| Sequence ordering | `src/extracted_sequences.csv` for OMA and frequency analysis |
+| Frequency analysis | `src/count_analysis_situation_counts.csv`, raw data, and plots in `src/` |
+| Tabular view | `src/übersicht_situationen_länge_pro_datei.csv` and the corresponding Excel file |
 
-## 2. Optimal-Matching-Analyse (OMA)
+## 2. Run optimal matching analysis (OMA)
 
-OMA liest `src/extracted_sequences.csv`. Die Einstellungen in `src/oma/OMA.py` verwenden standardmäßig Ein-Sekunden-Zeitfenster und eine Sequenzdarstellung, die aufeinanderfolgende identische Zustände zusammenfasst (`dss`). `src/oma/output.json` liefert die Anzeigenamen der Codes. [OMA.py](src/oma/OMA.py)
+OMA reads `src/extracted_sequences.csv`. By default, it uses one-second time windows and a sequence representation that collapses consecutive identical states (`dss`). The display names for the codes come from `src/oma/output.json`. [OMA.py](src/oma/OMA.py)
 
 ```sh
 (
@@ -50,9 +50,9 @@ OMA liest `src/extracted_sequences.csv`. Die Einstellungen in `src/oma/OMA.py` v
 )
 ```
 
-Die Ergebnisse liegen in `src/oma/oma_output/`. Dazu gehören die Distanzmatrix `oma_distance_matrix.csv`, die Heatmap `oma_distance_heatmap.html`, Clusterzuordnungen in `cluster_labels.csv` sowie Tabellen zu Clusterprototypen, Codehäufigkeiten und Pflegetypen.
+Results go to `src/oma/oma_output/`. They include the distance matrix `oma_distance_matrix.csv`, the heatmap `oma_distance_heatmap.html`, cluster assignments in `cluster_labels.csv`, and tables of cluster prototypes, code frequencies, and care types.
 
-Die Skripte `export_cluster_code_presence.py` und `export_jasp_oma_dataset.py` erzeugen zusätzliche Auswertungsdateien. Für den konsolidierten Export wird nach OMA die Daueranalyse benötigt. Sie liest die Clusterzuordnungen, die geordneten Sequenzen und `analysis_summary.txt` aus der Extraktion.
+The scripts `export_cluster_code_presence.py` and `export_jasp_oma_dataset.py` produce additional exports. For the consolidated export, run the duration analysis after OMA. It reads the cluster assignments, the ordered sequences, and the `analysis_summary.txt` file from sequence extraction.
 
 ```sh
 (
@@ -61,9 +61,9 @@ Die Skripte `export_cluster_code_presence.py` und `export_jasp_oma_dataset.py` e
 )
 ```
 
-## 3. Sprechdauern aktualisieren und Daten zusammenführen
+## 3. Update speech durations and consolidate the data
 
-Für den konsolidierten Export werden die Situationszählungen, `src/oma/oma_output/cluster_code_duration_observations.csv` aus der Daueranalyse und die bereinigte Übersicht unter `data/` benötigt. Die bereinigte Übersicht enthält die ausgewählten Zeilen und wird separat bereitgestellt.
+The consolidated export requires the situation counts, `src/oma/oma_output/cluster_code_duration_observations.csv` from the duration analysis, and the cleaned overview in `data/`. The cleaned overview contains the selected rows and is provided separately.
 
 ```sh
 .venv/bin/python -B src/create_row_view.py \
@@ -71,7 +71,7 @@ Für den konsolidierten Export werden die Situationszählungen, `src/oma/oma_out
   --dry-run
 ```
 
-Nach Prüfung der Änderungen denselben Befehl ohne `--dry-run` ausführen und anschließend die Daten zusammenführen.
+Review the changes, rerun the command without `--dry-run`, and then consolidate the data.
 
 ```sh
 .venv/bin/python -B src/create_row_view.py \
@@ -79,26 +79,26 @@ Nach Prüfung der Änderungen denselben Befehl ohne `--dry-run` ausführen und a
 .venv/bin/python -B src/consolidate_csv.py
 ```
 
-Die Aktualisierung erhält die Zeilenauswahl, Reihenfolge und übrigen Zellen der bereinigten Übersicht. Das Pflegekind wird über eine eindeutige Codierung `5.5.1` bis `5.5.10` mit exakt den Grenzen der Situation `6.1.1` bestimmt. Ein Sprechintervall `5.3.1` zählt bei einem zeitlich exakt passenden Verweis auf dieses Kind. Weitere gleichzeitige Adressaten sind zulässig.
+The refresh preserves the selected rows, their order, and all other cells in the cleaned overview. It identifies the child receiving care by finding a unique code from `5.5.1` through `5.5.10` whose start and end exactly match the `6.1.1` care situation. A `5.3.1` speech interval counts when a reference to that child has the same start and end as the speech interval. Other simultaneous recipients are allowed.
 
-Sprechintervalle werden an Phasengrenzen zugeschnitten und innerhalb jeder Phase ohne Doppelzählung summiert. Überlappende Phasen zählen ihre jeweilige Sprechzeit. Die Gesamtsprechdauer wird separat im gesamten Situationsfenster berechnet. Die Übersicht enthält Millisekunden, der konsolidierte Export Sekunden. Die Zusammenführung schreibt `src/consolidated_first_round.csv` und `src/consolidated_data.csv`.
+Speech intervals are clipped to phase boundaries and merged within each phase to avoid double counting. Each overlapping phase counts the speech time within its own window. Total speech duration is calculated separately over the entire situation. The overview uses milliseconds, and the consolidated export uses seconds. Consolidation writes `src/consolidated_first_round.csv` and `src/consolidated_data.csv`.
 
-## 4. Interrater-Übereinstimmung
+## 4. Measure interrater agreement
 
-Die erste Person liefert die Excel-Dateien direkt unter `data/`, die zweite direkt unter `data/interrater_data_raw/`. Die Dateien im zweiten Ordner bestimmen die Auswahl der Videos. Das Skript ordnet die Paare anhand der Dateinamen zu und extrahiert für beide Personen alle Situationen `6.1.1` mit ihren zeitlich überlappenden Annotationen.
+Place the first rater’s Excel files directly in `data/` and the second rater’s directly in `data/interrater_data_raw/`. The files in the second directory determine which videos to compare. The script pairs files by name and extracts all `6.1.1` care situations and their overlapping annotations for both raters.
 
 ```sh
 .venv/bin/python -B src/interrater_check.py
 ```
 
-Die Konfiguration enthält getrennte Listen für Präsenz- und Timingcodes. `tolerance_ms` gilt jeweils für Anfang und Ende eines Ereignisses. Der eingecheckte Wert beträgt 60.000 ms. Eine abweichende Toleranz lässt sich für einen einzelnen Lauf setzen. [config/interrater.json](config/interrater.json)
+The configuration has separate lists for presence and timing codes. The `tolerance_ms` value applies to the start and end of each event independently. The checked-in value is 60,000 ms. You can override it for a single run. [config/interrater.json](config/interrater.json)
 
 ```sh
 .venv/bin/python -B src/interrater_check.py \
   --tolerance-ms 1000 --output-dir output/interrater_1000ms
 ```
 
-Der Standardlauf schreibt den Bericht, CSV-Tabellen und neu extrahierte Sequenzen nach `output/interrater/`. Das Skript wertet Sprache sowohl insgesamt als auch mit Pflegekindbezug aus. Die Anleitung beschreibt die Dateipaarung, Kennzahlen und Berichtsdateien im Detail. [Interrater-Anleitung](README_INTERRATER_DE.md)
+By default, the script writes the report, CSV tables, and newly extracted sequences to `output/interrater/`. It analyzes all speech coded as `5.3.1` and speech explicitly addressed to the child receiving care. The [interrater analysis guide](README_INTERRATER.md) explains file pairing, metrics, and output files.
 
 ## Tests
 
