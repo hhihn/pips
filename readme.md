@@ -1,6 +1,6 @@
-# Analysis of care situations within PIPS
+# Analysis of care situations
 
-This repository contains code used to study care situations within the PIPS research project. The workflow extracts coded care situations from MAXQDA Excel exports and uses the resulting sequences for optimal matching analysis (OMA). Additionally, we implemented an interrater agreement analysis that reads both raters’ Excel exports directly.
+This repository contains code used to study care situations within. The workflow extracts coded care situations from MAXQDA Excel exports and uses the resulting sequences for optimal matching analysis (OMA). Additionally, we implemented an interrater agreement analysis that reads both raters’ Excel exports directly.
 
 ## Requirements
 
